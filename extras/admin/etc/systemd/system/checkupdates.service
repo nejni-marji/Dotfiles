@@ -1,0 +1,12 @@
+[Unit]
+Description=Check for updates and download packages
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=-sh -c 'checkupdates > /var/log/checkupdates.log ; checkupdates -d'
+ExecStartPre=sh -c 'for i in {1..12} ; do ping -c1 archlinux.org && break || echo "failed: $i/12" ; sleep 10 ; done'
+
+[Install]
+WantedBy=basic.target

@@ -1,6 +1,5 @@
 **/__pycache__
 .stversions
-/extras/admin
 /extras/bin/manual
 /extras/config/amfora/local_share_amfora/
 /extras/config/mpd/database
