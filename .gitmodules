@@ -36,3 +36,6 @@
 	url = https://github.com/airblade/vim-gitgutter
 [submodule "mpc-display"]
 	url = https://github.com/nejni-marji/mpc-display
+[submodule "extras/bin/git/unimatrix"]
+	path = extras/bin/git/unimatrix
+	url = https://github.com/will8211/unimatrix
