@@ -26,3 +26,5 @@ done
 mkdir -pv nvim/data/backup/$HOST
 mkdir -pv nvim/data/swap/$HOST
 mkdir -pv nvim/data/undo/$HOST
+
+git submodule update --init
