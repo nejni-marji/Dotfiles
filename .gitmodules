@@ -35,6 +35,7 @@
 	path = extras/config/nvim/bundle/airblade/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
 [submodule "mpc-display"]
+	path = extras/bin/git/mpc-display
 	url = https://github.com/nejni-marji/mpc-display
 [submodule "extras/bin/git/unimatrix"]
 	path = extras/bin/git/unimatrix
