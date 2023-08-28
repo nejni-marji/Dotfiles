@@ -1,0 +1,71 @@
+#
+# water.units
+#
+# This is a units file for GNU `units', a program that handles unit conversion.
+# This file describes additional UNIT_SYSTEM values, based on water.
+#
+# To use this file, run:
+# units -f $(units -U) -f ./definitions.units -u water ARGUMENTS
+#
+# Or, run: (my preferred method)
+# alias water='units -f $(units -U) -f ./definitions.units -u water'
+# water ARGUMENTS
+
+############################################################################
+# my good friend aez wrote:
+# i was thinking you could define a scale all about water
+# - unit of mass is the average mass of water someone needs to drink in a day
+# - unit of volume is the volume of the above
+# - unit of time is the time someone can go without water
+# - unit of energy is the energy required to the above amount of water from freezing to boiling
+############################################################################
+
+# custom CGS for water
+!var UNITS_SYSTEM water
+!message CGS-Water units selected
+!prompt (Water)
+
+# new primitives for WaterCGS
+dailywater_cuberoot	! # cuberoot(8 cups)
+dailywater_mass		! # 8 cups waterdensity
+timewithoutwater	! # 3 days
+waterlength			dailywater_cuberoot
+watermass			dailywater_mass
+watertime			timewithoutwater
+
+# primitives i want to redefine: m, kg, s (of CGS)
+m					8.0842355 waterlength
+kg					0.5283441 watermass
+s					3.8580247e-06 watertime
+
+# secondary units
+dailywater			waterlength^3
+waterenergy			1.8371287e+18 waterlength^2 watermass / watertime^2
+cups				dailywater/8
+waterdensity		watermass/waterlength^3
+
+!endvar
+
+############################################################################
+# second attempt, did not work better
+############################################################################
+
+# custom CGS for water
+!var UNITS_SYSTEM water2
+!message CGS-Water units selected
+!prompt (Water2)
+
+# new primitives for WaterCGS
+dailywater			!dimensionless # this is a great big cheat
+timewithoutwater	!
+waterdensity		! # also kind of a cheat
+
+# primitives i want to redefine: m, kg, s (of CGS)
+m					8.0842355 cuberoot(dailywater)
+kg					0.5283441 dailywater waterdensity
+s					3.8580247e-06 timewithoutwater
+
+# secondary units
+waterenergy			1.8371287e+18 waterlength^2 watermass / watertime^2
+
+!endvar

@@ -1,0 +1,38 @@
+[submodule "extras/kwin-scripts"]
+	path = extras/kwin-scripts
+	url = https://gitlab.com/Worldblender/kwin-scripts
+[submodule "extras/bin/git/gay"]
+	path = extras/bin/git/gay
+	url = https://github.com/nejni-marji/gay
+[submodule "extras/bin/git/mpc-display"]
+	path = extras/bin/git/mpc-display
+	url = https://github.com/nejni-marji/mpc-display
+[submodule "extras/bin/git/zsh-git-prompt"]
+	path = extras/bin/git/zsh-git-prompt
+	url = https://github.com/olivierverdier/zsh-git-prompt
+[submodule "extras/config/sway/bin/misc/scsh.sh"]
+	path = extras/config/sway/bin/misc/scsh.sh
+	url = https://github.com/nejni-marji/scsh.sh
+[submodule "extras/config/nvim/autoload/tpope/vim-pathogen"]
+	path = extras/config/nvim/autoload/tpope/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen
+[submodule "extras/config/nvim/bundle/machakann/vim-highlightedyank"]
+	path = extras/config/nvim/bundle/machakann/vim-highlightedyank
+	url = https://github.com/machakann/vim-highlightedyank
+[submodule "extras/config/nvim/bundle/unblevable/quick-scope"]
+	path = extras/config/nvim/bundle/unblevable/quick-scope
+	url = https://github.com/unblevable/quick-scope
+[submodule "extras/config/nvim/bundle/tpope/vim-sensible"]
+	path = extras/config/nvim/bundle/tpope/vim-sensible
+	url = https://github.com/tpope/vim-sensible
+[submodule "extras/config/nvim/bundle/tpope/vim-commentary"]
+	path = extras/config/nvim/bundle/tpope/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "extras/config/nvim/bundle/tpope/vim-surround"]
+	path = extras/config/nvim/bundle/tpope/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "extras/config/nvim/bundle/airblade/vim-gitgutter"]
+	path = extras/config/nvim/bundle/airblade/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "mpc-display"]
+	url = https://github.com/nejni-marji/mpc-display

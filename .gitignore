@@ -1,0 +1,13 @@
+**/__pycache__
+.stversions
+extras/admin
+extras/bin/manual
+extras/config/amfora/local_share_amfora/
+extras/config/mpd/database
+extras/config/mpd/log
+extras/config/mpd/state
+extras/config/mpd/sticker.*
+extras/config/mpv/watch_later/
+extras/config/nvim/data/
+extras/.deadname_re
+extras/secrets

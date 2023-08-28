@@ -1,0 +1,8 @@
+#
+# ~/.config/python/pythonrc
+#
+# Startup file for interactive python
+#
+
+from pprint import pprint as PP
+import math as M

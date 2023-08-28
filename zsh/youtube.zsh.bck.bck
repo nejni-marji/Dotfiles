@@ -1,0 +1,111 @@
+#!/usr/bin/env zsh
+
+#
+# ytsearch.zsh
+#
+# this script is supposed to add a command kind of like microshell.zsh, but the
+# goal is to preload an mpv command into the zle buffer so that i can watch
+# youtube videos from the command line more easily. it's kind of dumb bullshit
+# but thats what i love to do <3
+
+# 2021-01-14 13:50:21
+# changed 'xsel -bo' to 'yturl', a new logging alias
+# alias yturl='xsel -bo | teetmp youtube-urls'
+yturl() {
+	local dir="$HOME/Working/youtube_logs/$USER/$HOST/"
+	mkdir -p $dir
+	cd $dir
+	yturl="$(xsel -bo)"
+	echo -n "$yturl" | teetmp youtube_urls
+	cd - >/dev/null
+}
+
+# YT_VIDEO_PASTE="mpv --ytdl --ytdl-format='bestvideo[height<=1080]+bestaudio/best' --load-unsafe-playlists=yes --loop-playlist=no --pause=no --keep-open=always --fullscreen --volume=100 --start 0 \"\$(yturl)\""
+# YT_AUDIO_PASTE="mpv --ytdl --ytdl-format='bestaudio' --load-unsafe-playlists=yes --loop-playlist=no --pause=no --video=no --keep-open=yes --volume=70 --start 0 \"\$(yturl)\""
+# # YT_VIDEO_SEARCH="mpv --ytdl --ytdl-format='bestvideo[height<=1080]+bestaudio/best' --load-unsafe-playlists=yes --loop-playlist=no --pause=no --keep-open=always --fullscreen --volume=100 --start 0 'ytdl://ytsearch: '"
+# # YT_AUDIO_SEARCH="mpv --ytdl --ytdl-format='bestaudio' --load-unsafe-playlists=yes --loop-playlist=no --pause=no --video=no --keep-open=yes --volume=70 --start 0 'ytdl://ytsearch: '"
+
+# # updating some flags and stuff.
+# # also, 'ytsearch: <query>' is broken
+# # --2020-10-28 15:45:23
+# YT_VIDEO_PASTE="mpv --ytdl --ytdl-format='bestvideo[height<=1200]+bestaudio[ext!=webm]/best' --no-pause --fullscreen --load-unsafe-playlists=no --keep-open=always --loop-playlist=no --volume=100 --start=0 \"\$(yturl)\" && exit"
+# YT_AUDIO_PASTE="mpv --ytdl --ytdl-format='bestvideo[height<=240]+bestaudio[ext!=webm]/best' --no-pause --no-video --load-unsafe-playlists=yes --keep-open=yes --loop-playlist=no --volume=70 --start=0 \"\$(yturl)\" && exit"
+# # these ones put yturl first, rather than last
+# # YT_VIDEO_PASTE="mpv \"\$(yturl)\" --ytdl --ytdl-format='bestvideo[height<=1200]+bestaudio[ext!=webm]/best' --no-pause --fullscreen --load-unsafe-playlists=no --keep-open=always --loop-playlist=no --volume=100 --start=0 && exit"
+# # YT_AUDIO_PASTE="mpv \"\$(yturl)\" --ytdl --ytdl-format='bestvideo[height<=240]+bestaudio[ext!=webm]/best' --no-pause --no-video --load-unsafe-playlists=yes --keep-open=yes --loop-playlist=no --volume=70 --start=0 && exit"
+
+
+# YT_VIDEO_PASTE="mpv --ytdl --ytdl-format='bestvideo[height<=720]+bestaudio[ext!=webm]/best' --no-pause --fullscreen --load-unsafe-playlists=no --keep-open=always --loop-playlist=no --volume=100 --start=0 \"\$(yturl)\" && exit"
+# YT_AUDIO_PASTE="mpv --ytdl --ytdl-format='bestvideo[height<=240]+bestaudio[ext!=webm]/best' --no-pause --no-video --load-unsafe-playlists=yes --keep-open=yes --loop-playlist=no --volume=70 --start=0 \"\$(yturl)\" && exit"
+
+
+
+
+# commenting everything above. lines below are currently in use --2021-08-20 19:09:48
+# YT_VIDEO_PASTE="mpv --ytdl --ytdl-format='bestvideo[height<=720]+bestaudio[ext!=webm]/best' --no-pause --fullscreen --load-unsafe-playlists=no --keep-open=always --loop-playlist=no --volume=100 --start=0 \"\$(yturl)\" && exit"
+YT_VIDEO_PASTE_1="mpv --ytdl --ytdl-format='bestvideo[height<=720]+bestaudio[ext!=webm]/best' --no-pause --fullscreen --load-unsafe-playlists=no --keep-open=always --loop-playlist=no --volume=100 --start=0"
+YT_VIDEO_PASTE_2=" \"\$(yturl)\" && exit"
+# YT_AUDIO_PASTE="mpv --ytdl --ytdl-format='bestvideo[height<=240]+bestaudio[ext!=webm]/best' --no-pause --no-video --load-unsafe-playlists=yes --keep-open=yes --loop-playlist=no --volume=70 --start=0 \"\$(yturl)\" && exit"
+YT_AUDIO_PASTE_1="mpv --ytdl --ytdl-format='bestvideo[height<=240]+bestaudio[ext!=webm]/best' --no-pause --no-video --load-unsafe-playlists=yes --keep-open=yes --loop-playlist=no --volume=70 --start=0 "
+YT_AUDIO_PASTE_2="\"\$(yturl)\" && exit"
+
+
+
+ytvideo() {
+	zle-line-init() {
+		BUFFER=$YT_VIDEO_PASTE_1
+		CURSOR=${#BUFFER}
+		zle vi-cmd-mode
+		zle split-undo
+		BUFFER+=$YT_VIDEO_PASTE_2
+		zle -D zle-line-init
+	}
+	zle -N zle-line-init
+}
+
+ytaudio() {
+	zle-line-init() {
+		BUFFER=$YT_AUDIO_PASTE
+		CURSOR=$((${#BUFFER}-19))
+		# BUFFER="for ((i=0; i<3; i++)) ; { $BUFFER }"
+		# CURSOR=$((${#BUFFER}-24))
+		zle vi-cmd-mode
+		zle split-undo
+		CURSOR=$((${#BUFFER}-20))
+		zle -D zle-line-init
+	}
+	zle -N zle-line-init
+}
+
+# ytsaudio() {
+# 	zle-line-init() {
+# 		BUFFER=$YT_AUDIO_SEARCH
+# 		CURSOR=$(( $#BUFFER - 1 ))
+# 		# BUFFER+=" && exit"
+# 		zle -D zle-line-init
+# 	}
+# 	zle -N zle-line-init
+# }
+
+# ytsvideo() {
+# 	zle-line-init() {
+# 		BUFFER=$YT_VIDEO_SEARCH
+# 		CURSOR=$(( $#BUFFER - 1 ))
+# 		BUFFER+=" && exit"
+# 		zle -D zle-line-init
+# 	}
+# 	zle -N zle-line-init
+# }
+
+# adding new yts: 2021-01-14 13:48:54
+ytsearch() {
+	echo -n "ytdl://ytsearch: $@" | xsel -bi
+}
+
+
+alias ytv=ytvideo
+alias yta=ytaudio
+# alias ytsa=ytsaudio
+# alias ytsv=ytsvideo
+
+alias yts=ytsearch

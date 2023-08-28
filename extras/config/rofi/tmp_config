@@ -1,0 +1,14 @@
+! vim: syn=xdefaults cms=!\ %s
+rofi.i: true
+rofi.lines: 10
+rofi.columns: 9
+rofi.fixed-num-lines: false
+rofi.location: 1
+rofi.width: 100
+rofi.bw: 0
+rofi.line-margin: 0
+rofi.separator-style: none
+rofi.font: monospace 10
+rofi.disable-history: true
+rofi.hide-scrollbar: true
+! }}}

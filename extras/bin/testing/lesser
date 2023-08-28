@@ -1,0 +1,2 @@
+#!/bin/zsh
+exec less -J -j "$(($LINES/2))" "$@"

@@ -1,0 +1,11 @@
+#!/bin/bash
+TAG=$1
+
+for i in "${@:2}"; do
+export HOSTNAME=$(hostname)
+export DATE_DIR=$(date +%Y/%m/%d)
+export DATE_FIN=$(date +%T)
+export FILE=$(echo $PWD/"$i" | tr / %)
+mkdir -p ~/Media/Archive/$USER/$HOSTNAME/$TAG/$DATE_DIR
+mv -v "$i" ~/Media/Archive/$USER/$HOSTNAME/$TAG/$DATE_DIR/$DATE_FIN"$FILE"
+done

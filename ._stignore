@@ -1,0 +1,5 @@
+!/extras/config/mpd/mpd.conf
+!/extras/config/mpd/playlists
+/extras/config/mpd
+
+/extras/config/nvim/data/swap/*/*

@@ -1,0 +1,105 @@
+#!/bin/zsh
+
+# TODO:
+# show help text with no $1
+
+local speaker='alsa_card.pci-0000_00_1b.0'          # laptop (main)
+# local headset='bluez_card.94_DB_56_0D_21_90'        # bt
+local headset_new='bluez_card.94_DB_56_0D_21_90'        # bt
+local hdmi='alsa_card.pci-0000_00_03.0'             # hdmi
+local headset_old='bluez_card.0C_A6_94_F7_A3_4F'    # bt_old
+local headset="$headset_old"
+
+while ! [[ -z $1 ]] ; do
+	echo "[$1]"
+	case $1 in
+		# regular modes {{{
+		# main mode
+		+main|+laptop|+m|+l)
+			pactl set-card-profile $speaker output:analog-stereo+input:analog-stereo
+			;;
+		-main|-laptop|-m|-l)
+			pactl set-card-profile $speaker input:analog-stereo
+			;;
+		# bluetooth mode
+		+bt|+b)
+			until pactl set-card-profile $headset a2dp_sink ; do
+				sleep 1
+			done
+			$0 key
+			;;
+		-bt|-b)
+			pactl set-card-profile $headset off
+			;;
+		# hdmi mode
+		+hdmi|+h)
+			pactl set-card-profile $hdmi output:hdmi-stereo
+			;;
+		-hdmi|-h)
+			pactl set-card-profile $hdmi off
+			;;
+		# bt_old mode
+		+bt_old|+b_o)
+			until pactl set-card-profile $headset_old a2dp_sink ; do
+				sleep 1
+			done
+			;;
+		-bt_old|-b_o)
+			pactl set-card-profile $headset_old off
+			;;
+		# }}}
+		# meta modes
+		main|laptop|m|l)
+			$0 +laptop -bt -hdmi
+			;;
+		bt|b)
+			$0 +bt -laptop -hdmi
+			;;
+		hdmi|h)
+			$0 +hdmi -laptop -bt
+			;;
+		# nonstandard modes
+		# bluetooth toggle {{{
+		btt)
+			if
+				# returns 0 if bt is off, 1 if bt is on
+				pactl list cards \
+					| grep -P '(Name|Active Profile):' \
+					| grep -A1 bluez_card \
+					| tail -n1 \
+					| grep off >/dev/null
+			then # turn bt on
+				{
+					$0 +bt
+					$0 -laptop
+					# echo "bluetooth only, no speakers"
+				}
+			else # turn bt off
+				{
+					$0 +laptop
+					$0 -bt
+					# echo "speakers only, no bluetooth"
+				}
+			fi
+			;;
+		# }}}
+		key|k)
+			# run xmodmap to fix keys for headset
+			xmodmap -pk \
+				| grep XF86AudioPause \
+				&& xmodmap -e 'keysym XF86AudioPause = XF86AudioPlay'
+			;;
+		keybad|K)
+			# run xmodmap to BREAK keys for headset
+			xmodmap -pk \
+				| grep XF86AudioPlay \
+				&& xmodmap -e 'keysym XF86AudioPlay = XF86AudioPause'
+			;;
+		h|help|-h|--help|*)
+			# echo "usage:"
+			cat $0 | grep -P '(?<=\t)\S+\)' | tr -d '\t' | perl -pe 's/\|/ | /g;s/\)/ )/g'
+			;;
+
+	esac
+	shift
+done

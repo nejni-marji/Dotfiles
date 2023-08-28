@@ -1,0 +1,78 @@
+#
+# ~/.keynavrc
+#
+
+# vim:syn=conf:
+
+clear
+# q record ~/.keynav_macros
+# shift+at playback
+# ctrl+at playback
+a history-back
+
+# controls {{{
+ctrl+backslash start
+ctrl+shift+backslash start,grid 3x3,grid-nav on
+
+Escape end
+ctrl+bracketleft end
+
+ctrl+r restart
+ctrl+q quit
+# }}}
+# directionals {{{
+h cut-left
+j cut-down
+k cut-up
+l cut-right
+shift+h move-left
+shift+j move-down
+shift+k move-up
+shift+l move-right
+ctrl+h move-left
+ctrl+j move-down
+ctrl+k move-up
+ctrl+l move-right
+# }}}
+# clicks {{{
+1 click 1
+2 click 2
+3 click 3
+4 click 4
+5 click 5
+shift+1 doubleclick 1
+a click 1
+o click 2
+e click 3
+u click 4
+i click 5
+shift+a doubleclick 1
+
+# ctrl+u click 4
+# ctrl+d click 5
+# u click 4
+# d click 5
+# }}}
+# warps {{{
+space warp,click 1,end
+Return warp,click 1,end
+# click 6 is a hack to fix an xinput issue
+# w warp,click 6
+w warp
+shift+w warp
+# backslash warp,end
+# }}}
+
+shift+d drag 1
+ctrl+d drag 1
+
+
+t windowzoom
+c cursorzoom 300 300
+shift+c cursorzoom 100 100
+ctrl+c cursorzoom 100 100
+
+shift+g grid 3x3
+ctrl+g grid 3x3
+g grid-nav toggle
+

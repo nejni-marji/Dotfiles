@@ -1,0 +1,1 @@
+The 'extras' folder here is simple. I want to use a script to symlink everything from Dotfiles to my home folder. I also want a bunch of stuff I don't want to link. Putting all of that stuff in one folder means I only have to delete or exclude one thing from that list. Easy as pie!

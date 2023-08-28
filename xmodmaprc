@@ -1,0 +1,35 @@
+!
+! ~/.xmodmaprc
+!
+
+! Clear everything, reset it all later.
+clear Lock
+clear Control
+clear Mod4
+clear Shift
+
+! keysym Replace_This = With_This
+
+! Capslock is a Control
+keysym Caps_Lock = Control_L
+
+! swap Super and Control
+keysym Super_L = Control_L
+keysym Control_L = Super_L
+
+! Compose key is Right Alt
+keysym Menu = Multi_key Multi_key
+
+! Add modifiers back in
+add Lock = Caps_Lock
+add Control = Control_L Control_R
+add Mod4 = Super_L Super_R
+add Shift = Shift_L Shift_R
+
+! The result of this should be as follows:
+! Physical         Digital
+!
+! Caps_Lock        Control_L
+! Control_L        Super_L
+! Super_L          Shift_L
+! Menu             Multi_key

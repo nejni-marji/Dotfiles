@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# Script taken from http://github.com/brandur/tmux-extra
+# Rewritten by nejni-marji
+
+# Kill defunct sessions
+list-dead() {
+	tmux ls 2>/dev/null | grep -P '(.*?)-\d{4}_\d{6}: .* \(group (?:\1|\d+)\)$' | cut -d: -f1
+}
+for i in $(list-dead); do
+	echo "Killing defunct session: $i"
+	tmux kill-session -t "$i"
+done
+
+# set the initial state of $arg
+arg="$1"
+[[ -z "$arg" ]] && arg=ls
+while [[ -z "$group" ]]; do
+
+	if [[ -z "$arg" ]]; then
+		read -t 30 -p '>>> ' arg
+		err="$?"
+		# 1 means ^D
+		[[ "$err" -eq 1   ]] && exit 1
+		# 142 means timeout
+		[[ "$err" -eq 142 ]] && exit 1
+	fi
+
+	# switch on $arg
+	case "$arg" in
+		ls|l)
+			{ tmux ls 2>/dev/null; } \
+			|| echo 'No sessions found'
+		;;
+		lsg|lg|g)
+			{ tmux ls 2>/dev/null | grep -P '(.*?): .* \(group \1\)$'; } \
+			|| echo 'No sessions found'
+		;;
+		exit|quit|q)
+			exit 1
+		;;
+		'')
+		;;
+		*)
+			group="$arg"
+		;;
+	esac
+
+	# reset arg so we don't loop forever
+	arg=""
+done
+
+# how many tmux sessions are in $group
+# honestly we only really care if it's zero or not
+count="$(tmux ls 2>/dev/null | grep -Pc "\(group $group\)")"
+
+# Applies if this is a new group
+if [[ "$count" == "0" ]]; then
+	echo "New base session: $group"
+	tmux new-session -s "$group" -d
+fi
+# Only run if we aren't in a tmux shell
+if [[ -z "$TMUX" ]]; then
+	session="$group-$(date +%m%d_%H%M%S)"
+	echo "New grouped session: $session"
+	tmux new-session -t "$group" -s "$session" -d -F '#{session_name}'
+	tmux attach-session -t "$session" >/dev/null 2>/dev/null
+	echo "Killing grouped session: $session"
+	tmux kill-session -t "$session" >/dev/null 2>/dev/null
+fi

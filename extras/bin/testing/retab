@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+from sys import stdin
+
+# with open('input.txt') as f:
+# 	data = f.read()
+# 	f.close()
+data = stdin.read()
+
+# split the data into a 2D array
+data = data.split('\n')
+if data[-1] == '':
+	data = data[:-1]
+data = [i.split('\t') for i in data]
+
+# get maximum field count
+width = max([
+	len(i)
+	for i
+	in data
+])
+
+# get row count
+height = len(data)
+
+def get_data(h, w):
+	try:
+		return data[h][w]
+	except IndexError:
+		return '';
+
+# list comprehension to invert the dimensions of the array
+new_data = [
+	[
+		get_data(j, i)
+		for j
+		in range(height)
+	]
+	for i
+	in range(width)
+]
+
+# get the lengths of the longest field in each column
+max_widths = [
+	max([
+		len(j)
+		for j
+		in i
+	])
+	for i
+	in new_data
+]
+
+text = []
+for i in range(height):
+	row = ''
+	for j in range(width):
+		# nested string formatting, first add the width, then add the content
+		row += '%%-%is' % max_widths[j] % new_data[j][i]
+		row += '  '
+	text.append(row)
+text = '\n'.join(text)
+
+print(text)

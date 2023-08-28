@@ -1,0 +1,92 @@
+mpv
+--ytdl
+--ytdl-format='bestvideo[height<=1080]+bestaudio/best'
+--load-unsafe-playlists=yes
+--loop-playlist=no
+--pause=no
+--keep-open=always
+--fullscreen
+--volume=100
+--start
+0
+"$(xsel
+-bo)"
+mpv
+--ytdl
+--ytdl-format='bestaudio'
+--load-unsafe-playlists=yes
+--loop-playlist=no
+--pause=no
+--video=no
+--keep-open=yes
+--volume=70
+--start
+0
+"$(xsel
+-bo)"
+mpv
+--ytdl
+--ytdl-format='bestvideo[height<=1080]+bestaudio/best'
+--load-unsafe-playlists=yes
+--loop-playlist=no
+--pause=no
+--keep-open=always
+--fullscreen
+--volume=100
+--start
+0
+'ytdl://ytsearch:
+'"
+mpv
+--ytdl
+--ytdl-format='bestaudio'
+--load-unsafe-playlists=yes
+--loop-playlist=no
+--pause=no
+--video=no
+--keep-open=yes
+--volume=70
+--start
+0
+'ytdl://ytsearch:
+'"
+
+
+mpv 
+	--ytdl --ytdl-format='bestvideo[height<=1080]+bestaudio/best'
+--no-pause --fullscreen
+--load-unsafe-playlists=no
+--loop-playlist=no
+
+mpv
+--ytdl --ytdl-format='bestvideo[height<=1080]+bestaudio/best'
+--no-pause --fullscreen
+--load-unsafe-playlists=no
+--keep-open=always --loop-playlist=no
+--volume=100
+--start
+
+-----
+
+# baseline for videos:
+
+mpv
+--ytdl --ytdl-format='bestvideo[height<=1080]+bestaudio/best'
+--no-pause --fullscreen
+--load-unsafe-playlists=no
+--keep-open=always --loop-playlist=no
+--volume=100
+--start=0
+
+# modified form for videos
+# change [height] to 240 from 1080
+# -- --fullscreen
+# ++ --no-video
+
+mpv
+--ytdl --ytdl-format='bestvideo[height<=240]+bestaudio/best'
+--no-pause --no-video
+--load-unsafe-playlists=no
+--keep-open=yes --loop-playlist=no
+--volume=70
+--start=0

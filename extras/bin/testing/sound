@@ -1,0 +1,218 @@
+#!/bin/bash
+#
+# ~/bin/sound
+#
+
+###############################################################################
+# Here are the extra reference functions (debug utils, etc).
+###############################################################################
+
+debug() {
+	echo "$@"
+	exit
+}
+
+mpd_notify() {
+	export MPC_FORMAT='[%title%|%file%]|Stopped'
+	SUMMARY=$(mpc current | grep . || echo 'Stopped')
+
+	export MPC_FORMAT='[By: %albumartist% ][\[<i>%album%</i>\]]|Unknown'
+	INFO=$(mpc current | perl -pe 's/&/&amp;/g')
+
+	unset MPC_FORMAT
+
+	VOLUME="(Volume: $(mpc volume | cut -c8- | tr -d ' '))"
+	EXTRAS="<i>$@</i>"
+
+	if [[ $SUMMARY == Stopped ]] && [[ -z $1 ]]; then
+		BODY=""
+	elif [[ $SUMMARY == Stopped ]] && ! [[ -z $1 ]]; then
+		BODY="$EXTRAS"
+	elif [[ $SUMMARY != Stopped ]] && [[ -z $1 ]]; then
+		BODY="$INFO\n$VOLUME"
+	elif [[ $SUMMARY != Stopped ]] && ! [[ -z $1 ]]; then
+		BODY="$INFO\n$VOLUME\n$EXTRAS"
+	else
+		echo "ERROR: This message should never appear."
+		exit 1
+	fi
+
+	notify-send -t 5000 -a "MPD" "$SUMMARY" "$BODY"
+}
+
+SINK='@DEFAULT_SINK@'
+
+get_volume() {
+	V_COUNT=$(pactl list sinks | grep -E '^\s*Volume:' | grep -Po '\d+%' | wc -l)
+	VOLUMES=$(pactl list sinks | grep -E '^\s*Volume:' | grep -Po '\d+%')
+	if [[ $V_COUNT == 1 ]]; then
+		export VOLUME="$VOLUMES"
+	else
+		LV=$(echo $VOLUMES | awk '{print $1}')
+		RV=$(echo $VOLUMES | awk '{print $2}')
+		if [[ $LV == $RV ]]; then
+			export VOLUME="$LV"
+		else
+			export VOLUME="$LV,$RV"
+		fi
+	fi
+	# also get the mute state
+	MUTE="$(pactl list sinks | grep -P "^(Sink #$SINK|\sMute: )" | grep -Po '(?<=: ).*')"
+}
+
+###############################################################################
+# Here are the main function definitions for this script.
+###############################################################################
+
+## PulseAudio
+
+sound_pa_mute() {
+	pactl set-sink-mute $SINK toggle
+
+	# notify
+	MUTE="$(pactl list sinks | grep -P "^(Sink #$SINK|\sMute: )" | grep -Po '(?<=: ).*')"
+	[[ $MUTE == yes ]] && notify-send -t 2000 -a PulseAudio Volume Muted
+	[[ $MUTE == no  ]] && notify-send -t 2000 -a PulseAudio Volume Unmuted
+}
+
+sound_pa_get() {
+	get_volume
+	echo $VOLUME
+
+	[[ $1 == notify ]] || exit 0
+	# notify
+	[[ $MUTE == yes ]] && VOLUME+=" (Muted)"
+	notify-send -t 2000 -a PulseAudio Volume "$VOLUME"
+}
+
+sound_pa_set() {
+	VOL=$(echo $1 | grep -P '^[+=-]?(?!0$)\d+%?$' | tr -d '=')
+	[[ $VOL =~ % ]] || VOL="$VOL%"
+	pactl set-sink-volume $SINK "$VOL"
+
+	# notify
+	get_volume
+	VOLUME="$VOLUME ($VOL)"
+	[[ $MUTE == yes ]] && VOLUME+=" (Muted)"
+	notify-send -t 2000 -a PulseAudio Volume "$VOLUME"
+}
+
+## Music Player Daemon
+
+sound_mpd_volume() {
+	VOL=$(echo $1 | grep -P '^[+-]?(?!0$)\d+%?$' | tr -d '%')
+	[[ -z $VOL ]] && mpd_notify "Bad volume"
+	[[ -z $VOL ]] && return 1
+	mpc volume $VOL
+	mpd_notify "Volume $VOL"
+}
+
+sound_mpd_toggle() {
+	mpc toggle
+	mpd_notify 'Toggle'
+}
+
+sound_mpd_prev() {
+	mpc prev
+	mpd_notify 'Previous'
+}
+
+sound_mpd_next() {
+	mpc next
+	mpd_notify 'Next'
+}
+
+sound_mpd_get() {
+	POSITION="$( \
+		mpc \
+		| grep -E '^\[(playing|paused)\]' \
+		| awk '{print $3" ("$2")"}' \
+	)"
+	mpd_notify $POSITION
+}
+
+sound_mpd_config() {
+	case $1 in
+		e|repeat)
+			ACT=repeat
+		;;
+		r|random)
+			ACT=random
+		;;
+		s|single)
+			ACT=single
+		;;
+		c|consume)
+			ACT=consume
+		;;
+		*)
+			debug 'sound mpd config [repeat|random|single|consume] [on|off]'
+		;;
+	esac
+
+	[[ -z $2 ]] || [[ $2 =~ on|off ]] || debug 'sound mpd toggle [repeat|random|single|consume] [on|off]'
+
+	mpc -h ODROID $ACT $2
+}
+
+sound_mpd_stop() {
+	mpc stop
+	mpd_notify
+}
+
+###############################################################################
+# Here are the case statements that determine which functions to run.
+###############################################################################
+
+case $1 in
+	p|pa)
+		case $2 in
+			m|mute)
+				sound_pa_mute ${@:3}
+			;;
+			g|get)
+				sound_pa_get ${@:3}
+			;;
+			s|set)
+				sound_pa_set ${@:3}
+			;;
+			*)
+				debug 'sound pa [mute|get|set]'
+			;;
+		esac
+	;;
+	m|mpc|mpd)
+		case $2 in
+		v|vol|volume)
+			sound_mpd_volume ${@:3}
+		;;
+		t|toggle)
+			sound_mpd_toggle ${@:3}
+		;;
+		p|prev)
+			sound_mpd_prev ${@:3}
+		;;
+		n|next)
+			sound_mpd_next ${@:3}
+		;;
+		g|get)
+			sound_mpd_get ${@:3}
+		;;
+		c|config)
+			sound_mpd_config ${@:3}
+		;;
+		s|stop)
+			sound_mpd_stop ${@:3}
+		;;
+		*)
+			debug 'sound mpd [volume|toggle|prev|next|get|config|stop]'
+		;;
+		esac
+	;;
+	nop)
+		exit 0
+	;;
+	*)
+		debug 'sound [pa|mpd]'
+	;;
+esac

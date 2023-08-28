@@ -1,0 +1,70 @@
+!
+! ~/.config/rofi/config
+!
+! vim: syn=xdefaults cms=!\ %s
+!
+
+! change this if you ever stop using termite
+! rofi.run-shell-command: {terminal} -e '{cmd}'
+rofi.parse-hosts: false
+rofi.parse-known-hosts: false
+! rofi.ssh-command: {terminal} -e '{ssh-client} {host}'
+
+! testing
+rofi.sidebar-mode: true
+rofi.sidebar-mode: false
+rofi.disable-history: false
+
+! colors {{{
+!                  bckgrn   border   sep
+rofi.color-window: #404040, #400040, #ffffff
+rofi.color-window: #404040, #404040, #ffffff
+!           state: bg       fg       bgalt    hlbg     hlfg
+rofi.color-normal: #404040, #aaaaaa, #404040, #800080, #ffffff
+rofi.color-urgent: #404040, #aaaaaa, #404040, #800080, #ffffff
+rofi.color-active: #404040, #aaaaaa, #404040, #800080, #ffffff
+! }}}
+! {{{ appearance
+! size and shape
+rofi.columns: 2
+rofi.columns: 9
+rofi.fixed-num-lines: false
+rofi.location: 1
+rofi.width: 100
+! small stuff
+rofi.bw: 2
+rofi.bw: 0
+rofi.line-margin: 0
+rofi.separator-style: none
+rofi.hide-scrollbar: true
+! }}}
+
+rofi.i: true
+
+! keybinds {{{
+rofi.kb-clear-line:
+rofi.kb-remove-word-back: Control+Alt+h,Control+BackSpace,Control+w
+
+! PRIMARY
+rofi.kb-primary-paste: Control+V,Shift+Insert
+! CLIPBOARD
+rofi.kb-secondary-paste: Control+v,Insert
+
+! originals
+! rofi.kb-row-up:         Up,Control+p,ISO_Left_Tab
+! rofi.kb-row-down:       Down,Control+n
+! rofi.kb-row-tab:        Tab
+! rofi.kb-accept-entry:   Control+j,Control+m,Return,KP_Enter
+! rofi.kb-accept-custom:  Control+Return
+! rofi.kb-accept-alt:     Shift+Return
+! rofi.kb-row-select:     Control+space
+! new
+rofi.kb-row-up:         Up,Control+p,ISO_Left_Tab
+rofi.kb-row-down:       Down,Control+n,Tab
+rofi.kb-row-tab:
+rofi.kb-accept-entry:   Control+j,Control+m,Return,KP_Enter
+rofi.kb-accept-custom:  Control+Return
+rofi.kb-accept-alt:     Shift+Return
+rofi.kb-row-select:     Control+space
+
+! }}}
