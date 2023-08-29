@@ -359,6 +359,24 @@ mc-screenshot() {
 	xclip -se c -t image/png -i ~/.minecraft/screenshots/*(#q[-1])
 }
 
+ocr-copy() {
+	mpc
+	data=$(mpc -f '%track%\t%album%' current)
+	echo $data |
+	grep -P '\tocremix.org$' >/dev/null &&
+	track=$(echo $data |
+	cut -f1) &&
+	printf 'https://ocremix.org/remix/OCR%05i' $track |
+	wl-copy
+}
+
+music-upload() {
+	mpc
+	data=$(mpc -f %file% current) &&
+	echo ~/Music/"$data" |
+	wl-copy -n
+}
+
 # functions that would be convenient if i knew what they did
 
 whiledo() {
