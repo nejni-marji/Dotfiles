@@ -450,7 +450,7 @@ link_number = "#c0c0ff"
 regular_text = "#ffffff"
 quote_text = "#ffc0c0"
 preformatted_text = "#00ffff"
-# list_text = "#"
+list_text = "#ddddff"
 
 # btn_bg
 # btn_text
