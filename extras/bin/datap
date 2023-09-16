@@ -1,1 +1,40 @@
-bin/datap
+#!/bin/bash
+
+depth=$1
+[[ -z $depth ]] && depth=1
+decimals=$2
+[[ -z $decimals ]] && decimals=2
+
+zeroes="$(printf '0%.0s' `seq 1 $decimals`)"
+digits=$(($decimals+2))
+
+cmd='
+[inputs|split("\t")] |
+(
+	[
+		.[][0] | tonumber
+	] | add
+) as $total |
+.[] |
+[
+	(
+		.[0] | tonumber
+	)/$total*100'"$zeroes"',
+	.[1][2:]
+] |
+[
+	(.[0]+0.5 |
+		tostring |
+		"0'"$zeroes"'" + . |
+		split(".")[0] |
+		.[-'"$digits"':] |
+		.[:2] + "." + .[2:]
+	),
+	.[1]
+] |
+.[0] + ": " + .[1]
+'
+
+find . -maxdepth $depth -mindepth $depth -exec du -s {} \; | \
+jq -rRn "$cmd" | \
+sort -nr
