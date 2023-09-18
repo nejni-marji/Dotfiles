@@ -116,8 +116,9 @@ alias nl='nl -ba -ha -fa -p -n ln'
 alias x='xargs -I {}'
 alias ffmpeg='ffmpeg -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
-alias cringename=basename
+alias cringename='basename'
 alias paru='paru --sudoflags --bell'
+alias todo='todo.sh
 
 # same as above, but for less standard programs
 alias units='units -v'
