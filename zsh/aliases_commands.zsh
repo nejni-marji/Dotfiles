@@ -118,7 +118,7 @@ alias ffmpeg='ffmpeg -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
 alias cringename='basename'
 alias paru='paru --sudoflags --bell'
-alias todo='todo.sh
+alias todo='todo.sh'
 
 # same as above, but for less standard programs
 alias units='units -v'
