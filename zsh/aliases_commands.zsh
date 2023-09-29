@@ -113,7 +113,6 @@ alias df='df -x tmpfs -x devtmpfs -x squashfs -lh --output=target,size,used,avai
 alias python='python3'
 alias rm='echo pls dont' # alias over rm because i dont use it
 alias nl='nl -ba -ha -fa -p -n ln'
-alias x='xargs -I {}'
 alias ffmpeg='ffmpeg -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
 alias cringename='basename'
@@ -134,6 +133,7 @@ unset FF_VER
 
 # abbreviations for existing programs
 alias wcl='wc -l'
+alias x='xargs -I {}'
 ############################################################
 # youtube-dl \
 # 	--restrict-filenames \
@@ -376,6 +376,11 @@ music-upload() {
 	data=$(mpc -f %file% current) &&
 	echo ~/Music/"$data" |
 	wl-copy -n
+}
+
+# this used to be a bash script, so it's keeping the same name
+unzip.sh() {
+	unzip "$1" -d "${1%.zip}"
 }
 
 # functions that would be convenient if i knew what they did
