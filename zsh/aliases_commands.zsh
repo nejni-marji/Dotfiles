@@ -503,6 +503,38 @@ obs-upload() {
 	echo $tgt | wl-copy -n
 }
 
+# old functions that i don't use anymore. it's possible that some of these were
+# briefly removed from this file, but were brought back for some reason or
+# another.
+
+magnus-warnings() {
+	if [[ $1 =~ html ]] ; then
+		url="$1"
+	else
+		url="https://snarp.github.io/magnus_archives_transcripts/episode/$1.html"
+	fi
+	pat=$magnus_triggers
+	if ! [[ -z $2 ]] ; then
+		pat+="|$2"
+	fi
+	if [[ $MAGNUS_DEBUG == true ]] ; then
+		echo "url: $url" >&2
+		echo "pat: $pat" >&2
+	fi
+	text="$(curl --silent "$url" \
+		| grep -Po '(?<=\<p class="spoiler"\>).*(?=\<\/p\>)' \
+		| grep -Po '((?<=^)|(?<=, ))([^,]+\([^)]+\)|[^,]+(?=,|$))' \
+	)"
+	local -a data=("${(f)${text}}")
+	local -a warn=("${(f)$(echo $text | grep -Pi "$pat")}")
+	local datalen=$#data
+	local warnlen=$#warn
+	[[ $data == "" ]] && datalen=0
+	[[ $warn == "" ]] && warnlen=0
+	echo "$warnlen/$datalen"
+	! [[ -z $warn ]] && echo "${(F)warn}"
+}
+
 
 
 ####################################
