@@ -1,5 +1,4 @@
 #!/bin/zsh
-# vim: syn=hash cms=#\ %s tw=80
 
 cd
 
