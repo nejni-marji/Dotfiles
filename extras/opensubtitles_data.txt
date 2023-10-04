@@ -1,0 +1,12 @@
+-=[ ai.OpenSubtitles.com ]=-
+api.OpenSubtitles.org is deprecated, please
+contact www.OpenSubtitles.org today
+Do you want subtitles for any video?
+<font color="#ffff00" size=14>www.tvsubtitles.net</font>
+Free Browser extension: osdb.link/ext
+Help other users to choose the best subtitles
+implement REST API from OpenSubtitles.com
+Please rate this subtitle at www.osdb.link/
+to remove all ads from www.OpenSubtitles.org
+Visiontext subtitles: Susan Voas
+Watch any video online with Open-SUBTITLES
