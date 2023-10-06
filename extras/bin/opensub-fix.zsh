@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-data=~/Dotfiles/extras/opensubtitles_data.txt
+data=~/Dotfiles/extras/misc/opensubtitles_data.txt
 
 for i in *.srt ; do
 	if ! [[ -f .$i ]] ; then
