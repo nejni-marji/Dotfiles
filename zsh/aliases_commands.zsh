@@ -158,7 +158,7 @@ alias x='xargs -I {}'
 
 # Mon, Jan 30 2023, 22:41
 # I have abandoned youtube-dl in favor of yt-dlp. Here are new aliases to match.
-alias ydl="yt-dlp --write-subs --write-auto-subs --sub-lang en -f 'bv[height<=1080]+ba/b'"
+alias ydl="yt-dlp --no-playlist --write-subs --write-auto-subs --sub-lang en -f 'bv[height<=1080]+ba/b'"
 
 alias subs='subliminal download -l en'
 
