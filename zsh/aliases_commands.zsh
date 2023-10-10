@@ -8,25 +8,28 @@
 
 sudo() {
 	if [[ $1 == apt ]] ; then
-		thisapt=$(which apt)
-		if ! [[ $thisapt =~ 'not found' ]] ; then
-			$thisapt $@
+		real_apt=$(zsh -c 'which apt')
+		if ! [[ $real_apt =~ 'not found' ]] ; then
+			$real_apt $@
 		else
 			echo 'you dumbass' | figlet
 		fi
+		# unset real_apt
 	else
-		thissudo=$(whereis sudo | cut -d' ' -f2)
-		$thissudo $@
+		real_sudo=$(zsh -c 'which sudo')
+		$real_sudo $@
+		# unset real_sudo
 	fi
 }
 
 apt() {
-	thisapt=$(which apt)
-	if ! [[ $thisapt =~ 'not found' ]] ; then
-		$thisapt $@
+	real_apt=$(zsh -c 'which apt')
+	if ! [[ $real_apt =~ 'not found' ]] ; then
+		$real_apt $@
 	else
 		echo 'you dumbass' | figlet
 	fi
+	# unset real_apt
 }
 
 alias resume='node ~/node_modules/resume-cli/build/main.js'
@@ -237,6 +240,30 @@ alias deadname='perl -p ~/Dotfiles/extras/.deadname_re'
 ################################
 ### functions of convenience ###
 ################################
+
+# functions that wrap around an existing program
+
+ssh() {
+	# scrape valid hosts from the ssh config
+	hosts=( $(
+		< ~/.ssh/config |
+			grep -Po '^[^#]+' |
+			grep -Po '(?<=Host\s)\S+'
+		) )
+	# check if $1 is in $hosts
+	if [[ $#@ -eq 1 ]] && [[ ${hosts[(i)$1]} -le $#hosts ]] ; then
+		echo 'using mosh instead of ssh'
+		mosh $1
+	else
+		# use a subshell to get the real ssh path
+		real_ssh=$(zsh -c 'which ssh')
+		# $@ are *all* positional arguments, at once
+		$real_ssh $@
+		# unset real_ssh
+	fi
+}
+
+
 
 # self explanatory functions
 
