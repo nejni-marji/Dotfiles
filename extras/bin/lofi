@@ -27,6 +27,11 @@ case $1 in
 		;;
 esac
 
+# note to self: if adding urls, do something like...
+# if [[ unset: url ]] ; then
+# 	url="ytdl://ytsearch: $query"
+# fi
+
 [[ -z $query ]] && exit
 
 opts=(
