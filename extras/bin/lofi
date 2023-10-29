@@ -11,16 +11,19 @@ case $1 in
 		EOM
 		;;
 	study|relax)
+		mode="study/relax"
 		query="lofi girl lofi hip hop radio beats to study relax to"
 		;;
 	sleep|chill)
+		mode="sleep/chill"
 		query="lofi girl lofi hip hop radio beats to sleep chill to"
 		;;
 	synthwave|synth|game|gaming)
+		mode="synthwave, game/chill"
 		query="lofi girl synthwave radio beats to chill game to"
 		;;
 	*)
-		#exec $0 study
+		exec $0 study
 		;;
 esac
 
@@ -39,4 +42,5 @@ opts=(
 	--start=0
 )
 
+echo "radio: $mode"
 mpv $opts "ytdl://ytsearch: $query "
