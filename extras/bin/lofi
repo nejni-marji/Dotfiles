@@ -1,6 +1,15 @@
 #!/bin/zsh
 
 case $1 in
+	-h|--help|help)
+		cat <<- EOM
+		Usage: ${0:t} [option]
+
+		study/relax
+		sleep/chill
+		synthwave/synth/gaming
+		EOM
+		;;
 	study|relax)
 		query="lofi girl lofi hip hop radio beats to study relax to"
 		;;
@@ -11,9 +20,11 @@ case $1 in
 		query="lofi girl synthwave radio beats to chill game to"
 		;;
 	*)
-		query="lofi girl lofi hip hop radio beats to study relax to"
+		#exec $0 study
 		;;
 esac
+
+[[ -z $query ]] && exit
 
 opts=(
 	--ytdl
