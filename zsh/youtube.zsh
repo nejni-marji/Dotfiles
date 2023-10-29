@@ -29,11 +29,11 @@
 
 
 YT_VIDEO=(
-	"mpv --ytdl --script-opts=ytdl_path=yt-dlp --ytdl-format='bestvideo[height<=800]+bestaudio[ext!=webm]/best' --no-pause --no-fullscreen --load-unsafe-playlists=no --keep-open=always --loop-playlist=no --volume=100 --start=0 '"
+	"mpv --ytdl --script-opts=ytdl_path=yt-dlp --ytdl-format='bv[height<=800]+ba/b' --no-pause --no-fullscreen --load-unsafe-playlists=no --keep-open=always --loop-playlist=no --volume=100 --start=0 '"
 	"' && exit"
 )
 YT_AUDIO=(
-	"mpv --ytdl --script-opts=ytdl_path=yt-dlp --ytdl-format='bestvideo[height<=300]+bestaudio[ext!=webm]/best' --no-pause --no-video --load-unsafe-playlists=no --keep-open=yes --loop-playlist=no --volume=70 --start=0 '"
+	"mpv --ytdl --script-opts=ytdl_path=yt-dlp --ytdl-format='bv[height<=300]+ba/b' --no-pause --no-video --load-unsafe-playlists=no --keep-open=yes --loop-playlist=no --volume=70 --start=0 '"
 	"' && exit"
 )
 YT_SEARCH=(
