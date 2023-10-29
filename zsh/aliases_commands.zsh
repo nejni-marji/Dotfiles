@@ -335,8 +335,9 @@ cdtmp() {
 	pushd "$(mktemp -d -p "${2:-"."}" "tmp${1:+".$1"}.$(date '+%Y%m%d_%H%M%S').XXXXXXXXXX")"
 }
 
-pingwait() { while ! ping -c 1 $1 ; do sleep 1 ; done ; espeak "resolved $1" ; ping $1 }
-pingwait2() { while ! ping -c 1 $1 ; do sleep 1 ; done ; espeak "resolved $1" }
+# TODO: rename me!!!
+pingwait() { while ! ping -c 1 $1 ; do sleep 1 ; done ; espeak "resolved $1" }
+pingwait2() { while ! ping -c 1 $1 ; do sleep 1 ; done ; espeak "resolved $1" ; ping $1 }
 pingwait3() {
 	errPrev=1
 	while true ; do

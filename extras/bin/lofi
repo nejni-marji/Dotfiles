@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 case $1 in
-	study|relax|DEFAULT)
+	study|relax)
 		query="lofi girl lofi hip hop radio beats to study relax to"
 		;;
 	sleep|chill)
