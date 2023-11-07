@@ -24,6 +24,9 @@ for i in xml_root.iter():
 			continue
 	manuals.append(i)
 
+# show most recent entries last
+manuals.reverse()
+
 for i in manuals:
 	for j in ['title', 'pubDate', 'link']:
 		print(i.find(j).text)
