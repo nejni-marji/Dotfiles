@@ -384,6 +384,13 @@ syncthing-stversions() {
 
 # functions that are convenient because i know what they do
 
+tg-fix() {
+	file=( ~/Downloads/Telegram\ Desktop/*.mp4(om[1]) )
+	out=${file:h}/${${file:t}:r}.fix.${${file:t}:e}
+	ffmpeg -i ${file} $out
+	echo ${out:a} | COPY -n
+}
+
 mc-screenshot() {
 	xclip -se c -t image/png -i ~/.minecraft/screenshots/*(#q[-1])
 }
@@ -458,6 +465,12 @@ mpv-screenshot-search() {
 mpc_display() {
 	# watch -tc 'mpc_status ; mpc_playlist "[[artist - ][album - ]%title%]|%file%" | \grep "> " -C $(( ($LINES-5)/2 )) | perl -pe "s/^(> .*)$/\e[1m\1\e[0m/"'
 	watch -tc 'mpc_status ; mpc_playlist "[[artist - ][album - ]%title%]|%file%" | \grep "> " -B $(( ($LINES-5)/2 )) -A $(( ($LINES-5) )) | perl -pe "s/^(> .*)$/\e[1m\1\e[0m/"'
+}
+
+mcopy() {
+	file=~/Music/"$(mpc -f %file% current)"
+	echo ${file:a} | wl-copy -n
+	echo "Copied to clipboard!"
 }
 
 msticker() {

@@ -15,6 +15,13 @@ PROMPT='%F{black}%K{green}%D{%a, %b %-d, %H:%M:%S}%f%k
 
 fi
 
+if [[ $ASCII_ONLY =~ '^(yes|on|true|1)$' ]] ; then
+	PROMPT=${PROMPT:s/🐚/%%/}
+	woof() {
+		< ~/Dotfiles/extras/woof.txt
+	}
+fi
+
 
 
 # adding an "Unregistered HyperCam 2" watermark to my terminal!
