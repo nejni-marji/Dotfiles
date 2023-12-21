@@ -2,412 +2,382 @@
 # ~/.config/sway/config
 #
 
-# vim: tw=80 nowrap fdm=marker
-
-# [i]nner, [o]uter, [b]ar
-set $gapI 10
-set $gapO 10
-# set $gapB 20
-gaps inner $gapO
-gaps outer $gapI
-exec_always swaymsg gaps inner all set $gapI
-exec_always swaymsg gaps outer all set $gapO
-smart_gaps on
-
-# bindsym button9 nop
-input 1133:16495:Logitech_MX_Ergo {
-	scroll_method on_button_down
-	scroll_button button9
-}
 
 
+# general settings
 workspace_auto_back_and_forth yes
 
 
 
-#
-# Configure general variables:
-# {{{
 
-	# Modifiers
-	set $MOD Mod4
-	set $SHF Shift
-	set $CTL Control
-	set $ALT Mod1
-	# Directions
-	set $left h
-	set $down j
-	set $up k
-	set $right l
-	# Applications
-	set $term kitty
-	# Note: pass the final command to swaymsg so that the resulting window can
-	# be opened on the original workspace that the command was run on.
-	set $menuKey space
-	set $appsKey d
-	set $app2Key backslash
-	set $menu wofi --show run | xargs swaymsg exec --
-	# Janky variables so I can import from my old config more easily.
-	set $exec exec
-	set $swaybin ~/.config/sway/bin
-	set $R mode "default"
+### define variables
 
+# modifiers
+set $MOD Mod4
+set $SHF Shift
+set $CTL Control
+set $ALT Mod1
+# directions
+set $left h
+set $down j
+set $up k
+set $right l
+# applications
+set $term kitty
+# misc keys
+set $menuKey space
+set $appsKey d
+set $app2Key backslash
+set $menu wofi --show run | xargs swaymsg exec --
+# Janky variables so I can import from my old config more easily.
+set $exec exec
+set $swaybin ~/.config/sway/bin
+set $R mode "default"
 
-
-# }}}
-# Input configuration:
-# {{{
-
-	# alex@bronzong
-	# % setxkbmap -query
-	# rules:      evdev
-	# model:      pc101
-	# layout:     us,us
-	# variant:    dvorak-alt-intl,
-	# options:    ctrl:swap_lwin_lctl,compose:ralt,caps:ctrl_modifier
-
-	input * {
-		xkb_layout "us"
-		xkb_variant "dvorak"
-		xkb_options "ctrl:swap_lwin_lctl,ctrl:swap_rwin_rctl,compose:ralt,caps:ctrl_modifier"
-	}
+#TODO: FIXME
+bindsym $MOD+BackSpace exec mpc toggle
 
 
-# }}}
-# Output configuration:
-# {{{
+### input configuration
 
-	output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# alex@bronzong
+# % setxkbmap -query
+# rules:      evdev
+# model:      pc101
+# layout:     us,us
+# variant:    dvorak-alt-intl,
+# options:    ctrl:swap_lwin_lctl,compose:ralt,caps:ctrl_modifier
+
+input * {
+	xkb_layout "us"
+	xkb_variant "dvorak"
+	xkb_options "ctrl:swap_lwin_lctl,ctrl:swap_rwin_rctl,compose:ralt,caps:ctrl_modifier"
+}
+
+
+
+### output configuration
+
+	set $wallpaper /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png
+	output * bg $wallpaper fill
 
 	output HDMI-A-1 {
 		mode 1920x1080
 	}
 	output HDMI-A-2 {
-		disable
+		mode 1920x1080
 	}
 
 
 
-# }}}
-# Key bindings:
-# {{{
+### key bindings
 
-	# Basics:
+## basics
+bindsym $MOD+Return exec $term
+bindsym $MOD+$SHF+q kill
+bindsym $MOD+$menuKey exec $menu
+bindsym $ALT+Space exec $menu
 
-	# Start a terminal
-	bindsym $MOD+Return exec $term
-	# Kill focused window
-	bindsym $MOD+$SHF+q kill
-	# Start your launcher
-	bindsym $MOD+$menuKey exec $menu
-	bindsym $ALT+Space exec $menu
+bindsym $MOD+$SHF+p reload
+bindsym $MOD+$SHF+e exec swaynag -t warning \
+-m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
+-b 'Yes, exit sway' 'swaymsg exit'
 
-	# Drag floating windows by holding down $MOD and left mouse button.
-	# Resize them with right mouse button + $MOD.
-	# Despite the name, also works for non-floating windows.
-	# Change normal to inverse to use left mouse button for resizing and right
-	# mouse button for dragging.
-	floating_modifier $MOD normal
-	# Reload the configuration file
-	bindsym $MOD+$SHF+c reload
-	# Exit sway (logs you out of your Wayland session)
-	bindsym $MOD+$SHF+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+floating_modifier $MOD normal
 
 
 
-	# Moving around:
+## moving around
 
-	# Move your focus around
-	bindsym $MOD+$left focus left
-	bindsym $MOD+$down focus down
-	bindsym $MOD+$up focus up
-	bindsym $MOD+$right focus right
-	# Or use $MOD+[up|down|left|right]
-	bindsym $MOD+Left focus left
-	bindsym $MOD+Down focus down
-	bindsym $MOD+Up focus up
-	bindsym $MOD+Right focus right
+# move your focus around
+bindsym $MOD+$left focus left
+bindsym $MOD+$down focus down
+bindsym $MOD+$up focus up
+bindsym $MOD+$right focus right
+# or use $MOD+[up|down|left|right]
+bindsym $MOD+Left focus left
+bindsym $MOD+Down focus down
+bindsym $MOD+Up focus up
+bindsym $MOD+Right focus right
 
-	# Move the focused window with the same, but add $SHF
-	bindsym $MOD+$SHF+$left move left
-	bindsym $MOD+$SHF+$down move down
-	bindsym $MOD+$SHF+$up move up
-	bindsym $MOD+$SHF+$right move right
-	# Ditto, with arrow keys
-	bindsym $MOD+$SHF+Left move left
-	bindsym $MOD+$SHF+Down move down
-	bindsym $MOD+$SHF+Up move up
-	bindsym $MOD+$SHF+Right move right
-
-
-
-	# Workspaces:
-
-	# Set workspace names
-	set $ws1 10:Chat
-	set $ws2 20:Web
-	set $ws3 30:Video
-	set $ws4 40:Code
-	set $ws5 50:Game
-	set $ws6 60:School
-	set $ws7 70
-	set $ws8 80
-	set $ws9 90
-	set $ws0 100
-	# Switch to workspace
-	bindsym $MOD+1 workspace $ws1
-	bindsym $MOD+2 workspace $ws2
-	bindsym $MOD+3 workspace $ws3
-	bindsym $MOD+4 workspace $ws4
-	bindsym $MOD+5 workspace $ws5
-	bindsym $MOD+6 workspace $ws6
-	bindsym $MOD+7 workspace $ws7
-	bindsym $MOD+8 workspace $ws8
-	bindsym $MOD+9 workspace $ws9
-	bindsym $MOD+0 workspace $ws0
-	# Move focused container to workspace
-	bindsym $MOD+$SHF+1 move container to workspace $ws1
-	bindsym $MOD+$SHF+2 move container to workspace $ws2
-	bindsym $MOD+$SHF+3 move container to workspace $ws3
-	bindsym $MOD+$SHF+4 move container to workspace $ws4
-	bindsym $MOD+$SHF+5 move container to workspace $ws5
-	bindsym $MOD+$SHF+6 move container to workspace $ws6
-	bindsym $MOD+$SHF+7 move container to workspace $ws7
-	bindsym $MOD+$SHF+8 move container to workspace $ws8
-	bindsym $MOD+$SHF+9 move container to workspace $ws9
-	bindsym $MOD+$SHF+0 move container to workspace $ws0
-	# Other workspace-related commands
-	bindsym $MOD+bracketleft  workspace prev
-	bindsym $MOD+bracketright workspace next
-	# shift: carry to 10x
-	bindsym $MOD+$SHF+bracketleft  $exec $swaybin/workspace_10x.sh P take
-	bindsym $MOD+$SHF+bracketright $exec $swaybin/workspace_10x.sh N take
-	# alt: goto 1x
-	bindsym $MOD+$ALT+bracketleft  $exec $swaybin/workspace_10x.sh p
-	bindsym $MOD+$ALT+bracketright $exec $swaybin/workspace_10x.sh n
-	# ctrl: goto 10x
-	bindsym $MOD+$CTL+bracketleft  $exec $swaybin/workspace_10x.sh P
-	bindsym $MOD+$CTL+bracketright $exec $swaybin/workspace_10x.sh N
-	# misc
-	bindsym $ALT+Tab          workspace back_and_forth
-	bindsym $MOD+z            workspace back_and_forth
-	bindsym $MOD+$SHF+z       move container to workspace back_and_forth
+# move the focused window with the same, but add $SHF
+bindsym $MOD+$SHF+$left move left
+bindsym $MOD+$SHF+$down move down
+bindsym $MOD+$SHF+$up move up
+bindsym $MOD+$SHF+$right move right
+# ditto, with arrow keys
+bindsym $MOD+$SHF+Left move left
+bindsym $MOD+$SHF+Down move down
+bindsym $MOD+$SHF+Up move up
+bindsym $MOD+$SHF+Right move right
 
 
 
-	# Layout stuff:
+## workspaces
 
-	# Set layout mode
-	bindsym $MOD+t          layout stacking
-	bindsym $MOD+$SHF+t     layout tabbed
-	bindsym $MOD+n          layout splitv
-	bindsym $MOD+$SHF+n     layout splith
-	# Create new splits, kind of a cheap hack
-	bindsym $MOD+w          split t; layout stacking
-	bindsym $MOD+$SHF+w     split t; layout tabbed
-	bindsym $MOD+v          split v
-	bindsym $MOD+$SHF+v     split h
-	# Parent-child traversal
-	bindsym $MOD+g          focus parent
-	bindsym $MOD+$SHF+g     focus child
-	# Handle fullscreen
-	bindsym $MOD+f          fullscreen
-	bindsym $MOD+$SHF+f     fullscreen global
-	bindsym $MOD+$ALT+f     focus parent; fullscreen; focus child
-	# Handle floating
-	# Note: This is configured at the top
-	# floating_modifier $MOD
-	bindsym $MOD+s          focus mode_toggle
-	bindsym $MOD+$SHF+s     floating toggle
-	bindsym $MOD+$ALT+s     sticky toggle
-	# Handle scratchpad
-	bindsym $MOD+minus           scratchpad show
-	bindsym $MOD+$SHF+minus move scratchpad
-	# Note: This is temporarily disabled, because it may not work correctly
-	# under sway, and I don't want to test it right now. 2022-08-05 12:11:18
-	# bindsym $MOD+$ALT+minus \
-	# 	floating enable, \
-	# 	resize set width 80 ppt height 80 ppt, \
-	# 	move absolute position center, \
-	# 	move scratchpad
+# set workspace names
+set $ws1 10:chat
+set $ws2 20:web
+set $ws3 30:media
+set $ws4 40:code
+set $ws5 50:game
+set $ws6 60
+set $ws7 70
+set $ws8 80
+set $ws9 90
+set $ws0 100
+# Switch to workspace
+bindsym $MOD+1 workspace number $ws1
+bindsym $MOD+2 workspace number $ws2
+bindsym $MOD+3 workspace number $ws3
+bindsym $MOD+4 workspace number $ws4
+bindsym $MOD+5 workspace number $ws5
+bindsym $MOD+6 workspace number $ws6
+bindsym $MOD+7 workspace number $ws7
+bindsym $MOD+8 workspace number $ws8
+bindsym $MOD+9 workspace number $ws9
+bindsym $MOD+0 workspace number $ws0
+# Move focused container to workspace
+bindsym $MOD+$SHF+1 move container to workspace number $ws1
+bindsym $MOD+$SHF+2 move container to workspace number $ws2
+bindsym $MOD+$SHF+3 move container to workspace number $ws3
+bindsym $MOD+$SHF+4 move container to workspace number $ws4
+bindsym $MOD+$SHF+5 move container to workspace number $ws5
+bindsym $MOD+$SHF+6 move container to workspace number $ws6
+bindsym $MOD+$SHF+7 move container to workspace number $ws7
+bindsym $MOD+$SHF+8 move container to workspace number $ws8
+bindsym $MOD+$SHF+9 move container to workspace number $ws9
+bindsym $MOD+$SHF+0 move container to workspace number $ws0
+# other workspace-related commands
+bindsym $MOD+bracketleft  workspace prev
+bindsym $MOD+bracketright workspace next
+# bindsym $MOD+bracketleft  $exec $swaybin/workspace_10x.sh P
+# bindsym $MOD+bracketright $exec $swaybin/workspace_10x.sh N
+# shift: carry to 10x
+# bindsym $MOD+$SHF+bracketleft  $exec $swaybin/workspace_10x.sh P take
+# bindsym $MOD+$SHF+bracketright $exec $swaybin/workspace_10x.sh N take
+# alt: goto 1x
+# bindsym $MOD+$ALT+bracketleft  $exec $swaybin/workspace_10x.sh p
+# bindsym $MOD+$ALT+bracketright $exec $swaybin/workspace_10x.sh n
+# ctrl: goto 10x
+# bindsym $MOD+$CTL+bracketleft  $exec $swaybin/workspace_10x.sh P
+# bindsym $MOD+$CTL+bracketright $exec $swaybin/workspace_10x.sh N
+# ctrl: change output
+bindsym $MOD+$CTL+bracketleft  focus output left
+bindsym $MOD+$CTL+bracketright focus output right
+# misc
+bindsym $ALT+Tab          nop focus output back_and_forth
+bindsym $MOD+z            nop workspace back_and_forth
+bindsym $MOD+$SHF+z       nop move container to workspace back_and_forth
 
 
 
-# }}}
+# Layout stuff:
+
+# Set layout mode
+bindsym $MOD+c          layout splith
+bindsym $MOD+$SHF+c     layout splitv
+bindsym $MOD+r          layout tabbed
+bindsym $MOD+$SHF+r     layout stacking
+# Create new splits, kind of a cheap hack
+bindsym $MOD+w          split h
+bindsym $MOD+$SHF+w     split v
+bindsym $MOD+v          split t; layout tabbed
+bindsym $MOD+$SHF+v     split t; layout stacking
+# Parent-child traversal
+bindsym $MOD+g          focus parent
+bindsym $MOD+$SHF+g     focus child
+# Handle fullscreen
+bindsym $MOD+f          fullscreen
+bindsym $MOD+$SHF+f     fullscreen global
+bindsym $MOD+$ALT+f     focus parent; fullscreen; focus child
+# Handle floating
+# Note: This is configured at the top
+# floating_modifier $MOD
+#TODO: rebind this
+bindsym $MOD+s          focus mode_toggle
+bindsym $MOD+$SHF+s     floating toggle
+bindsym $MOD+$ALT+s     sticky toggle
+# Handle scratchpad
+bindsym $MOD+minus           scratchpad show
+bindsym $MOD+$SHF+minus move scratchpad
+# Note: This is temporarily disabled, because it may not work correctly
+# under sway, and I don't want to test it right now. 2022-08-05 12:11:18
+# bindsym $MOD+$ALT+minus \
+# 	floating enable, \
+# 	resize set width 80 ppt height 80 ppt, \
+# 	move absolute position center, \
+# 	move scratchpad
+
+
+
 # Resizing containers:
-# {{{
 
-	# Note: I would like to, one day, re-implement the old autoresize tools from
-	# i3wm. It might be a pain in the ass, but they were nice!
+# Note: I would like to, one day, re-implement the old autoresize tools from
+# i3wm. It might be a pain in the ass, but they were nice!
 
-	mode "resize" {
-		# My own resize bindings, because the defaults are decent, but still
-		# kinda bad.
-		set $res_w 192 px
-		set $res_h 108 px
-		bindsym $left   resize shrink width  $res_w
-		bindsym $down   resize grow   height $res_h
-		bindsym $up     resize shrink height $res_h
-		bindsym $right  resize grow   width  $res_w
+mode "resize" {
+# My own resize bindings, because the defaults are decent, but still
+# kinda bad.
+set $res_w 192 px
+set $res_h 108 px
+bindsym $left   resize shrink width  $res_w
+bindsym $down   resize grow   height $res_h
+bindsym $up     resize shrink height $res_h
+bindsym $right  resize grow   width  $res_w
 
-		# Ditto, with arrow keys
-		bindsym Left   resize shrink width  $res_w
-		bindsym Down   resize grow   height $res_h
-		bindsym Up     resize shrink height $res_h
-		bindsym Right  resize grow   width  $res_w
+# Ditto, with arrow keys
+bindsym Left   resize shrink width  $res_w
+bindsym Down   resize grow   height $res_h
+bindsym Up     resize shrink height $res_h
+bindsym Right  resize grow   width  $res_w
 
-		# Return to default mode
-		bindsym $MOD+r mode "default"
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
-	}
-	bindsym $MOD+r mode "resize"
+# Return to default mode
+bindsym $MOD+r mode "default"
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+#TODO: FIXME
+#bindsym $MOD+r mode "resize"
 
 
 
-# }}}
 # Custom modes
-# {{{
 
-	# Set a variable for the mode manager, since it will change as I add more
-	# submodes.
-	set $MM "Mode Manager [aw]"
-	set $MM "modes: [aw]"
-	set $KMM $MOD+$SHF+Return
-	bindsym $KMM mode $MM
+# Set a variable for the mode manager, since it will change as I add more
+# submodes.
+set $MM "Mode Manager [aw]"
+set $MM "modes: [aw]"
+set $KMM $MOD+$SHF+Return
+bindsym $KMM mode $MM
 
-	# Mode manager
-	mode $MM {
-		bindsym $KMM mode "default"
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
-		bindsym Control+c mode "default"
-		bindsym Control+bracketleft mode "default"
-		bindsym BackSpace mode $MM
+# Mode manager
+mode $MM {
+bindsym $KMM mode "default"
+bindsym Return mode "default"
+bindsym Escape mode "default"
+bindsym Control+c mode "default"
+bindsym Control+bracketleft mode "default"
+bindsym BackSpace mode $MM
 
-		bindsym a mode "applications"
-		bindsym w mode "windows"
-	}
-
-
-
-	# Other modes
-
-	mode "applications" {
-		bindsym $KMM mode "default"
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
-		bindsym Control+c mode "default"
-		bindsym Control+bracketleft mode "default"
-		bindsym BackSpace mode $MM
-
-		bindsym f      exec firefox   ;$R
-		bindsym $SHF+f exec firefox --private-window   ;$R
-	}
-
-	mode "windows" {
-		bindsym $KMM mode "default"
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
-		bindsym Control+c mode "default"
-		bindsym Control+bracketleft mode "default"
-		bindsym BackSpace mode $MM
-
-		# m_goto, M_send, z_take, r_rename
-		bindsym m $exec $swaybin/sway-input.sh -P "goto " -F "workspace number %s"   ;$R
-		bindsym $SHF+m $exec $swaybin/sway-input.sh -P "send " -F "move container to wor   ;$Rkspace number %s"
-		# this command is a mess, but it works
-		bindsym z $exec "$swaybin/sway-input.sh -P \'take \' -F \' workspace number %s \; workspace back_and_forth \; move container to workspace back_and_forth \; workspace back_and_forth \; \'"   ;$R
-		bindsym r $exec $swaybin/sway-input.sh -P "rename workspace to " -F "rename workspace to %s"   ;$R
-	}
+bindsym a mode "applications"
+bindsym w mode "windows"
+}
 
 
 
-# }}}
+# Other modes
+
+mode "applications" {
+bindsym $KMM mode "default"
+bindsym Return mode "default"
+bindsym Escape mode "default"
+bindsym Control+c mode "default"
+bindsym Control+bracketleft mode "default"
+bindsym BackSpace mode $MM
+
+bindsym f      exec firefox   ;$R
+bindsym $SHF+f exec firefox --private-window   ;$R
+}
+
+# mode "windows" {
+# 	bindsym $KMM mode "default"
+# 	bindsym Return mode "default"
+# 	bindsym Escape mode "default"
+# 	bindsym Control+c mode "default"
+# 	bindsym Control+bracketleft mode "default"
+# 	bindsym BackSpace mode $MM
+
+# 	# m_goto, M_send, z_take, r_rename
+# 	bindsym m $exec $swaybin/sway-input.sh -P "goto " -F "workspace number %s"   ;$R
+# 	bindsym $SHF+m $exec $swaybin/sway-input.sh -P "send " -F "move container to wor   ;$Rkspace number %s"
+# 	# this command is a mess, but it works
+# 	bindsym z $exec "$swaybin/sway-input.sh -P \'take \' -F \' workspace number %s \; workspace back_and_forth \; move container to workspace back_and_forth \; workspace back_and_forth \; \'"   ;$R
+# 	bindsym r $exec $swaybin/sway-input.sh -P "rename workspace to " -F "rename workspace to %s"   ;$R
+# }
+
+
+
 # Appearance and color:
-# {{{
 
-	# Set some variables:
+# Set some variables:
 
-	# Window decorations
-	set $borders normal 2
-	for_window [class=".*"] border $borders
-	default_border $borders
-	default_floating_border $borders
-	set $font DejaVu Sans Mono 10
-	# set $font Fira Code 10
-	font pango:$font
-
-
-
-	# Set color variables:
-
-	# Focused
-	set $c_focusB #4c7899
-	set $c_focusG #285577
-	set $c_focusT #ffffff
-	set $c_focusI #2e9ef4
-	set $c_focusC #2e9ef4
-	# Inactive
-	set $c_inactB #333333
-	set $c_inactG #5f676a
-	set $c_inactT #ffffff
-	set $c_inactI #484e50
-	set $c_inactC #5f676a
-	# Unfocused
-	set $c_unfocB #333333
-	set $c_unfocG #222222
-	set $c_unfocT #888888
-	set $c_unfocI #292d2e
-	set $c_unfocC #222222
-	# Urgent
-	set $c_urgenB #2f343a
-	set $c_urgenG #900000
-	set $c_urgenT #ffffff
-	set $c_urgenI #900000
-	set $c_urgenC #900000
-
-	# Set the actual colors:
-
-	#                       #border   #backgrnd #text     #split    #child
-	client.focused          $c_focusB $c_focusG $c_focusT $c_focusI $c_focusC
-	client.focused_inactive $c_inactB $c_inactG $c_inactT $c_inactI $c_inactC
-	client.unfocused        $c_unfocB $c_unfocG $c_unfocT $c_unfocI $c_unfocC
-	client.urgent           $c_urgenB $c_urgenG $c_urgenT $c_urgenI $c_urgenC
+# Window decorations
+set $borders normal 2
+for_window [class=".*"] border $borders
+default_border $borders
+default_floating_border $borders
+set $font DejaVu Sans Mono 8
+# set $font Fira Code 10
+font pango:$font
 
 
 
-# }}}
+# Set color variables:
+
+# Focused
+set $c_focusB #4c7899
+set $c_focusG #285577
+set $c_focusT #ffffff
+set $c_focusI #2e9ef4
+set $c_focusC #2e9ef4
+# Inactive
+set $c_inactB #333333
+set $c_inactG #5f676a
+set $c_inactT #ffffff
+set $c_inactI #484e50
+set $c_inactC #5f676a
+# Unfocused
+set $c_unfocB #333333
+set $c_unfocG #222222
+set $c_unfocT #888888
+set $c_unfocI #292d2e
+set $c_unfocC #222222
+# Urgent
+set $c_urgenB #2f343a
+set $c_urgenG #900000
+set $c_urgenT #ffffff
+set $c_urgenI #900000
+set $c_urgenC #900000
+
+# Set the actual colors:
+
+#                       #border   #backgrnd #text     #split    #child
+client.focused          $c_focusB $c_focusG $c_focusT $c_focusI $c_focusC
+client.focused_inactive $c_inactB $c_inactG $c_inactT $c_inactI $c_inactC
+client.unfocused        $c_unfocB $c_unfocG $c_unfocT $c_unfocI $c_unfocC
+client.urgent           $c_urgenB $c_urgenG $c_urgenT $c_urgenI $c_urgenC
+
+
+
 # Status Bar:
-# {{{
 
-	bar {
-		# Misc options
-		position top
-		# gaps 0 20 20 20
-		gaps 0 0 20 0
-		# height 0
-		font pango:DejaVu Sans Mono 14
+bar {
+# Misc options
+position top
+# gaps 0 20 20 20
+gaps 0 0 20 0
+# height 0
+font pango:DejaVu Sans Mono 10
 
-		# When the status_command prints a new line to stdout, swaybar updates.
-		# The default just shows the current date and time.
-		# status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-		status_command while date +'%A, %B %-d, %l:%M:%S %p' ; do sleep 1; done
+# When the status_command prints a new line to stdout, swaybar updates.
+# The default just shows the current date and time.
+# status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+status_command while date +'%A, %B %-d, %l:%M:%S %p' ; do sleep 1; done
 
-		colors {
-			background #323232
-			statusline $c_focusT
+colors {
+background #323232
+statusline $c_focusT
 
-			#                  #edges    #body     #text
-			focused_workspace  $c_focusG $c_focusG $c_focusT
-			inactive_workspace $c_unfocG $c_unfocG $c_focusT
-			urgent_workspace   $c_urgenG $c_urgenG $c_urgenT
-			binding_mode       $c_urgenG $c_urgenG $c_urgenT
-		}
-	}
+#                  #edges    #body     #text
+focused_workspace  $c_focusG $c_focusG $c_focusT
+inactive_workspace $c_unfocG $c_unfocG $c_focusT
+urgent_workspace   $c_urgenG $c_urgenG $c_urgenT
+binding_mode       $c_urgenG $c_urgenG $c_urgenT
+}
+}
 
 
-# }}}
 # End of file
 #
 
@@ -417,46 +387,66 @@ bindsym $CTL+Print exec $swaybin/scsh.sh window
 
 
 
-# IPC scripts
-	# # background scripts
-	# 	# $execa, because they should crash on restart.
-	# 	$execa $i3b/i3ipc_nop.py
-	# 	$execa $i3b/hotswap.py
-	# 	# Disabled temporarily, not in use yet.
-	# 	$execa $i3b/hotswap_focus.py
-	# script dependent binds
-		# flatten
-			bindsym $MOD+$ALT+g nop ipc flatten
-		# resize
-			bindsym $MOD+equal           nop ipc resize grow
-			bindsym $MOD+$SHF+equal      nop ipc resize shrink
-			bindsym $MOD+$ALT+equal      nop ipc resize grow rev
-			# bindsym $MOD+$ALT+$SHF+equal nop ipc resize shrink rev
-			bindsym $MOD+$SHF+$ALT+equal nop ipc resize shrink rev
-		# focus visible
-			bindsym $MOD+$CTL+h nop ipc focvis left
-			bindsym $MOD+$CTL+j nop ipc focvis down
-			bindsym $MOD+$CTL+k nop ipc focvis up
-			bindsym $MOD+$CTL+l nop ipc focvis right
-		# alternate split directions
-			# TODO: rename this function
-			# bindsym $MOD+slash      nop
-			# bindsym $MOD+$SHF+slash nop
-			# bindsym $MOD+$CTL+slash nop
-			# bindsym $MOD+$ALT+slash nop
-			bindsym $MOD+slash      nop ipc flipsplit
-			bindsym $MOD+$SHF+slash nop ipc flipsplit $exec $term -e zsh
-			bindsym $MOD+$CTL+slash nop ipc flipsplit $exec $term -e tmx
-			bindsym $MOD+$ALT+slash nop ipc flipsplit $exec $term -e ranger
-		# hotswap
-			bindsym $MOD+$SHF+m nop ipc hotswap swapthis
-			bindsym $MOD+m      nop ipc hotswap swaphere
-			bindsym $MOD+$ALT+m nop ipc hotswap return
-			bindsym $MOD+$CTL+m nop ipc hotswap reset
+# # IPC scripts
+# 	# # background scripts
+# 	# 	# $execa, because they should crash on restart.
+# 	# 	$execa $i3b/i3ipc_nop.py
+# 	# 	$execa $i3b/hotswap.py
+# 	# 	# Disabled temporarily, not in use yet.
+# 	# 	$execa $i3b/hotswap_focus.py
+# 	# script dependent binds
+# 		# flatten
+# 			bindsym $MOD+$ALT+g nop ipc flatten
+# 		# resize
+# 			bindsym $MOD+equal           nop ipc resize grow
+# 			bindsym $MOD+$SHF+equal      nop ipc resize shrink
+# 			bindsym $MOD+$ALT+equal      nop ipc resize grow rev
+# 			# bindsym $MOD+$ALT+$SHF+equal nop ipc resize shrink rev
+# 			bindsym $MOD+$SHF+$ALT+equal nop ipc resize shrink rev
+# 		# focus visible
+# 			bindsym $MOD+$CTL+h nop ipc focvis left
+# 			bindsym $MOD+$CTL+j nop ipc focvis down
+# 			bindsym $MOD+$CTL+k nop ipc focvis up
+# 			bindsym $MOD+$CTL+l nop ipc focvis right
+# 		# alternate split directions
+# 			# TODO: rename this function
+# 			# bindsym $MOD+slash      nop
+# 			# bindsym $MOD+$SHF+slash nop
+# 			# bindsym $MOD+$CTL+slash nop
+# 			# bindsym $MOD+$ALT+slash nop
+# 			bindsym $MOD+slash      nop ipc flipsplit
+# 			bindsym $MOD+$SHF+slash nop ipc flipsplit $exec $term -e zsh
+# 			bindsym $MOD+$CTL+slash nop ipc flipsplit $exec $term -e tmx
+# 			bindsym $MOD+$ALT+slash nop ipc flipsplit $exec $term -e ranger
+# 		# hotswap
+# 			bindsym $MOD+$SHF+m nop ipc hotswap swapthis
+# 			bindsym $MOD+m      nop ipc hotswap swaphere
+# 			bindsym $MOD+$ALT+m nop ipc hotswap return
+# 			bindsym $MOD+$CTL+m nop ipc hotswap reset
 
 
-bindsym $MOD+o       $exec $swaybin/hacky_toggle.zsh split
-bindsym $MOD+Shift+o $exec $swaybin/hacky_toggle.zsh merge
+# bindsym $MOD+o       $exec $swaybin/hacky_toggle.zsh split
+# bindsym $MOD+Shift+o $exec $swaybin/hacky_toggle.zsh merge
 
 
-#include /etc/sway/config.d/*
+## #  # # # ##include /etc/sway/config.d/*
+
+
+
+
+
+# # [i]nner, [o]uter, [b]ar
+# set $gapI 10
+# set $gapO 10
+# # set $gapB 20
+# gaps inner $gapO
+# gaps outer $gapI
+# exec_always swaymsg gaps inner all set $gapI
+# exec_always swaymsg gaps outer all set $gapO
+# smart_gaps on
+
+# # bindsym button9 nop
+# input 1133:16495:Logitech_MX_Ergo {
+# 	scroll_method on_button_down
+# 	scroll_button button9
+# }

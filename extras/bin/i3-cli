@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+socks=( /run/user/1000/sway-ipc.1000.*.sock )
+
+for i in $socks ; do
+	i3-msg -s $i $@
+done

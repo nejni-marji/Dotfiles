@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+import re, glob
+
+
+# regex classes to substitute in
+OCR_SUBS = [
+		'Il|1',
+		'O0',
+		'G6',
+		]
+WORD_SEP = '.*'
+FILE_GLOB = '.*.ocr.txt'
+
+
+
+def apply_char_subs(word):
+	new_word = ''
+	for c in word:
+		new_c = c
+		subs = []
+		for sub in OCR_SUBS:
+			if c.lower() in sub.lower():
+				subs.append(sub)
+		# have subs
+		if subs:
+			subs.insert(0, c)
+			# new_c = '[%s]' % re.escape(''.join(subs))
+			new_c = '[%s]' % ''.join(subs)
+		new_word += new_c
+	return new_word
+
+def get_fuzzy_regex(args):
+	words = []
+	for arg in args:
+		words.append(apply_char_subs(arg))
+	query = WORD_SEP.join(words)
+	regex = '(?s)' + query
+	return regex
+
+def run_grep(regex, path):
+	cmd = [
+			'grep', '-Prizl',
+			'-e', regex,
+			]
+	files = glob.glob(FILE_GLOB)
+	cmd += files
+	try:
+		resp = subprocess.check_output(cmd)
+		resp = resp.decode('utf8').rstrip()
+		resp = parse_results(resp)
+		return resp
+		# print(resp)
+	except subprocess.CalledProcessError:
+		return None
+
+def parse_results(s):
+	idata = s.split('\n')
+	odata = []
+	for i in idata:
+		o = i.replace('.', '', 1)[::-1].replace('.ocr.txt'[::-1], '', 1)[::-1]
+		odata.append(o)
+	return odata
+
+
+
+if __name__ == '__main__':
+	import subprocess
+	from sys import argv
+	args = argv[1:]
+
+	query = get_fuzzy_regex(args)
+	# print(query)
+
+	r = run_grep(query, FILE_GLOB)
+	if r:
+		print('\n'.join(r))

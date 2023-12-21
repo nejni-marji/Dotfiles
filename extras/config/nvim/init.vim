@@ -148,6 +148,11 @@ set updatetime=100
 	nnoremap <leader>lp 80\|bi"+ "<ESC>
 	nnoremap <leader>xx :%!xxd<CR>
 	nnoremap <leader>xX :%!xxd -r<CR>
+	" add mappings to make moving between windows easier
+	nnoremap <C-H> <C-W>h
+	nnoremap <C-J> <C-W>j
+	nnoremap <C-K> <C-W>k
+	nnoremap <C-L> <C-W>l
 	" map keys so jk move the way i want
 	nnoremap j gj
 	nnoremap k gk

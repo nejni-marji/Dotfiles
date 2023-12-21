@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+import os, glob
+from PIL import Image, UnidentifiedImageError
+
+import pytesseract
+PYT = pytesseract
+
+
+
+def get_ofn(fn):
+	dn, bn = os.path.split(fn)
+	if not dn: dn = '.'
+	ofn = f'{dn}/.{bn}.ocr.txt'
+	return ofn
+
+def get_ocr(ifp):
+	return PYT.image_to_string(ifp)
+
+
+
+def index_file(fn):
+	# check file exists
+	if not os.path.isfile(fn):
+		return None
+
+	ofn = get_ofn(fn)
+
+	# if ocr exists, skip
+	if os.path.isfile(ofn):
+		return None
+
+	# try to get image, this can fail
+	try:
+		img = Image.open(fn)
+	except UnidentifiedImageError:
+		with open(ofn, 'w') as f:
+			f.write('')
+		return None
+
+	otext = get_ocr(img)
+
+	print('ifn', fn, 'ofn', ofn)
+	#print(otext)
+
+	# open text file and write
+	ofp = open(ofn, 'w')
+	ofp.write(otext)
+
+	# close files
+	ofp.close()
+	img.close()
+
+
+
+if __name__ == '__main__':
+
+	file_extensions = [ 'png', 'jpg', 'jpeg' ]
+	GLOBSTR = '*.%s'
+	queries = []
+	for ext in file_extensions:
+		queries.append(GLOBSTR % ext)
+		queries.append(GLOBSTR % ext.upper())
+	for q in queries:
+		for fn in glob.glob(q):
+			print(fn)
+			index_file(fn)
