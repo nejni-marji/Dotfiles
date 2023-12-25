@@ -69,7 +69,7 @@ if __name__ == '__main__':
 	args = argv[1:]
 
 	query = get_fuzzy_regex(args)
-	# print(query)
+	#print(query)
 
 	r = run_grep(query, FILE_GLOB)
 	if r:

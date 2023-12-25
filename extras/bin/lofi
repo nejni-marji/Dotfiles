@@ -8,6 +8,7 @@ case $1 in
 		study/relax
 		sleep/chill
 		synthwave/synth/gaming
+		christmas/festive
 		EOM
 		;;
 	study|relax)
@@ -22,6 +23,11 @@ case $1 in
 		mode="synthwave, game/chill"
 		query="lofi girl synthwave radio beats to chill game to"
 		;;
+	christmas|festive)
+		mode="christmas/festive"
+		#query="lofi girl Christmas lofi radio 🎄 - cozy beats to get festive to"
+		query="https://www.youtube.com/watch?v=pt4qkWORaRQ"
+		;;;
 	*)
 		exec $0 study
 		;;
@@ -47,5 +53,10 @@ opts=(
 	--start=0
 )
 
+if ! [[ $query =~ https ]] ; then
+	query="ytsearch: $query"
+fi
+query="ytdl://$query"
+
 echo "radio: $mode"
-mpv $opts "ytdl://ytsearch: $query "
+mpv $opts $query

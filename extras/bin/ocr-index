@@ -39,7 +39,8 @@ def index_file(fn):
 
 	otext = get_ocr(img)
 
-	print('ifn', fn, 'ofn', ofn)
+	print('ocr:', fn)
+	#print('ifn', fn, 'ofn', ofn)
 	#print(otext)
 
 	# open text file and write
@@ -62,5 +63,5 @@ if __name__ == '__main__':
 		queries.append(GLOBSTR % ext.upper())
 	for q in queries:
 		for fn in glob.glob(q):
-			print(fn)
+			#print(fn)
 			index_file(fn)
