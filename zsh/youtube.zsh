@@ -41,12 +41,17 @@ YT_SEARCH=(
 	" "
 )
 
-ytvideo() {
+ytmeta() {
+	ytm1=$1
+	ytm2=$2
+	shift 2
+	ytm_args="$@"
 	zle-line-init() {
 		BUFFER=''
-		BUFFER+=${YT_VIDEO[1]}
+		BUFFER+=$ytm1
+		BUFFER+=$ytm_args
 		CURSOR=${#BUFFER}
-		BUFFER+=${YT_VIDEO[2]}
+		BUFFER+=$ytm2
 		CURSOR+=1
 		zle vi-cmd-mode
 		zle split-undo
@@ -54,52 +59,30 @@ ytvideo() {
 		zle -D zle-line-init
 	}
 	zle -N zle-line-init
+}
+ytvideo() {
+	ytmeta \
+		"${YT_VIDEO[1]}" \
+		"${YT_VIDEO[2]}" \
+		#$@
 }
 ytaudio() {
-	zle-line-init() {
-		BUFFER=''
-		BUFFER+=${YT_AUDIO[1]}
-		CURSOR=${#BUFFER}
-		BUFFER+=${YT_AUDIO[2]}
-		CURSOR+=1
-		zle vi-cmd-mode
-		zle split-undo
-		zle vi-insert
-		zle -D zle-line-init
-	}
-	zle -N zle-line-init
+	ytmeta \
+		"${YT_AUDIO[1]}" \
+		"${YT_AUDIO[2]}" \
+		#$@
 }
 ytsearchvideo() {
-	zle-line-init() {
-		BUFFER=''
-		BUFFER+=${YT_VIDEO[1]}
-		BUFFER+=${YT_SEARCH[1]}
-		CURSOR=${#BUFFER}
-		BUFFER+=${YT_SEARCH[2]}
-		BUFFER+=${YT_VIDEO[2]}
-		CURSOR+=1
-		zle vi-cmd-mode
-		zle split-undo
-		zle vi-insert
-		zle -D zle-line-init
-	}
-	zle -N zle-line-init
+	ytmeta \
+		"${YT_VIDEO[1]}${YT_SEARCH[1]}" \
+		"${YT_SEARCH[2]}${YT_VIDEO[2]}" \
+		$@
 }
 ytsearchaudio() {
-	zle-line-init() {
-		BUFFER=''
-		BUFFER+=${YT_AUDIO[1]}
-		BUFFER+=${YT_SEARCH[1]}
-		CURSOR=${#BUFFER}
-		BUFFER+=${YT_SEARCH[2]}
-		BUFFER+=${YT_AUDIO[2]}
-		CURSOR+=1
-		zle vi-cmd-mode
-		zle split-undo
-		zle vi-insert
-		zle -D zle-line-init
-	}
-	zle -N zle-line-init
+	ytmeta \
+		"${YT_AUDIO[1]}${YT_SEARCH[1]}" \
+		"${YT_SEARCH[2]}${YT_AUDIO[2]}" \
+		$@
 }
 
 alias ytv=ytvideo

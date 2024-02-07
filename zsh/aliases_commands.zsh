@@ -413,6 +413,11 @@ music-upload() {
 	wl-copy -n
 }
 
+file-upload() {
+	echo ${1:A} |
+	wl-copy -n
+}
+
 # this used to be a bash script, so it's keeping the same name
 unzip.sh() {
 	unzip "$1" -d "${1%.zip}"
