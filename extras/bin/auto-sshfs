@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+# automatically attempt to connect sshfs and navigate to it
+# tries to ping remote host by addr, only uses sshfs on success
+# cd's to the mountpoint, then cd's to local $HOME in that dir
+
+case $1 in
+	home)
+		host_addr=home
+		host_ssh=turtwig-home
+		;;
+	turtwig|*)
+		host_addr=turtwig
+		host_ssh=turtwig
+		;;
+esac
+
+dir=/media/$USER/remote
+
+mountpoint -q $dir || {
+	while ! ping -c1 $host_addr ; do
+		sleep 1
+	done
+	sshfs $host_ssh:/ $dir
+
+	}
+
+cd $dir
+cd .$HOME
