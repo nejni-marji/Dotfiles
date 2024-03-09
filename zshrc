@@ -60,7 +60,7 @@ source ~/.zsh/youtube.zsh
 # this one is really hacky
 source ~/.zsh/interactive.zsh
 # mommy...
-source ~/.zsh/zsh-mommy.zsh
+source ~/.zsh/zmommy.zsh
 # some stuff has to go in a separate file, so it doesn't end up on github
 [[ -f ~/Dotfiles/extras/secrets/secrets.zsh ]] &&
 source ~/Dotfiles/extras/secrets/secrets.zsh
