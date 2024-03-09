@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# use a lockfile to enable/disable mommy
+ZSH_MOMMY_LOCK=~/.zsh/mommy.lck
+
 # very basic hook setup
 autoload -Uz add-zsh-hook || return
 
@@ -21,6 +24,7 @@ fi
 # the output to be whatever we want as quickly as possible. there is no need to
 # get a static mommy binary when you can just point mommy at true/false.
 zsh-mommy() {
+[[ -f $ZSH_MOMMY_LOCK ]] || return
 if [[ $? -eq 0 ]] ; then
 	CARGO_MOMMYS_ACTUAL=true $ZSH_MOMMY_BIN
 else
@@ -31,7 +35,32 @@ fi
 # add the hook
 add-zsh-hook precmd zsh-mommy
 
+mommy() {
+	if ! [[ -f $ZSH_MOMMY_LOCK ]] ; then
+		touch $ZSH_MOMMY_LOCK
+		echo 'mommy enabled'
+		# add-zsh-hook precmd zsh-mommy
+	else
+		\rm $ZSH_MOMMY_LOCK
+		echo 'mommy disabled'
+		# add-zsh-hook -d precmd zsh-mommy
+	fi
+}
+
+
+
 # miscellaneous features:
+
+# if you tell mommy "no", she'll go away in that shell
+no-mommy() {
+	add-zsh-hook -d precmd zsh-mommy
+}
+
+# if you tell mommy "yes", on the other paw...
+yes-mommy() {
+	touch $ZSH_MOMMY_LOCK
+	add-zsh-hook precmd zsh-mommy
+}
 
 # function to unset all of mommy's configurations (for demo purposes)
 unset-mommy() {
