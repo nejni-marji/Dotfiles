@@ -37,9 +37,12 @@ def index_file(fn):
 			f.write('')
 		return None
 
-	otext = get_ocr(img)
-
 	print('ocr:', fn)
+	try:
+		otext = get_ocr(img)
+	except SyntaxError:
+		print('SyntaxError: cannot access image')
+		return
 	#print('ifn', fn, 'ofn', ofn)
 	#print(otext)
 
