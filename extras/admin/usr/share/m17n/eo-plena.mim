@@ -1,0 +1,123 @@
+;;; Copyright (C) 2007 Joop Kiefte (LaPingvino)
+;;; 
+;;; This file is part of the m17n contrib; a sub-part of the m17n
+;;; library.
+;;; 
+;;; The m17n library is free software; you can redistribute it and/or
+;;; modify it under the terms of the GNU Lesser General Public License
+;;; as published by the Free Software Foundation; either version 2.1 of
+;;; the License, or (at your option) any later version.
+;;; 
+;;; The m17n library is distributed in the hope that it will be useful,
+;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;;; Lesser General Public License for more details.
+;;; 
+;;; You should have received a copy of the GNU Lesser General Public
+;;; License along with the m17n library; if not, write to the Free
+;;; Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;;; Boston, MA 02110-1301, USA.
+;;; 
+;;; <li> eo-plena.mim
+;;;
+;;; Inputmethod for Esperanto // Enigmetodo por Esperanto
+
+(input-method eo plena)
+
+(title "EK-sistemo")
+
+(description (_"Meant for writing Esperanto-letters with the fundamental system and the X-system, like the default of EK."))
+
+(map
+  (trans
+ 
+("cx" "ĉ")
+("gx" "ĝ")
+("hx" "ĥ")
+("jx" "ĵ")
+("sx" "ŝ")
+("ux" "ŭ")
+("Cx" "Ĉ")
+("Gx" "Ĝ")
+("Hx" "Ĥ")
+("Jx" "Ĵ")
+("Sx" "Ŝ")
+("Ux" "Ŭ")
+("CX" "Ĉ")
+("GX" "Ĝ")
+("HX" "Ĥ")
+("JX" "Ĵ")
+("SX" "Ŝ")
+("UX" "Ŭ")
+("cxx" "cx")
+("gxx" "gx")
+("hxx" "hx")
+("jxx" "jx")
+("sxx" "sx")
+("uxx" "ux")
+("Cxx" "Cx")
+("Gxx" "Gx")
+("Hxx" "Hx")
+("Jxx" "Jx")
+("Sxx" "Sx")
+("Uxx" "Ux")
+("CXX" "CX")
+("GXX" "GX")
+("HXX" "HX")
+("JXX" "JX")
+("SXX" "SX")
+("UXX" "UX")
+("ch" "ĉ")
+("gh" "ĝ")
+("hh" "ĥ")
+("jh" "ĵ")
+("sh" "ŝ")
+("au" "aŭ")
+("eu" "eŭ")
+("aux" "aŭ")
+("eux" "eŭ")
+("Ch" "Ĉ")
+("Gh" "Ĝ")
+("Hh" "Ĥ")
+("Jh" "Ĵ")
+("Sh" "Ŝ")
+("Au" "Aŭ")
+("Eu" "Eŭ")
+("CH" "Ĉ")
+("GH" "Ĝ")
+("HH" "Ĥ")
+("JH" "Ĵ")
+("SH" "Ŝ")
+("AU" "AŬ")
+("EU" "EŬ")
+("AUx" "AŬ")
+("EUx" "EŬ")
+("AUX" "AŬ")
+("EUX" "EŬ")
+("chh" "ch")
+("ghh" "gh")
+("hhh" "hh")
+("jhh" "jh")
+("shh" "sh")
+("auu" "au")
+("euu" "eu")
+("Chh" "Ch")
+("Ghh" "Gh")
+("Hhh" "Hh")
+("Jhh" "Jh")
+("Shh" "Sh")
+("Auu" "Au")
+("Euu" "Eu")
+("CHH" "CH")
+("GHH" "GH")
+("HHH" "HH")
+("JHH" "JH")
+("SHH" "SH")
+("AUU" "AU")
+("EUU" "EU")
+   ))
+
+(state
+  (init
+    (trans)))
+
