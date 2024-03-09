@@ -24,8 +24,9 @@ fi
 # the output to be whatever we want as quickly as possible. there is no need to
 # get a static mommy binary when you can just point mommy at true/false.
 zsh-mommy() {
+err=$?
 [[ -f $ZSH_MOMMY_LOCK ]] || return
-if [[ $? -eq 0 ]] ; then
+if [[ $err -eq 0 ]] ; then
 	CARGO_MOMMYS_ACTUAL=true $ZSH_MOMMY_BIN
 else
 	CARGO_MOMMYS_ACTUAL=false $ZSH_MOMMY_BIN
