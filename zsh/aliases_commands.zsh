@@ -6,6 +6,8 @@
 
 # janky shit
 
+alias cargo='cargo mommy'
+
 sudo() {
 	if [[ $1 == apt ]] ; then
 		real_apt=$(zsh -c 'which apt')
@@ -236,6 +238,34 @@ alias deadname='perl -p ~/Dotfiles/extras/.deadname_re'
 #################
 ### FUNCTIONS ###
 #################
+
+# WIP
+
+get-remote() {
+	case $HOST in
+		turtwig)
+			MY_REMOTE=bronzong
+			;;
+		bronzong)
+			if ping -c1 turtwig >/dev/null 2>/dev/null ; then
+				REMOTE=turtwig
+			else
+				REMOTE=home
+			fi
+			;;
+	esac
+}
+
+mpc-sync() {
+	get-remote
+	data="$(ssh $MY_REMOTE cat ~/.config/mpd/state)"
+	mpc -h $MY_REMOTE pause
+	systemctl --user stop mpd
+	echo $data >! ~/.config/mpd/state
+	systemctl --user start mpd
+	mpc play
+}
+
 
 
 ################################
