@@ -6,6 +6,8 @@
 
 # janky shit
 
+alias notepad=leafpad
+
 alias cargo='cargo mommy'
 
 sudo() {
@@ -446,6 +448,7 @@ music-upload() {
 
 file-upload() {
 	echo ${1:A} |
+	tee /dev/stderr |
 	wl-copy -n
 }
 
