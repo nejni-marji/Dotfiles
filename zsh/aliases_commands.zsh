@@ -6,6 +6,32 @@
 
 # janky shit
 
+auto-sshfs() {
+	case $1 in
+		home)
+			host_addr=home
+			host_ssh=turtwig-home
+			;;
+		turtwig|*)
+			host_addr=turtwig
+			host_ssh=turtwig
+			;;
+	esac
+
+	dir=/media/$USER/remote
+
+	mountpoint -q $dir || {
+		while ! ping -c1 $host_addr ; do
+			sleep 1
+		done
+		sshfs $host_ssh:/ $dir
+
+	}
+
+	cd $dir
+	cd .$HOME
+}
+
 alias notepad=leafpad
 
 alias cargo='cargo mommy'
