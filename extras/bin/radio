@@ -5,31 +5,32 @@ case $1 in
 		cat <<- EOM
 		Usage: ${0:t} [option]
 
-		study/relax
-		sleep/chill
-		synthwave/synth/gaming
-		christmas/festive
 		EOM
+		grep -Po '(?<=mode[=]")[^"]+' $0
 		;;
 	study|relax)
-		mode="study/relax"
+		mode="(lofi) study/relax"
 		query="lofi girl lofi hip hop radio beats to study relax to"
 		;;
 	sleep|chill)
-		mode="sleep/chill"
+		mode="(lofi) sleep/chill"
 		query="lofi girl lofi hip hop radio beats to sleep chill to"
 		;;
 	synthwave|synth|game|gaming)
-		mode="synthwave, game/chill"
+		mode="(lofi) synthwave, game/chill"
 		query="lofi girl synthwave radio beats to chill game to"
 		;;
 	christmas|festive)
-		mode="christmas/festive"
+		mode="(lofi) christmas/festive"
 		#query="lofi girl Christmas lofi radio 🎄 - cozy beats to get festive to"
 		query="https://www.youtube.com/watch?v=pt4qkWORaRQ"
 		;;;
+	rain)
+		mode="(noise) rain/rain on the leaves"
+		query="https://www.youtube.com/watch?v=zKHJuEwzXPk"
+		;;
 	*)
-		exec $0 study
+		exec $0 help
 		;;
 esac
 

@@ -30,7 +30,7 @@ fi
 [[ -v zmommy_duration ]] || zmommy_duration=5
 [[ -v zmommy_random   ]] || zmommy_random=5
 [[ -v zmommy_include  ]] || zmommy_include=(true false woof sudo pacman paru apt apt-get sudo rsync find locate grep ssh)
-[[ -v zmommy_exclude  ]] || zmommy_exclude=($EDITOR $PAGER ls cd echo print)
+[[ -v zmommy_exclude  ]] || zmommy_exclude=($EDITOR $PAGER cargo ls cd echo print)
 
 
 

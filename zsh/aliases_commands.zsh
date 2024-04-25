@@ -6,7 +6,7 @@
 
 # janky shit
 
-auto-sshfs() {
+my-sshfs() {
 	case $1 in
 		home)
 			host_addr=home
@@ -25,7 +25,6 @@ auto-sshfs() {
 			sleep 1
 		done
 		sshfs $host_ssh:/ $dir
-
 	}
 
 	cd $dir
@@ -245,6 +244,7 @@ alias ufold='fold -w $COLUMNS | head -n  $(($LINES-0-${#${(f@)PROMPT}}))'
 alias COPY='wl-copy -n'
 alias PASTE='wl-paste -n'
 alias BAR="printf '%0.s#' {1..\$COLUMNS} ; print"
+TRIM() { PASTE | perl -pe 's/^\s*//' | COPY }
 
 # vim exits
 alias :q='exit'

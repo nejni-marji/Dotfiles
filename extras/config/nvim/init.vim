@@ -200,6 +200,7 @@ set updatetime=100
 			au FileType vim					setl cms=\"%s		com+=:\"
 			au FileType asm					setl cms=\;%s
 			" tabs and indents
+			au FileType rust				setl ts=4 sw=0 sts=0 sta et
 			au FileType python				setl ai nosi nocin
 			au FileType cpp					setl noai nosi cin
 			au FileType html				setl ts=2 sw=0 sts=0 sta et
