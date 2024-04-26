@@ -36,8 +36,8 @@ setopt RM_STAR_WAIT
 
 ### History ### {{{
 HISTFILE=~/.zsh_history
-SAVEHIST=10000 # 10k lines in file
-HISTSIZE=10000 # 10k lines in memory
+SAVEHIST=100000 # 100k lines in file
+HISTSIZE=100000 # 100k lines in memory
 
 setopt APPEND_HISTORY # enabled by default
 setopt EXTENDED_HISTORY INC_APPEND_HISTORY_TIME # timestamp, save after completion

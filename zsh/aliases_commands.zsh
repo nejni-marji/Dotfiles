@@ -33,7 +33,7 @@ my-sshfs() {
 
 alias notepad=leafpad
 
-alias cargo='cargo mommy'
+alias cargo='RUSTC_WRAPPER=sccache cargo mommy'
 
 sudo() {
 	if [[ $1 == apt ]] ; then
@@ -502,7 +502,9 @@ vimhelp() {
 
 hgrep() {
 	[[ $1 =~ ^[0-9]+$ ]] || return $?
-	awk -v "n=$1" 'NR <= n { print > "/dev/stderr" }; NR == n { print "" > "/dev/stderr" }; NR > n'
+	n=$1; shift
+	awk -v "n=$n" 'NR <= n { print > "/dev/stderr" }; NR == n { print "" > "/dev/stderr" }; NR > n' |
+		grep "$@"
 }
 
 rstat() {

@@ -8,8 +8,9 @@
 
 # only add things to path if we haven't already done so
 ! [[ $PATH =~ ~/bin ]] && PATH=~/bin/:$PATH
-! [[ $PATH =~ /snap/bin ]] && PATH=/snap/bin/:$PATH
+# ! [[ $PATH =~ /snap/bin ]] && PATH=/snap/bin/:$PATH
 ! [[ $PATH =~ ~/.local/bin ]] && PATH=~/.local/bin/:$PATH
+! [[ $PATH =~ ~/.cargo/bin ]] && PATH=~/.cargo/bin/:$PATH
 # ! [[ $path =~ ~/bin ]] && path=~/bin/:$path
 # this is really stupid, but it puts /usr/local/games first
 PATH="${PATH:s/\/usr\/games:\/usr\/local\/games/\/usr\/local\/games:\/usr\/games/}"

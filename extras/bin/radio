@@ -47,11 +47,11 @@ opts=(
 	--ytdl-format='bv[height<=300]+ba/b'
 	--no-pause
 	--no-video
-	--load-unsafe-playlists=no
-	--keep-open=yes
-	--loop-playlist=no
+	#--load-unsafe-playlists=no
+	#--keep-open=yes
+	--loop-playlist=yes
 	--volume=70
-	--start=0
+	#--start=0
 )
 
 if ! [[ $query =~ https ]] ; then

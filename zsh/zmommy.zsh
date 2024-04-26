@@ -16,12 +16,13 @@ if ! [[ -v ZMOMMY_BIN ]] ; then
 		ZMOMMY_BIN=cargo-mommy
 	else
 		ZMOMMY_BIN=~/.cargo/bin/cargo-mommy
+		if ! [[ -x $ZMOMMY_BIN ]] ; then
+			echo 'zmommy: unable to find cargo-mommy'
+			echo 'zmommy: help: cargo install cargo-mommy'
+			return
+		fi
 	fi
 	# if we don't have an executable mommy, publish a warning
-	if ! [[ -x $ZMOMMY_BIN ]] ; then
-		echo 'zmommy: unable to find cargo-mommy'
-		return
-	fi
 fi
 
 # duration is seconds, random is a percentage 0-100

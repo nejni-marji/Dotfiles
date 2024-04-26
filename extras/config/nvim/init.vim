@@ -206,6 +206,7 @@ set updatetime=100
 			au FileType html				setl ts=2 sw=0 sts=0 sta et
 			au FileType asm					setl ts=8 sw=0 sts=0 sta noet
 			" miscellaneous
+			au FileType rust				setl fdm=indent
 			au FileType python,cpp			setl fdm=indent
 			au FileType python				setl fdl=1
 			au FileType python,zsh			setl tw=80 fo-=t
