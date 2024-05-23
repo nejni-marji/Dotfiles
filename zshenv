@@ -42,6 +42,8 @@ export zdate='${(%)$(<<<%D{%Y%m%d_%H%M%S})}'
 [[ $(uname -o) == Android ]] || export MyAndroid=false
 [[ $(uname -o) == Android ]] && export MyAndroid=true
 
+$MyAndroid && export MPD_HOST=10.0.0.100
+
 if [[ $USER != root ]] && ! $MyAndroid && which firefox >/dev/null ; then
 FAKE_USER_AGENT="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:$(firefox -version | cut -d ' ' -f 3)) Gecko/20100101 Firefox/$(firefox -version | cut -d ' ' -f 3)"
 fi
