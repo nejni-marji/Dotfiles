@@ -529,11 +529,6 @@ mpv-screenshot-search() {
 		| grep -Pi --color=auto "$1"
 }
 
-mpc_display() {
-	# watch -tc 'mpc_status ; mpc_playlist "[[artist - ][album - ]%title%]|%file%" | \grep "> " -C $(( ($LINES-5)/2 )) | perl -pe "s/^(> .*)$/\e[1m\1\e[0m/"'
-	watch -tc 'mpc_status ; mpc_playlist "[[artist - ][album - ]%title%]|%file%" | \grep "> " -B $(( ($LINES-5)/2 )) -A $(( ($LINES-5) )) | perl -pe "s/^(> .*)$/\e[1m\1\e[0m/"'
-}
-
 mcopy() {
 	file=~/Music/"$(mpc -f %file% current)"
 	echo ${file:a} | wl-copy -n
