@@ -27,8 +27,7 @@ my-sshfs() {
 		sshfs $host_ssh:/ $dir
 	}
 
-	cd $dir
-	cd .$HOME
+	cd "$dir/.$HOME" || cd $dir
 }
 
 alias notepad=leafpad
@@ -44,6 +43,14 @@ sudo() {
 			echo 'you dumbass' | figlet
 		fi
 		# unset real_apt
+	elif [[ $1 == apt-get ]] ; then
+		real_apt_get=$(zsh -c 'which apt-get')
+		if ! [[ $real_apt_get =~ 'not found' ]] ; then
+			$real_apt_get $@
+		else
+			echo 'you dumbass' | figlet
+		fi
+		# unset real_apt_get
 	else
 		real_sudo=$(zsh -c 'which sudo')
 		$real_sudo $@
@@ -272,26 +279,33 @@ alias deadname='perl -p ~/Dotfiles/extras/.deadname_re'
 get-remote() {
 	case $HOST in
 		turtwig)
-			MY_REMOTE=bronzong
+			echo bronzong
 			;;
 		bronzong)
 			if ping -c1 turtwig >/dev/null 2>/dev/null ; then
-				REMOTE=turtwig
+				echo turtwig
 			else
-				REMOTE=home
+				echo home
 			fi
 			;;
 	esac
 }
 
 mpc-sync() {
-	get-remote
+	MY_REMOTE=$(get-remote)
 	data="$(ssh $MY_REMOTE cat ~/.config/mpd/state)"
 	mpc -h $MY_REMOTE pause
 	systemctl --user stop mpd
 	echo $data >! ~/.config/mpd/state
 	systemctl --user start mpd
 	mpc play
+}
+
+mpc-duration() {
+PREFIX=~/Music/
+for track in "${(f)$(mpc -f %file% playlist)}" ; do
+ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${PREFIX}${track}"
+done | paste -sd+ | x units '({})s' hms
 }
 
 
@@ -466,10 +480,17 @@ ocr-copy() {
 }
 
 music-upload() {
-	mpc
 	data=$(mpc -f %file% current) &&
 	echo ~/Music/"$data" |
+	tee /dev/stderr |
 	wl-copy -n
+	if [[ "$data" =~ 'OC ReMix Collection - General' ]] ; then
+		ocrnum="$(ffprobe -loglevel quiet -show_entries format -of json ~/Music/"$data" | jq -r '.format.tags | [.setsubtitle, .SETSUBTITLE][] | values')"
+		ocrurl="https://ocremix.org/remix/$ocrnum"
+		echo $ocrurl |
+		tee /dev/stderr |
+		wl-copy -n
+	fi
 }
 
 file-upload() {
