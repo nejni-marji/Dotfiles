@@ -24,21 +24,23 @@ if ! tmux has-session -t $NAME ; then
 	tmux kill-window -t $NAME:0
 
 	# make windows
+
 	tmux new-window -t $NAME \
 		-n audio \
 		pulsemixer
+
 	tmux new-window -t $NAME \
 		-c ~/Working/rust/mpc-display-rs \
 		-n music \
 		;
-		#mpc-display-rs
-	tmux send-keys -t $NAME:2 'mpc-display-rs' enter
-	tmux new-window -t $NAME \
-		-c /tmp/ytdl \
-		-n yt \
-		;
 
+	tmux send-keys -t $NAME:2 'mpc-display-rs' enter
+
+	# select window
 	tmux select-window -t $NAME:2
+
+	# kill temp window
+	tmux kill-window -t $NAME:0
 fi
 
 tmux attach-session \
