@@ -1,2 +1,5 @@
 #!/bin/zsh
-exec less -J -j "$(($LINES/2))" "$@"
+#exec less -J -j "$(($LINES/2))" "$@"
+#exec less -J -j "$(($LINES/2-1))" -h $(( $COLUMNS-P )) "$@"
+exec less -j "$(($LINES/2))" "$@"
+#exec less "$@"
