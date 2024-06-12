@@ -30,7 +30,9 @@
 
 # For SDL width and space between bars is in pixels, defaults are:
 ; bar_width = 20
+bar_width = 2
 ; bar_spacing = 5
+bar_spacing = 1
 
 # sdl_glsl have these default values, they are only used to calulate max number of bars.
 ; bar_width = 1
@@ -48,6 +50,7 @@
 # Seconds with no input before cava goes to sleep mode. Cava will not perform FFT or drawing and
 # only check for input once per second. Cava will wake up once input is detected. 0 = disable.
 ; sleep_timer = 0
+sleep_timer = 5
 
 
 [input]
@@ -223,6 +226,7 @@
 ; background = '#111111'
 ; foreground = '#33ffff'
 
+foreground = '#ff8cda'
 
 # Gradient mode, only hex defined colors are supported,
 # background must also be defined in hex or remain commented out. 1 = on, 0 = off.
@@ -238,6 +242,7 @@
 ; gradient_color_7 = '#cc5933'
 ; gradient_color_8 = '#cc3333'
 
+# gradient = 1
 
 
 [smoothing]
