@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+script="${0:h}/git/opensub/opensubtitles-dl.sh"
+
+for i in $@ ; do
+	$script -l eng -n $i
+done

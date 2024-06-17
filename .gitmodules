@@ -37,3 +37,6 @@
 [submodule "extras/bin/git/unimatrix"]
 	path = extras/bin/git/unimatrix
 	url = https://github.com/will8211/unimatrix
+[submodule "extras/bin/git/opensub"]
+	path = extras/bin/git/opensub
+	url = https://github.com/aoeu/opensub
