@@ -46,28 +46,41 @@ set updatetime=100
 
 " }}}
 " {{{ plugins
-	execute pathogen#infect('bundle/tpope/vim-commentary')
-	execute pathogen#infect('bundle/tpope/vim-surround')
-	execute pathogen#infect('bundle/machakann/vim-highlightedyank')
-	" quick-scope {{{
-		execute pathogen#infect('bundle/unblevable/quick-scope')
-		" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-		" unlet g:qs_highlight_on_keys
-	" }}}
-	" gitgutter {{{
-		execute pathogen#infect('bundle/airblade/vim-gitgutter')
-		" highlight SignColumn      guibg=#000000 ctermbg=0
-		highlight! link SignColumn LineNr
-		highlight GitGutterAdd    guifg=#009900 ctermfg=2
-		highlight GitGutterChange guifg=#bbbb00 ctermfg=3
-		highlight GitGutterDelete guifg=#ff2222 ctermfg=1
-		let g:gitgutter_sign_added                   = '+'
-		let g:gitgutter_sign_modified                = '~'
-		let g:gitgutter_sign_removed                 = '-'
-		let g:gitgutter_sign_removed_first_line      = '^'
-		let g:gitgutter_sign_removed_above_and_below = '{'
-		let g:gitgutter_sign_modified_removed        = 'w'
-	" }}}
+	call plug#begin()
+
+	Plug 'airblade/vim-gitgutter'
+	Plug 'dense-analysis/ale'
+	Plug 'machakann/vim-highlightedyank'
+	Plug 'tpope/vim-commentary'
+	Plug 'tpope/vim-sensible'
+	Plug 'tpope/vim-surround'
+	Plug 'unblevable/quick-scope'
+
+
+	call plug#end()
+
+	"execute pathogen#infect('bundle/tpope/vim-commentary')
+	"execute pathogen#infect('bundle/tpope/vim-surround')
+	"execute pathogen#infect('bundle/machakann/vim-highlightedyank')
+	"" quick-scope {{{
+	"	execute pathogen#infect('bundle/unblevable/quick-scope')
+	"	" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+	"	" unlet g:qs_highlight_on_keys
+	"" }}}
+	"" gitgutter {{{
+	"	execute pathogen#infect('bundle/airblade/vim-gitgutter')
+	"	" highlight SignColumn      guibg=#000000 ctermbg=0
+	"	highlight! link SignColumn LineNr
+	"	highlight GitGutterAdd    guifg=#009900 ctermfg=2
+	"	highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+	"	highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+	"	let g:gitgutter_sign_added                   = '+'
+	"	let g:gitgutter_sign_modified                = '~'
+	"	let g:gitgutter_sign_removed                 = '-'
+	"	let g:gitgutter_sign_removed_first_line      = '^'
+	"	let g:gitgutter_sign_removed_above_and_below = '{'
+	"	let g:gitgutter_sign_modified_removed        = 'w'
+	"" }}}
 " }}}
 
 " {{{ tabs (ts sw sta sts et ci pi)
