@@ -40,3 +40,6 @@
 [submodule "extras/bin/git/opensub"]
 	path = extras/bin/git/opensub
 	url = https://github.com/aoeu/opensub
+[submodule "extras/config/nvim/bundle/dense-analysis/ale"]
+	path = extras/config/nvim/bundle/dense-analysis/ale
+	url = https://github.com/dense-analysis/ale
