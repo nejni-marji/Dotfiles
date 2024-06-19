@@ -58,29 +58,22 @@ set updatetime=100
 
 
 	call plug#end()
-
-	"execute pathogen#infect('bundle/tpope/vim-commentary')
-	"execute pathogen#infect('bundle/tpope/vim-surround')
-	"execute pathogen#infect('bundle/machakann/vim-highlightedyank')
-	"" quick-scope {{{
-	"	execute pathogen#infect('bundle/unblevable/quick-scope')
-	"	" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-	"	" unlet g:qs_highlight_on_keys
-	"" }}}
-	"" gitgutter {{{
-	"	execute pathogen#infect('bundle/airblade/vim-gitgutter')
-	"	" highlight SignColumn      guibg=#000000 ctermbg=0
-	"	highlight! link SignColumn LineNr
-	"	highlight GitGutterAdd    guifg=#009900 ctermfg=2
-	"	highlight GitGutterChange guifg=#bbbb00 ctermfg=3
-	"	highlight GitGutterDelete guifg=#ff2222 ctermfg=1
-	"	let g:gitgutter_sign_added                   = '+'
-	"	let g:gitgutter_sign_modified                = '~'
-	"	let g:gitgutter_sign_removed                 = '-'
-	"	let g:gitgutter_sign_removed_first_line      = '^'
-	"	let g:gitgutter_sign_removed_above_and_below = '{'
-	"	let g:gitgutter_sign_modified_removed        = 'w'
-	"" }}}
+	" gitgutter {{{
+		" highlight SignColumn      guibg=#000000 ctermbg=0
+		highlight! link SignColumn LineNr
+		highlight GitGutterAdd    guifg=#009900 ctermfg=2
+		highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+		highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+		let g:gitgutter_sign_added                   = '+'
+		let g:gitgutter_sign_modified                = '~'
+		let g:gitgutter_sign_removed                 = '-'
+		let g:gitgutter_sign_removed_first_line      = '^'
+		let g:gitgutter_sign_removed_above_and_below = '{'
+		let g:gitgutter_sign_modified_removed        = 'w'
+	" }}}
+	" ale {{{
+		" let  g:ale_use_neovim_diagnostics_api = 0
+	" }}}
 " }}}
 
 " {{{ tabs (ts sw sta sts et ci pi)
@@ -290,6 +283,8 @@ set updatetime=100
 	colorscheme peachpuff
 	" setting `:hi Normal` and only setting one value might break something, but I'm not sure what. Mon, Apr 3 2023, 13:17
 	highlight Normal guibg=#f5e4e5
+	highlight DiagnosticWarn ctermfg=3 guifg=yellow guibg=grey
+	highlight DiagnosticError ctermfg=3 guifg=red guibg=lightgrey
 " }}}
 
 
