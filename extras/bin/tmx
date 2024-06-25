@@ -62,6 +62,7 @@ fi
 # Only run if we aren't in a tmux shell
 if [[ -z "$TMUX" ]]; then
 	session="$group-$(date +%m%d_%H%M%S)"
+	session="$group-$(cat /dev/urandom | tr -dc A-Z | head -c 4)"
 	echo "New grouped session: $session"
 	tmux new-session -t "$group" -s "$session" -d -F '#{session_name}'
 	tmux attach-session -t "$session" >/dev/null 2>/dev/null
