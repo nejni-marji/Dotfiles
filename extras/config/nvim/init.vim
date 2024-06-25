@@ -285,4 +285,10 @@ set updatetime=100
 	highlight Normal guibg=#f5e4e5
 	highlight DiagnosticWarn ctermfg=3 guifg=yellow guibg=grey
 	highlight DiagnosticError ctermfg=3 guifg=red guibg=lightgrey
+
+	" for cool-retro-term
+	if exists('$ASCII_ONLY')
+		set background=dark
+		colorscheme vim
+	endif
 " }}}
