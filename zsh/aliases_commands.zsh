@@ -32,7 +32,7 @@ my-sshfs() {
 
 alias notepad=leafpad
 
-alias cargo='RUSTC_WRAPPER=sccache cargo mommy'
+alias cargo='cargo mommy'
 
 sudo() {
 	if [[ $1 == apt ]] ; then

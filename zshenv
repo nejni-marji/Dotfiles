@@ -32,6 +32,8 @@ export MPC_FORMAT='[[%artist% - ][%album% - ]%title%]|%file%'
 export PYTHONSTARTUP=~/.config/python/pythonrc
 export PYTHONPATH=~/.config/python/lib
 
+export RUSTC_WRAPPER=sccache
+
 
 
 ### stranger environment variables ###

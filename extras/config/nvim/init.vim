@@ -286,8 +286,3 @@ set updatetime=100
 	highlight DiagnosticWarn ctermfg=3 guifg=yellow guibg=grey
 	highlight DiagnosticError ctermfg=3 guifg=red guibg=lightgrey
 " }}}
-
-
-
-
-
