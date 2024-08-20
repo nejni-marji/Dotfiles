@@ -45,7 +45,12 @@ ytmeta() {
 	ytm1=$1
 	ytm2=$2
 	shift 2
-	ytm_args="$@"
+	ytm_args=($@)
+	clip=$(wl-paste -n)
+	if [[ $clip =~ 'youtube\.com|youtu\.be' ]] ; then
+		# youtube detected in clipboard, include that automatically
+		ytm_args+=($clip)
+	fi
 	zle-line-init() {
 		BUFFER=''
 		BUFFER+=$ytm1
