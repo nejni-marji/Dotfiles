@@ -538,12 +538,12 @@ rstat() {
 # These used to be in "functions that could be scripts"
 
 mpv-screenshot-search() {
-	find ~/Pictures/MPV_Screenshots \
-		| sort \
-		| grep -Pi "$1" \
-		| perl -pe 's#^/(?:[^/]+/){4}(?:.{29})(\d{2})h(\d{2})m(\d{2})s\d{3}-\d{4}-(.*)\.jpg#\1:\2:\3\t\4#g' \
-		| tail -n5 \
-		| grep -Pi --color=auto "$1"
+	find ~/Pictures/MPV_Screenshots |
+		grep -Pi "$1" |
+		sort |
+		perl -pe 's#^/(?:[^/]+/){4}(?:.{29})(\d{2})h(\d{2})m(\d{2})s\d{3}-\d{4}-(.*)\.jpg#\1:\2:\3\t\4#g' |
+		tail -n5 |
+		grep -Pi --color=auto "$1"
 }
 
 mcopy() {
