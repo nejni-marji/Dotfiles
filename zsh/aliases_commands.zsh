@@ -4,6 +4,8 @@
 ### ALIASES ###
 ###############
 
+alias yaoi=paru
+
 # janky shit
 
 my-sshfs() {
@@ -148,7 +150,7 @@ alias gr='git rev-parse --show-toplevel >/dev/null && cd $(git rev-parse --show-
 alias grep='grep --color=auto'
 alias rsync='rsync -hva --old-args'
 alias diff='diff --color=auto'
-alias df='df -x tmpfs -x devtmpfs -x squashfs -lh --output=target,size,used,avail,pcent'
+alias df='df -x tmpfs -x devtmpfs -x squashfs -x efivarfs -lh --output=target,size,used,avail,pcent'
 alias python='python3'
 alias rm='echo pls dont' # alias over rm because i dont use it
 alias nl='nl -ba -ha -fa -p -n ln'

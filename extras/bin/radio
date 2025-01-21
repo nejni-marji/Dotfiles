@@ -25,7 +25,7 @@ case $1 in
 		#query="lofi girl Christmas lofi radio 🎄 - cozy beats to get festive to"
 		query="https://www.youtube.com/watch?v=pt4qkWORaRQ"
 		;;;
-	rain)
+	rain|leaves|leaf)
 		mode="(noise) rain/rain on the leaves"
 		query="https://www.youtube.com/watch?v=zKHJuEwzXPk"
 		;;
