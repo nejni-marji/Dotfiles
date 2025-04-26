@@ -28,8 +28,16 @@
 
 
 
+case $HOST in
+	turtwig)
+		MAX_HEIGHT=99999
+		;;
+	*)
+		MAX_HEIGHT=1200
+esac
+
 YT_VIDEO=(
-	"mpv --ytdl --script-opts=ytdl_path=yt-dlp --ytdl-format='bv[height<=800]+ba/b' --no-pause --no-fullscreen --load-unsafe-playlists=no --keep-open=always --loop-playlist=no --volume=100 --start=0 '"
+	"mpv --ytdl --script-opts=ytdl_path=yt-dlp --ytdl-format='bv[height<=$MAX_HEIGHT]+ba/b' --no-pause --no-fullscreen --load-unsafe-playlists=no --keep-open=always --loop-playlist=no --volume=100 --start=0 '"
 	"' && exit"
 )
 YT_AUDIO=(

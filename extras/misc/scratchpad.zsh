@@ -8,6 +8,7 @@ NAME=scratchpad
 if [[ $1 != $SPECIAL_ARG ]] ; then
 	exec cool-retro-term \
 		-T scratchpad \
+		-p scratchpad \
 		-e ${0:A} $SPECIAL_ARG
 fi
 

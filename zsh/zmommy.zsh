@@ -30,7 +30,7 @@ fi
 # to disable random:   set to -1
 [[ -v zmommy_duration ]] || zmommy_duration=5
 [[ -v zmommy_random   ]] || zmommy_random=5
-[[ -v zmommy_include  ]] || zmommy_include=(true false woof sudo pacman paru apt apt-get sudo rsync find locate grep ssh mosh mpc)
+[[ -v zmommy_include  ]] || zmommy_include=(true false woof sudo pacman paru apt apt-get sudo rsync find locate grep ssh mosh mpc gcc g++)
 [[ -v zmommy_exclude  ]] || zmommy_exclude=($EDITOR $PAGER cargo ls cd echo print)
 
 

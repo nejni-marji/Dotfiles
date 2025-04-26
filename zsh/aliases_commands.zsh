@@ -164,7 +164,7 @@ alias calc='units'
 # same as above, but for less standard programs
 alias units='units -v'
 local -a GAYFLAGS=(--lesbian --gay --trans)
-alias gay='gay -i 2d --white "#e0e0e0" --black "#404040" "${GAYFLAGS[($RANDOM % ${#GAYFLAGS[@]})+1]}"'
+alias gay='gay -i 2d --white "#E0E0E0" --black "#404040" "${GAYFLAGS[($RANDOM % ${#GAYFLAGS[@]})+1]}"'
 if [[ $USER != root ]] && ! $MyAndroid && which firefox >/dev/null ; then
 local FF_VER=$(firefox -version | cut -d' ' -f3)
 fi
@@ -205,6 +205,7 @@ alias ydl="yt-dlp --no-playlist --write-subs --write-auto-subs --sub-lang en -f 
 # for typos
 alias ccl='cl'
 alias gerp='grep'
+alias myc='mpc'
 
 
 
