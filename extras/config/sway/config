@@ -21,6 +21,7 @@
 #
 ### Variables
 #
+    # modifier keys
     set $mod Mod4
     set $alt Mod1
     set $float space
@@ -30,7 +31,6 @@
     set $up n
     set $right s
     # preferred executables
-    #TODO: set foot font to firacode
     set $term foot
     set $menu exec rofi -show run
 
@@ -77,8 +77,8 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$alt+Shift+g gaps inner all set 0      ; gaps outer all set 0
 
     # font
-    #TODO
-    font pango:FiraCode 10
+    set $font pango:Fira Code 10
+    font $font
 
     # colors
     #       .class               border    bckgrnd   text      indctr    outline
@@ -121,7 +121,7 @@ include /etc/sway/config-vars.d/*
 
     # Start your launcher
     #bindsym $mod+d exec $menu
-    bindsym $alt+$float $menu
+    bindsym $alt+Space $menu
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -130,6 +130,7 @@ include /etc/sway/config-vars.d/*
     floating_modifier $mod normal
     bindsym $mod+Shift+$float floating toggle
     bindsym $mod+$float focus mode_toggle
+    #bindsym $mod+$alt+$float sticky toggle
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning \
@@ -278,8 +279,7 @@ include /etc/sway/config-vars.d/*
         #TODO
         height 25
         gaps 0 10 0 10
-        #TODO
-        font pango:FiraCode 10
+        font $font
         position top
         #status_command while date +'%A, %B %d, %-I:%M %p   ' ; do sleep 15 ; done
         status_command i3blocks
