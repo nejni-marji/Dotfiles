@@ -132,9 +132,14 @@ include /etc/sway/config-vars.d/*
         -B 'Yes, exit sway' 'swaymsg exit'
 
     # Take screenshots
-    bindsym Print         nop
-    bindsym Shift+Print   exec grim                  -o "$(swaymsg -t get_outputs | jq '.[] | select(.focused).name' -r)" ~/Pictures/Screenshot_$(date +"%F_%H%M%S.png")
-    bindsym Control+Print exec grim -g "$(slurp -d)" -o "$(swaymsg -t get_outputs | jq '.[] | select(.focused).name' -r)" ~/Pictures/Screenshot_$(date +"%F_%H%M%S.png")
+    set $screenshot ~/Pictures/Screenshot_$(date +"%F_%H%M%S.png")
+    # this is way too many bindings but i'm just covering my bases because i'm kinda dumb
+    bindsym --release Print            exec grim -g "$(slurp -d)" $screenshot
+    bindsym --release Shift+Print      exec grim -g "$(slurp -d)" $screenshot
+    bindsym --release Ctrl+Print       exec grim -o "$(swaymsg -t get_outputs | jq '.[] | select(.focused).name' -r)" $screenshot
+    bindsym --release $mod+Print       exec grim -g "$(slurp -d)" $screenshot
+    bindsym --release $mod+Shift+Print exec grim -g "$(slurp -d)" $screenshot
+    bindsym --release $mod+Ctrl+Print  exec grim -o "$(swaymsg -t get_outputs | jq '.[] | select(.focused).name' -r)" $screenshot
 
 #
 # Moving around:
