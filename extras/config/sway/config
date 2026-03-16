@@ -107,14 +107,14 @@ include /etc/sway/config-vars.d/*
 #
 ### Key bindings
 #
-    # start a terminal
+    # Start a terminal
     bindsym $mod+Return exec $term
     bindsym $mod+Shift+Return exec $term
 
-    # kill focused window
+    # Kill focused window
     bindsym $mod+Shift+q kill
 
-    # start your launcher
+    # Start your launcher
     #bindsym $mod+d exec $menu
     bindsym $alt+$float $menu
 
@@ -130,6 +130,11 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+Shift+e exec swaynag -t warning \
         -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
         -B 'Yes, exit sway' 'swaymsg exit'
+
+    # Take screenshots
+    bindsym Print         nop
+    bindsym Shift+Print   exec grim                  -o "$(swaymsg -t get_outputs | jq '.[] | select(.focused).name' -r)" ~/Pictures/Screenshot_$(date +"%F_%H%M%S.png")
+    bindsym Control+Print exec grim -g "$(slurp -d)" -o "$(swaymsg -t get_outputs | jq '.[] | select(.focused).name' -r)" ~/Pictures/Screenshot_$(date +"%F_%H%M%S.png")
 
 #
 # Moving around:
