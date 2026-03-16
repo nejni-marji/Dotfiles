@@ -52,13 +52,13 @@ source ~/.zsh/zstyles.zsh
 source ~/.zsh/prompt.zsh
 # source aliases and commands
 source ~/.zsh/aliases_commands.zsh
-source ~/.zsh/uwu.zsh
+#source ~/.zsh/uwu.zsh
 # heavier custom stuff
 source ~/.zsh/ansi_title.zsh
-source ~/.zsh/microshell.zsh quiet
-source ~/.zsh/youtube.zsh
+#source ~/.zsh/microshell.zsh quiet
+#source ~/.zsh/youtube.zsh
 # this one is really hacky
-source ~/.zsh/interactive.zsh
+#source ~/.zsh/interactive.zsh
 # mommy...
 source ~/.zsh/zmommy.zsh
 # some stuff has to go in a separate file, so it doesn't end up on github
