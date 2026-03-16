@@ -32,7 +32,8 @@
     set $right s
     # preferred executables
     set $term foot
-    set $menu exec rofi -show run
+    #set $menu exec rofi -show run
+    set $menu exec wmenu-run -i -f 'FiraCode 14' -p Run: -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
 
 include /etc/sway/config-vars.d/*
 
@@ -47,6 +48,7 @@ include /etc/sway/config-vars.d/*
     set $video_wallpaper ~/Downloads/fish-aquarium.1920x1080.mp4
     # this is stupid... but it works!
     exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
+    bindsym $mod+Shift+d exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
 
     # idle configuration aka powersaving aka screenlock
     exec swayidle -w \
@@ -77,7 +79,7 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$alt+Shift+g gaps inner all set 0      ; gaps outer all set 0
 
     # font
-    set $font pango:Fira Code 10
+    set $font pango:FiraCode 10
     font $font
 
     # colors
