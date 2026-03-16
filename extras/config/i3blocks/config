@@ -7,7 +7,7 @@ markup=pango
 # combine several blocks into one to make it look a tiny bit nicer
 [date_fuzzyclock_emoji]
 #command=date +'%A, %B %d, %-I:%M'
-command=date +'%A, %B %d,' | tr '\n' ' ' ; ~/Working/sway/fuzzy_clock.py | tr A-Z a-z | tr '\n' ' ' ; ~/Working/sway/emoji_clock.sh
+command=date +'%A, %B %d,' | tr '\n' ' ' ; ~/.config/i3blocks/fuzzy_clock.py | tr A-Z a-z | tr '\n' ' ' ; ~/.config/i3blocks/emoji_clock.sh
 interval=60
 separator=true
 

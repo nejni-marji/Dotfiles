@@ -1,0 +1,36 @@
+#!/bin/bash
+# 8 PM -> 12 AM 🌃
+# 12 AM -> 6 AM 🌌
+# 6 AM -> 9 AM 🌇
+# 9 AM -> 4 PM 🏙️
+# 4 PM -> 8 PM 🌆
+emoji=(
+'🌌' # 1 shows at 01:00-01:59
+'🌌' # 2 etc
+'🌌' # 3 etc
+'🌌' # 4
+'🌌' # 5
+'🌇' # 6
+'🌇' # 7
+'🌇' # 8
+'🏙️' # 9
+'🏙️' # 10
+'🏙️' # 11
+'🏙️' # 12
+'🏙️' # 13
+'🌆' # 14
+'🌆' # 15
+'🌆' # 16
+'🌆' # 17
+'🌆' # 18
+'🌆' # 19
+'🌃' # 20
+'🌃' # 21
+'🌃' # 22
+'🌃' # 23
+'🌌' # 24 aka midnight (00:00-00:59)
+)
+# sets $date to "now" if no argument is provided
+[[ -z $1 ]] && date=now || date=$1
+hour=$(date +%-H --date $date)
+echo ${emoji[$hour-1]}
