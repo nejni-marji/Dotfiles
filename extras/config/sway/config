@@ -30,6 +30,7 @@
     set $up n
     set $right s
     # preferred executables
+    #TODO: set foot font to firacode
     set $term foot
     set $menu exec rofi -show run
 
@@ -75,6 +76,10 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$alt+g       gaps inner all set $inner ; gaps outer all set $outer
     bindsym $mod+$alt+Shift+g gaps inner all set 0      ; gaps outer all set 0
 
+    # font
+    #TODO
+    font pango:FiraCode 10
+
     # colors
     #       .class               border    bckgrnd   text      indctr    outline
       client.focused             #e667be   #ff8cda   #000000   #ff00ff   #ff8cda
@@ -96,7 +101,7 @@ include /etc/sway/config-vars.d/*
     input type:keyboard {
         xkb_layout us
         xkb_variant dvorak
-        xkb_options caps:ctrl_modifier,ctrl:swap_lwin_lctl,ctrl:swap_rwin_rctl
+        xkb_options caps:ctrl_modifier,caps:swapcaps,ctrl:swap_lwin_lctl,ctrl:swap_rwin_rctl
     }
 
     input type:pointer {
@@ -206,6 +211,7 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+bracketleft workspace prev_on_output
     bindsym $mod+bracketright workspace next_on_output
     bindsym $mod+BackSpace workspace back_and_forth
+    bindsym $mod+Shift+BackSpace move container to workspace back_and_forth
     bindsym $alt+Tab focus output right
     #bindsym $mod+slash focus output left
     #bindsym $mod+equal focus output right
@@ -269,6 +275,11 @@ include /etc/sway/config-vars.d/*
 # Status Bar:
 #
     bar {
+        #TODO
+        height 25
+        gaps 0 10 0 10
+        #TODO
+        font pango:FiraCode 10
         position top
         #status_command while date +'%A, %B %d, %-I:%M %p   ' ; do sleep 15 ; done
         status_command i3blocks
