@@ -7,9 +7,6 @@
 [submodule "extras/bin/git/zsh-git-prompt"]
 	path = extras/bin/git/zsh-git-prompt
 	url = https://github.com/olivierverdier/zsh-git-prompt
-[submodule "extras/config/sway/bin/misc/scsh.sh"]
-	path = extras/config/sway/bin/misc/scsh.sh
-	url = https://github.com/nejni-marji/scsh.sh
 [submodule "extras/config/nvim/autoload/tpope/vim-pathogen"]
 	path = extras/config/nvim/autoload/tpope/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen
