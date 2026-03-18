@@ -32,7 +32,6 @@
     set $right s
     # preferred executables
     set $term foot
-    #set $menu exec rofi -show run
     set $menu exec wmenu-run -i -f 'FiraCode 14' -p Run: -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
 
 include /etc/sway/config-vars.d/*
@@ -51,10 +50,14 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+Shift+d exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
 
     # idle configuration aka powersaving aka screenlock
+    # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
     exec swayidle -w \
-        timeout 300 'swaylock -f -c 354045' \
-        timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-        before-sleep 'swaylock -f -c 354045'
+        timeout 600 'swaymsg "output * power off"' \
+        timeout 630 'swaylock -f -c 354045' \
+        timeout 900 'systemctl suspend' \
+        resume 'swaymsg "output * power on"' \
+        before-sleep 'swaylock -f -c 354045' \
+        ;
 
 #
 ### Output configuration
@@ -111,6 +114,9 @@ include /etc/sway/config-vars.d/*
         pointer_accel -0.35
     }
 
+    # hide cursor when idle, in ms
+    seat * hide_cursor 5000
+
 #
 ### Key bindings
 #
@@ -122,8 +128,8 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    #bindsym $mod+d exec $menu
     bindsym $alt+Space $menu
+    bindsym $mod+d exec $menu
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -289,7 +295,7 @@ include /etc/sway/config-vars.d/*
             statusline #ffffff
             background #323232
             #                  bckgrn  border  text
-            focused_workspace  #e667be #ff8cda #ffffff
+            focused_workspace  #e667be #ff8cda #000000
             inactive_workspace #323232 #323232 #5c5c5c
         }
     }
