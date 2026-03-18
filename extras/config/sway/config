@@ -32,7 +32,7 @@
     set $right s
     # preferred executables
     set $term foot
-    set $menu exec wmenu-run -i -f 'FiraCode 14' -p Run: -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
+    set $menu exec wmenu-run -i -f '$font' -p Run: -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
 
 include /etc/sway/config-vars.d/*
 
@@ -46,6 +46,7 @@ include /etc/sway/config-vars.d/*
     # video wallpaper
     set $video_wallpaper ~/Downloads/fish-aquarium.1920x1080.mp4
     # this is stupid... but it works!
+    # TODO: sway allows nested variables. use them
     exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
     bindsym $mod+Shift+d exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
 
@@ -76,8 +77,6 @@ include /etc/sway/config-vars.d/*
     smart_gaps inverse_outer
     gaps inner $inner
     gaps outer $outer
-    exec_always swaymsg gaps inner all set $inner
-    exec_always swaymsg gaps outer all set $outer
     bindsym $mod+$alt+g       gaps inner all set $inner ; gaps outer all set $outer
     bindsym $mod+$alt+Shift+g gaps inner all set 0      ; gaps outer all set 0
 
@@ -183,16 +182,16 @@ include /etc/sway/config-vars.d/*
     workspace_auto_back_and_forth yes
 
     # set names
-    set $ws1 1:alt
-    set $ws2 2:main
-    set $ws3 3:code
-    set $ws4 4:game
-    set $ws5 5
-    set $ws6 6
-    set $ws7 7
-    set $ws8 8
-    set $ws9 9:bg
-    set $ws0 10
+    set $ws1 10: main
+    set $ws2 20: alt
+    set $ws3 30: code
+    set $ws4 40: game
+    set $ws5 50
+    set $ws6 60
+    set $ws7 70
+    set $ws8 80
+    set $ws9 90: bg
+    set $ws0 99
 
     # move by number
     bindsym $mod+1 workspace number $ws1
@@ -284,12 +283,8 @@ include /etc/sway/config-vars.d/*
 # Status Bar:
 #
     bar {
-        #TODO
-        height 25
-        gaps 0 10 0 10
         font $font
         position top
-        #status_command while date +'%A, %B %d, %-I:%M %p   ' ; do sleep 15 ; done
         status_command i3blocks
         colors {
             statusline #ffffff
