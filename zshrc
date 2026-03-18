@@ -160,7 +160,7 @@ source ~/.zsh/zbell.sh
 # guarantee catgirl joke
 [[ -f ~/girl ]] || echo 'nya~' > ~/girl
 # less cat and more dog?
-woof() { < ~/Dotfiles/extras/woof.txt gay -i 2d $@ }
+woof() { < ~/Dotfiles/extras/woof.txt gay -i 2d --period 7 $@ }
 woof
 
 # # more weird testing stuff

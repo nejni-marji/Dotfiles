@@ -30,10 +30,10 @@ if ! tmux has-session -t $NAME ; then
 		-n audio \
 		pulsemixer
 
-	tmux new-window -t $NAME \
-		-c ~/Working/rust/mpc-display-rs \
-		-n music \
-		;
+	# tmux new-window -t $NAME \
+	# 	-c ~/Working/rust/mpc-display-rs \
+	# 	-n music \
+	# 	;
 
 	tmux send-keys -t $NAME:2 'mpc-display-rs' enter
 
