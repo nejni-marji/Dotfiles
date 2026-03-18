@@ -40,7 +40,7 @@ include /etc/sway/config-vars.d/*
 ### Autostart
 #
     # redshift
-    exec wlsunset -t 4000 -T 6500 -s 21:00 -S 7:00
+    exec wlsunset -t 3500 -T 6500 -s 21:00 -S 7:00
     # notification server
     exec swaync
     # video wallpaper
@@ -138,7 +138,7 @@ include /etc/sway/config-vars.d/*
     floating_modifier $mod normal
     bindsym $mod+Shift+$float floating toggle
     bindsym $mod+$float focus mode_toggle
-    #bindsym $mod+$alt+$float sticky toggle
+    bindsym $mod+$alt+$float nop sticky toggle
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning \
@@ -183,8 +183,8 @@ include /etc/sway/config-vars.d/*
     workspace_auto_back_and_forth yes
 
     # set names
-    set $ws1 1:main
-    set $ws2 2:side
+    set $ws1 1:alt
+    set $ws2 2:main
     set $ws3 3:code
     set $ws4 4:game
     set $ws5 5

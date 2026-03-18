@@ -4,4 +4,5 @@ bar_spacing = 1
 sleep_timer = 5
 
 [color]
-foreground = '#ff8cda'
+foreground = '#ff8cda' # pink
+#foreground = '#8cdaff' # cyan
