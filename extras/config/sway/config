@@ -48,7 +48,7 @@ include /etc/sway/config-vars.d/*
 ### Autostart
 #
     # redshift
-    # TODO: 3500 desktop, 3000 laptop
+    # TODO: 3500:6500 desktop, 3000:5000 laptop
     exec wlsunset -t 3000 -T 5000 -s 21:00 -S 9:00
     # notification server
     # TODO: sync configs for swaync
