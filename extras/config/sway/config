@@ -120,6 +120,7 @@ include /etc/sway/config-vars.d/*
         xkb_options caps:ctrl_modifier,caps:swapcaps,ctrl:swap_lwin_lctl,ctrl:swap_rwin_rctl
     }
 
+    # TODO: move this somewhere
     seat seat0 xcursor_theme catppuccin-latte-pink-cursors 36
 
     input type:pointer {
