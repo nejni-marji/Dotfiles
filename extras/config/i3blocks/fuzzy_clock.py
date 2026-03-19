@@ -171,7 +171,7 @@ else:
 sector = sector
 if (sector == 12):
     realHour += 1
-    if (realHour >= hourNames.len):
+    if (realHour >= len(hourNames)):
         realHour = 0
     sector = 0
 

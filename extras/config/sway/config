@@ -289,9 +289,9 @@ include /etc/sway/config-vars.d/*
         colors {
             statusline #ffffff
             background #323232
-            #                  bckgrn  border  text
+            #                  border  bckgrn  text
             focused_workspace  #e667be #ff8cda #000000
-            inactive_workspace #323232 #323232 #5c5c5c
+            inactive_workspace #888888 #323232 #ffffff
         }
     }
 

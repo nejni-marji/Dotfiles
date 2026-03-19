@@ -4,6 +4,12 @@ separator_block_width=25
 full_text=<span background="#323232"><span foreground="#55CDFC">T</span><span foreground="#F7A8B8">R</span><span foreground="#FFFFFF">A</span><span foreground="#F7A8B8">N</span><span foreground="#55CDFC">S</span> <span foreground="#55CDFC">P</span><span foreground="#F7A8B8">R</span><span foreground="#FFFFFF">I</span><span foreground="#F7A8B8">D</span><span foreground="#55CDFC">E</span> <span foreground="#F7A8B8">&lt;3</span></span>
 markup=pango
 
+[battery]
+label=Power: 
+command=~/.config/i3blocks/battery.sh
+markup=pango
+interval=60
+
 # combine several blocks into one to make it look a tiny bit nicer
 [date_fuzzyclock_emoji]
 #command=date +'%A, %B %d, %-I:%M'
