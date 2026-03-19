@@ -57,8 +57,8 @@ include /etc/sway/config-vars.d/*
     set $video_wallpaper ~/Downloads/fish-aquarium.1920x1080.mp4
     # this is stupid... but it works!
     # TODO: sway allows nested variables. use them
-    #exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
-    #bindsym $mod+$shf+d nop exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
+    exec bash -c "mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
+    bindsym $mod+$shf+d exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
