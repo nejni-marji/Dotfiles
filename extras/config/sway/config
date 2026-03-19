@@ -48,6 +48,7 @@ include /etc/sway/config-vars.d/*
 ### Autostart
 #
     # redshift
+    # TODO: 3500 desktop, 3000 laptop
     exec wlsunset -t 3500 -T 6500 -s 21:00 -S 7:00
     # notification server
     # TODO: sync configs for swaync
@@ -80,6 +81,25 @@ include /etc/sway/config-vars.d/*
     # we also set a video wallpaper, but this is a fallback
     output * bg /home/alex/Pictures/wizard.png fill
 
+    # font
+    set $font FiraCode 10
+    font pango:$font
+
+    # colors
+    #       .class               outline   bckgrnd   frgrnd    indctr    border
+      client.focused             #e667be   #ff8cda   #000000   #8cffeb   #ff8cda
+      client.focused_inactive    #666666   #5f676a   #ffffff   #484e50   #5f676a
+      client.focused_tab_title   #666666   #5f676a   #ffffff   #484e50   #5f676a
+      client.unfocused           #666666   #222222   #888888   #292d2e   #222222
+    # client.urgent              #2f343a   #900000   #ffffff   #900000   #900000
+
+    # borders
+    # TODO: maybe change this by host?
+    set $borders normal 3
+    default_border $borders
+    #exec_always swaymsg [tiling] border $borders
+    #exec_always swaymsg [floating] border $borders
+
     # configure gaps
     set $inner 10
     set $outer 20
@@ -89,22 +109,9 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$ctl+g      gaps inner all set $inner ; gaps outer all set $outer
     bindsym $mod+$ctl+$shf+g gaps inner all set 0      ; gaps outer all set 0
 
-    # font
-    set $font FiraCode 10
-    font $font
-
-    # colors
-    #       .class               border    bckgrnd   text      indctr    outline
-      client.focused             #e667be   #ff8cda   #000000   #ff00ff   #ff8cda
-      client.focused_inactive    #666666   #5f676a   #ffffff   #484e50   #5f676a
-      client.focused_tab_title   #666666   #5f676a   #ffffff   #484e50   #5f676a
-      client.unfocused           #666666   #222222   #888888   #292d2e   #222222
-    # client.urgent              #2f343a   #900000   #ffffff   #900000   #900000
-
     # miscellaneous options
     title_align center
     titlebar_padding 30 4
-    hide_edge_borders smart_no_gaps
     force_display_urgency_hint 1000
     hide_edge_borders smart_no_gaps
     # kind of a training wheel until i learn J/K movement
@@ -298,6 +305,7 @@ include /etc/sway/config-vars.d/*
 
 #
 # Utilities:
+#
     # Special keys to adjust volume via PulseAudio
     bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
     bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
