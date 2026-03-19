@@ -1,37 +1,20 @@
 separator_block_width=25
 
 [trans]
-full_text=<span background="#323232"><span foreground="#55CDFC">T</span><span foreground="#F7A8B8">R</span><span foreground="#FFFFFF">A</span><span foreground="#F7A8B8">N</span><span foreground="#55CDFC">S</span> <span foreground="#55CDFC">P</span><span foreground="#F7A8B8">R</span><span foreground="#FFFFFF">I</span><span foreground="#F7A8B8">D</span><span foreground="#55CDFC">E</span> <span foreground="#F7A8B8">&lt;3</span></span>
+#full_text=<span background="#323232"><span foreground="#55CDFC">T</span><span foreground="#F7A8B8">R</span><span foreground="#FFFFFF">A</span><span foreground="#F7A8B8">N</span><span foreground="#55CDFC">S</span> <span foreground="#55CDFC">P</span><span foreground="#F7A8B8">R</span><span foreground="#FFFFFF">I</span><span foreground="#F7A8B8">D</span><span foreground="#55CDFC">E</span> <span foreground="#F7A8B8">&lt;3</span></span>
+full_text=<span background="#323232"><span foreground="#55CDFC">t</span><span foreground="#F7A8B8">r</span><span foreground="#FFFFFF">a</span><span foreground="#F7A8B8">n</span><span foreground="#55CDFC">s</span> <span foreground="#55CDFC">p</span><span foreground="#F7A8B8">r</span><span foreground="#FFFFFF">i</span><span foreground="#F7A8B8">d</span><span foreground="#55CDFC">e</span><span foreground="#FFFFFF">!</span> <span foreground="#F7A8B8">&lt;3</span></span>
 markup=pango
 
 [battery]
 label=Power: 
 command=~/.config/i3blocks/bin/battery.sh
 markup=pango
-interval=60
+interval=300
 
 # combine several blocks into one to make it look a tiny bit nicer
 [date_fuzzyclock_emoji]
-#command=date +'%A, %B %d, %-I:%M'
 command=date +'%A, %B %d,' | tr '\n' ' ' ; ~/.config/i3blocks/bin/fuzzy_clock.py | tr A-Z a-z | tr '\n' ' ' ; ~/.config/i3blocks/bin/emoji_clock.sh
 interval=60
-separator=true
-
-#[date]
-##command=date +'%A, %B %d, %-I:%M'
-#command=date +'%A, %B %d,'
-#interval=60
-#separator=false
-#
-#[fuzzyclock]
-#command=~/Working/sway/fuzzy_clock.py | tr A-Z a-z
-#interval=60
-#separator=false
-#
-#[emoji]
-#command=~/Working/sway/emoji_clock.sh | tr -d '\n' && echo ' '
-#interval=300
-#separator=true
 
 #[swaync]
 #command=~/Working/sway/swaync_block.sh
