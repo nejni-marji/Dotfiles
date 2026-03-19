@@ -12,26 +12,8 @@ interval=60
 
 # combine several blocks into one to make it look a tiny bit nicer
 [date_fuzzyclock_emoji]
-#command=date +'%A, %B %d, %-I:%M'
 command=date +'%A, %B %d,' | tr '\n' ' ' ; ~/.config/i3blocks/bin/fuzzy_clock.py | tr A-Z a-z | tr '\n' ' ' ; ~/.config/i3blocks/bin/emoji_clock.sh
 interval=60
-separator=true
-
-#[date]
-##command=date +'%A, %B %d, %-I:%M'
-#command=date +'%A, %B %d,'
-#interval=60
-#separator=false
-#
-#[fuzzyclock]
-#command=~/Working/sway/fuzzy_clock.py | tr A-Z a-z
-#interval=60
-#separator=false
-#
-#[emoji]
-#command=~/Working/sway/emoji_clock.sh | tr -d '\n' && echo ' '
-#interval=300
-#separator=true
 
 #[swaync]
 #command=~/Working/sway/swaync_block.sh
