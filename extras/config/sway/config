@@ -48,7 +48,8 @@ include /etc/sway/config-vars.d/*
 ### Autostart
 #
     # redshift
-    exec wlsunset -t 3500 -T 6500 -s 21:00 -S 7:00
+    # TODO: 3500 desktop, 3000 laptop
+    exec wlsunset -t 3000 -T 5000 -s 21:00 -S 9:00
     # notification server
     # TODO: sync configs for swaync
     exec swaync
@@ -56,29 +57,47 @@ include /etc/sway/config-vars.d/*
     set $video_wallpaper ~/Downloads/fish-aquarium.1920x1080.mp4
     # this is stupid... but it works!
     # TODO: sway allows nested variables. use them
-    exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
-    bindsym $mod+Shift+d exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
+    #exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
+    bindsym $mod+$shf+d nop exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
+    # old swayidle color: 354045
     exec swayidle -w \
         timeout 600 'swaymsg "output * power off"' \
-        timeout 630 'swaylock -f -c 354045' \
+        timeout 630 'swaylock -f -i /home/alex/Pictures/wallpapers/fork_yuri_wp7124847_blur.png' \
         timeout 900 'systemctl suspend' \
         resume 'swaymsg "output * power on"' \
-        before-sleep 'swaylock -f -c 354045' \
+        before-sleep 'swaylock -f -i /home/alex/Pictures/wallpapers/fork_yuri_wp7124847_blur.png' \
         ;
 
 #
 ### Output configuration
 #
     # configure output arrangement
-    output HDMI-A-1 resolution 1920x1080 position 1920,0
-    output HDMI-A-2 resolution 1920x1080 position 0,0
+    output eDP-1 resolution 1920x1080 position 0,0
 
     # set wallpapers
     # we also set a video wallpaper, but this is a fallback
-    output * bg /home/alex/Pictures/wizard.png fill
+    output * bg /home/alex/Pictures/wallpapers/fork_yuri_wp7124847.png fill
+
+    # font
+    set $font FiraCode Nerd Font 16
+    font pango:$font
+
+    # colors
+    #       .class               outline   bckgrnd   frgrnd    indctr    border
+      client.focused             #e667be   #ff8cda   #000000   #00ff00   #ff8cda
+      client.focused_inactive    #888888   #5f676a   #ffffff   #484e50   #5f676a
+      client.focused_tab_title   #888888   #5f676a   #ffffff   #484e50   #5f676a
+      client.unfocused           #888888   #222222   #888888   #292d2e   #222222
+    # client.urgent              #2f343a   #900000   #ffffff   #900000   #900000
+
+    # borders
+    set $borders normal 3
+    default_border $borders
+    #exec_always swaymsg [tiling] border $borders
+    #exec_always swaymsg [floating] border $borders
 
     # configure gaps
     set $inner 10
