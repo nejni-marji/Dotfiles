@@ -58,11 +58,10 @@ include /etc/sway/config-vars.d/*
     # this is stupid... but it works!
     # TODO: sway allows nested variables. use them
     #exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
-    bindsym $mod+$shf+d nop exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
+    #bindsym $mod+$shf+d nop exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
-    # old swayidle color: 354045
     exec swayidle -w \
         timeout 600 'swaymsg "output * power off"' \
         timeout 630 'swaylock -f -i /home/alex/Pictures/wallpapers/fork_yuri_wp7124847_blur.png' \
@@ -87,13 +86,14 @@ include /etc/sway/config-vars.d/*
 
     # colors
     #       .class               outline   bckgrnd   frgrnd    indctr    border
-      client.focused             #e667be   #ff8cda   #000000   #00ff00   #ff8cda
-      client.focused_inactive    #888888   #5f676a   #ffffff   #484e50   #5f676a
-      client.focused_tab_title   #888888   #5f676a   #ffffff   #484e50   #5f676a
-      client.unfocused           #888888   #222222   #888888   #292d2e   #222222
+      client.focused             #e667be   #ff8cda   #000000   #8cffeb   #ff8cda
+      client.focused_inactive    #666666   #5f676a   #ffffff   #484e50   #5f676a
+      client.focused_tab_title   #666666   #5f676a   #ffffff   #484e50   #5f676a
+      client.unfocused           #666666   #222222   #888888   #292d2e   #222222
     # client.urgent              #2f343a   #900000   #ffffff   #900000   #900000
 
     # borders
+    # TODO: maybe change this by host?
     set $borders normal 3
     default_border $borders
     #exec_always swaymsg [tiling] border $borders
@@ -126,7 +126,7 @@ include /etc/sway/config-vars.d/*
         xkb_options caps:ctrl_modifier,caps:swapcaps,ctrl:swap_lwin_lctl,ctrl:swap_rwin_rctl
     }
 
-    #seat seat0 xcursor_theme breeze_cursors
+    # TODO: move this somewhere
     seat seat0 xcursor_theme catppuccin-latte-pink-cursors 36
 
     input type:pointer {
@@ -149,7 +149,6 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+Return exec $term
     bindsym $mod+$shf+Return exec $term -T - sleep infinity
     bindsym $mod+$alt+Return exec $term -T - watch -tw -n60 'echo ${COLUMNS}x${LINES} ; echo ${COLUMNS}x${LINES} | figlet -k'
-
 
     # Kill focused window
     bindsym $mod+$shf+q kill
@@ -344,7 +343,7 @@ include /etc/sway/config-vars.d/*
             separator #70afcc
             #                  border  bckgrn  text
             focused_workspace  #e667be #ff8cda #000000
-            inactive_workspace #888888 #323232 #ffffff
+            inactive_workspace #666666 #323232 #ffffff
         }
     }
 
