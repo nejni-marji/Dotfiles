@@ -57,12 +57,13 @@ include /etc/sway/config-vars.d/*
     set $video_wallpaper ~/Downloads/fish-aquarium.1920x1080.mp4
     # this is stupid... but it works!
     # TODO: sway allows nested variables. use them
-    exec bash -c "mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
-    bindsym $mod+$shf+d exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
+    #exec bash -c "mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
+    #bindsym $mod+$shf+d exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
-    exec swayidle -w \
+    # TODO: fix this bullshit
+    #exec swayidle -w \
         timeout 600 'swaymsg "output * power off"' \
         timeout 630 'swaylock -f -c 354045' \
         timeout 900 'systemctl suspend' \
@@ -79,10 +80,11 @@ include /etc/sway/config-vars.d/*
 
     # set wallpapers
     # we also set a video wallpaper, but this is a fallback
-    output * bg /home/alex/Pictures/wizard.png fill
+    set $wallpaper ~/Pictures/cartoon-hand-drawn-pastel-splash-background-with-pastel-colors-suitable-for-templates-or-wallpapers-with-bright-nuances-vector.jpg
+    output * bg $wallpaper fill
 
     # font
-    set $font FiraCode 10
+    set $font FiraCode 12
     font pango:$font
 
     # colors
@@ -128,7 +130,7 @@ include /etc/sway/config-vars.d/*
     }
 
     # TODO: move this somewhere
-    seat seat0 xcursor_theme catppuccin-latte-pink-cursors 36
+    seat seat0 xcursor_theme catppuccin-latte-pink-cursors 24
 
     input type:pointer {
         accel_profile adaptive
