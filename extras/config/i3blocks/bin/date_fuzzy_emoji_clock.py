@@ -184,8 +184,10 @@ emoji_hour = emoji[hours-1]
 
 
 # date format
-date_format = now.strftime('%A, %B %d,')
+date_long = now.strftime('%A, %B %d,')
+date_short = now.strftime('%a, %b %d %H:%M')
 
 
 
-print(' '.join([date_format, fuzzy_time, emoji_hour]))
+print(' '.join([date_long, fuzzy_time, emoji_hour]))
+print(' '.join([date_short, emoji_hour]))

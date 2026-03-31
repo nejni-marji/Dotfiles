@@ -309,7 +309,7 @@ include /etc/sway/config-vars.d/*
 # Utilities:
 #
     # Special keys to adjust volume via PulseAudio
-    set $vol_sig && pkill -SIGRTMIN+10 i3blocks
+    set $vol_sig && pkill -SIGRTMIN+1 i3blocks
     bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle $vol_sig
     bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5% $vol_sig
     bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5% $vol_sig
