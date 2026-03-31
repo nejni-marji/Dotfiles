@@ -24,6 +24,9 @@
 ### WIP
 #
 
+# TODO: why is 'split tabbed' still not an option???
+workspace_layout tabbed
+
 #
 ### Variables
 #
@@ -40,7 +43,7 @@
     set $right s
     # preferred executables
     set $term foot
-    set $menu exec wmenu-run -i -l 15 -f '$font' -p Run: -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
+    set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
 
 include /etc/sway/config-vars.d/*
 
@@ -259,7 +262,7 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+r layout toggle tabbed stacking
     bindsym $mod+l split none
     bindsym $mod+w splith
-    bindsym $mod+v splitv
+    bindsym $mod+v split
     bindsym $mod+z workspace back_and_forth
 
     # fullscreen
