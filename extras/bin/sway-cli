@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+socks=( /run/user/$UID/sway-ipc.$UID.*.sock )
+
+for i in $socks ; do
+	swaymsg -s $i $@
+done
