@@ -25,7 +25,8 @@
 #
 
 # TODO: why is 'split tabbed' still not an option???
-workspace_layout tabbed
+# workspace_layout tabbed -> H[T[]]
+# workspace_layout auto + layout tabbed -> T[]
 
 #
 ### Variables
@@ -41,9 +42,33 @@ workspace_layout tabbed
     set $down  t
     set $up    n
     set $right s
+    # workspace names
+    set $ws1 10:main
+    set $ws2 20:alt
+    set $ws3 30:code
+    set $ws4 40:game
+    set $ws5 50:media
+    set $ws6 60
+    set $ws7 70
+    set $ws8 80
+    set $ws9 90:bg
+    set $ws0 99
     # preferred executables
     set $term foot
     set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
+    set $wlsunset wlsunset -t 3000 -T 5000 -s 21:00 -S 9:00
+    # wallpapers
+    # TODO: move these to ~/.local/share/wallpapers
+    set $wallpaper       ~/Pictures/wallpapers/fork_yuri_wp7124847.png
+    set $lockscreen      ~/Pictures/wallpapers/fork_yuri_wp7124847_blur.png
+    #set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
+    # fonts
+    set $font FiraCode Nerd Font 16
+    #set $font InputSansNerdFont 16
+    # window borders and gaps
+    set $borders normal 3
+    set $gaps_inner 10
+    set $gaps_outer 20
 
 include /etc/sway/config-vars.d/*
 
@@ -51,26 +76,23 @@ include /etc/sway/config-vars.d/*
 ### Autostart
 #
     # redshift
-    # TODO: 3500:6500 desktop, 3000:5000 laptop
-    exec wlsunset -t 3000 -T 5000 -s 21:00 -S 9:00
+    exec $wlsunset
     # notification server
     # TODO: sync configs for swaync
     exec swaync
     # video wallpaper
-    set $video_wallpaper ~/Downloads/fish-aquarium.1920x1080.mp4
     # this is stupid... but it works!
     # TODO: sway allows nested variables. use them
-    #exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
-    #bindsym $mod+$shf+d nop exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
+    #exec bash -c "mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
+    #bindsym $mod+$shf+d exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
-    exec swayidle -w \
+    exec_always pkill swayidle ; swayidle -w \
         timeout 600 'swaymsg "output * dpms off"' \
-        timeout 630 'swaylock -f -i /home/alex/Pictures/wallpapers/fork_yuri_wp7124847_blur.png' \
-        timeout 900 'systemctl suspend' \
+        timeout 630 'swaylock -f -i $lockscreen' \
         resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock -f -i /home/alex/Pictures/wallpapers/fork_yuri_wp7124847_blur.png' \
+        before-sleep 'swaylock -f -i $lockscreen' \
         ;
 
 #
@@ -80,11 +102,10 @@ include /etc/sway/config-vars.d/*
     output eDP-1 resolution 1920x1080 position 0,0
 
     # set wallpapers
-    # we also set a video wallpaper, but this is a fallback
-    output * bg /home/alex/Pictures/wallpapers/fork_yuri_wp7124847.png fill
+    # we might also set a video wallpaper, but this is a fallback
+    output * bg $wallpaper fill
 
     # font
-    set $font FiraCode Nerd Font 16
     font pango:$font
 
     # colors
@@ -96,19 +117,15 @@ include /etc/sway/config-vars.d/*
     # client.urgent              #2f343a   #900000   #ffffff   #900000   #900000
 
     # borders
-    # TODO: maybe change this by host?
-    set $borders normal 3
     default_border $borders
     #exec_always swaymsg [tiling] border $borders
     #exec_always swaymsg [floating] border $borders
 
     # configure gaps
-    set $inner 10
-    set $outer 20
     smart_gaps inverse_outer
     gaps inner 0
     gaps outer 0
-    bindsym $mod+$ctl+g      gaps inner all set $inner ; gaps outer all set $outer
+    bindsym $mod+$ctl+g      gaps inner all set $gaps_inner ; gaps outer all set $gaps_outer
     bindsym $mod+$ctl+$shf+g gaps inner all set 0      ; gaps outer all set 0
 
     # miscellaneous options
@@ -129,9 +146,6 @@ include /etc/sway/config-vars.d/*
         xkb_options caps:ctrl_modifier,caps:swapcaps,ctrl:swap_lwin_lctl,ctrl:swap_rwin_rctl
     }
 
-    # TODO: move this somewhere
-    seat seat0 xcursor_theme catppuccin-latte-pink-cursors 36
-
     input type:pointer {
         accel_profile adaptive
         pointer_accel -0.35
@@ -143,6 +157,7 @@ include /etc/sway/config-vars.d/*
     }
 
     # hide cursor when idle, in ms
+    seat seat0 xcursor_theme catppuccin-latte-pink-cursors 36
     seat * hide_cursor 5000
 
 #
@@ -201,18 +216,6 @@ include /etc/sway/config-vars.d/*
 #
     # workspace options
     workspace_auto_back_and_forth yes
-
-    # set names
-    set $ws1 10:main
-    set $ws2 20:alt
-    set $ws3 30:code
-    set $ws4 40:game
-    set $ws5 50:media
-    set $ws6 60
-    set $ws7 70
-    set $ws8 80
-    set $ws9 90:bg
-    set $ws0 99
 
     # move by number
     bindsym $mod+1 workspace number $ws1

@@ -3,6 +3,8 @@
 /.stversions
 /extras/bin/manual
 /extras/config/amfora/local_share_amfora/
+/extras/config/cava/shaders
+/extras/config/cava/themes
 /extras/config/mpd/database
 /extras/config/mpd/log
 /extras/config/mpd/playlists
