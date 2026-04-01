@@ -56,7 +56,6 @@
     # preferred executables
     set $term foot
     set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
-    # TODO: 3500:6500 desktop, 3000:5000 laptop
     set $wlsunset wlsunset -t 3500 -T 6500 -s 21:00 -S 9:00
     # wallpapers
     set $wallpaper       ~/.local/share/wallpapers/pastel-splash.jpg
@@ -69,8 +68,6 @@
     set $borders normal 3
     set $gaps_inner 10
     set $gaps_outer 20
-
-
 
 include /etc/sway/config-vars.d/*
 
