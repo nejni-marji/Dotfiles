@@ -1,0 +1,17 @@
+font=FiraCodeNerdFont 12
+
+text-color=#ffffff
+background-color=#004466
+border-color=#006999
+
+outer-margin=20
+border-radius=20
+
+max-visible=3
+default-timeout=10000
+height=600
+width=450
+
+output=HDMI-A-1
+anchor=top-right
+layer=top

@@ -79,7 +79,7 @@ include /etc/sway/config-vars.d/*
     exec $wlsunset
     # notification server
     # TODO: sync configs for swaync
-    exec swaync
+    exec mako
     # video wallpaper
     # this is stupid... but it works!
     # TODO: sway allows nested variables. use them
