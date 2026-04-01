@@ -66,10 +66,10 @@ include /etc/sway/config-vars.d/*
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
     exec swayidle -w \
-        timeout 600 'swaymsg "output * power off"' \
+        timeout 600 'swaymsg "output * dpms off"' \
         timeout 630 'swaylock -f -i /home/alex/Pictures/wallpapers/fork_yuri_wp7124847_blur.png' \
         timeout 900 'systemctl suspend' \
-        resume 'swaymsg "output * power on"' \
+        resume 'swaymsg "output * dpms on"' \
         before-sleep 'swaylock -f -i /home/alex/Pictures/wallpapers/fork_yuri_wp7124847_blur.png' \
         ;
 
@@ -251,7 +251,6 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$ctl+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num | ((.-1)/10|floor) | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
     bindsym $mod+$ctl+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num | (./10+1|floor) | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
 
-
     # scratchpad (technically kind of a workspace)
     bindsym $mod+$shf+minus move scratchpad
     bindsym $mod+minus scratchpad show
@@ -290,8 +289,8 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$alt+d exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
     bindsym $mod+$alt+b exec blueman-manager
     bindsym $mod+$alt+g exec gimp
-    bindsym $mod+$alt+$shf+v exec pavucontrol-qt
     bindsym $mod+$alt+v exec foot pulsemixer
+    bindsym $mod+$alt+$shf+v exec pavucontrol-qt
 
 #
 # Resizing containers:
