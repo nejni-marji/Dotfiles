@@ -1,11 +1,16 @@
 while swaymsg -t get_workspaces |
 	jq -cr '..
 	| select(.focused? and .type=="workspace").representation
+	#| . as $full
 	| if .==null then
 	"•" else
 		gsub("(?<=\\[| )[\\w_-]+(?!\\[) ?"; "•")
-		| gsub("(?<m>•{4,})"; "\(.m | length)")
-	end'
+		| gsub("(?<a>•{4,})"; "\(.a | length)")
+		| gsub("•(?<a>[HVTS])"; "• \(.a)")
+	end
+	#| . as $short
+	#| {"full_text": $full, "short_text": $short}
+	'
 	true
 do swaymsg -t subscribe \
 	'["window", "workspace", "output", "binding"]' \
