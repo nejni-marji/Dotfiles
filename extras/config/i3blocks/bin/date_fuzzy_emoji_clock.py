@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 from datetime import datetime
 
-# code ported from FuzzyClock.qml
-
 hourNames = [
     [ "One o’clock",
       "Five past one",
@@ -153,7 +151,7 @@ hourNames = [
 now = datetime.now()
 hours, minutes = now.hour, now.minute
 
-
+# code ported from FuzzyClock.qml
 sector = 0
 realHour = 0
 
@@ -175,4 +173,21 @@ if (sector == 12):
         realHour = 0
     sector = 0
 
-print(hourNames[realHour][sector])
+# final fuzzy time
+fuzzy_time = hourNames[realHour][sector].lower()
+
+
+# emoji clock written by me
+emoji=['🌌','🌌','🌌','🌌','🌌','🌇','🌇','🌇','🏙️','🏙️','🏙️','🏙️','🏙️','🌆','🌆','🌆','🌆','🌆','🌆','🌃','🌃','🌃','🌃','🌌']
+
+emoji_hour = emoji[hours-1]
+
+
+# date format
+date_long = now.strftime('%A, %B %d,')
+date_short = now.strftime('%a, %b %d %H:%M')
+
+
+
+print(' '.join([date_long, fuzzy_time, emoji_hour]))
+print(' '.join([date_short, emoji_hour]))

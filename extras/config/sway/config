@@ -24,6 +24,9 @@
 ### WIP
 #
 
+# TODO: why is 'split tabbed' still not an option???
+workspace_layout tabbed
+
 #
 ### Variables
 #
@@ -40,7 +43,7 @@
     set $right s
     # preferred executables
     set $term foot
-    set $menu exec wmenu-run -i -l 15 -f '$font' -p Run: -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
+    set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
 
 include /etc/sway/config-vars.d/*
 
@@ -64,10 +67,10 @@ include /etc/sway/config-vars.d/*
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
     # TODO: fix this bullshit
     #exec swayidle -w \
-        timeout 600 'swaymsg "output * power off"' \
+        timeout 600 'swaymsg "output * dpms off"' \
         timeout 630 'swaylock -f -c 354045' \
         timeout 900 'systemctl suspend' \
-        resume 'swaymsg "output * power on"' \
+        resume 'swaymsg "output * dpms on"' \
         before-sleep 'swaylock -f -c 354045' \
         ;
 
@@ -167,7 +170,7 @@ include /etc/sway/config-vars.d/*
     floating_modifier $mod normal
     bindsym $mod+$shf+$float floating toggle
     bindsym $mod+$float focus mode_toggle
-    bindsym $mod+$alt+$float nop sticky toggle
+    bindsym $mod+$ctl+$float sticky toggle
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+$shf+e exec swaynag -t warning \
@@ -245,6 +248,12 @@ include /etc/sway/config-vars.d/*
     #bindsym $mod+slash focus output left
     #bindsym $mod+equal focus output right
 
+    # special workspace commands
+    bindsym $mod+$shf+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num-1 | if (10<=. and .<=90 and .%10==0) then "$ws\(./10)" else . end')"
+    bindsym $mod+$shf+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num+1 | if (10<=. and .<=90 and .%10==0) then "$ws\(./10)" else . end')"
+    bindsym $mod+$ctl+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num | ((.-1)/10|floor) | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
+    bindsym $mod+$ctl+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num | (./10+1|floor) | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
+
     # scratchpad (technically kind of a workspace)
     bindsym $mod+$shf+minus move scratchpad
     bindsym $mod+minus scratchpad show
@@ -280,10 +289,11 @@ include /etc/sway/config-vars.d/*
 #
     bindsym $mod+$alt+f exec env MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
+    bindsym $mod+$alt+d exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
     bindsym $mod+$alt+b exec blueman-manager
     bindsym $mod+$alt+g exec gimp
-    bindsym $mod+$alt+v exec pavucontrol-qt
-    bindsym $mod+$alt+$shf+v exec foot pulsemixer
+    bindsym $mod+$alt+v exec foot pulsemixer
+    bindsym $mod+$alt+$shf+v exec pavucontrol-qt
 
 #
 # Resizing containers:
@@ -309,10 +319,11 @@ include /etc/sway/config-vars.d/*
 # Utilities:
 #
     # Special keys to adjust volume via PulseAudio
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+    set $vol_sig && pkill -SIGRTMIN+1 i3blocks
+    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle $vol_sig
+    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5% $vol_sig
+    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5% $vol_sig
+    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle $vol_sig
 
     # Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
@@ -340,6 +351,7 @@ include /etc/sway/config-vars.d/*
         position top
         status_command i3blocks
         separator_symbol " | "
+        # strip_workspace_numbers yes
         colors {
             background #323232
             statusline #ffffff
