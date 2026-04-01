@@ -1,8 +1,8 @@
 font=FiraCodeNerdFont 16
 
-text-color=#ffffff
-background-color=#004466
-border-color=#006999
+text-color=#ffffffcc
+background-color=#004466cc
+border-color=#006999cc
 
 #outer-margin=20
 border-radius=20
