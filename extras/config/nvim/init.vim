@@ -48,7 +48,7 @@ set updatetime=100
 " {{{ plugins
 	call plug#begin()
 
-	Plug 'airblade/vim-gitgutter'
+	"Plug 'airblade/vim-gitgutter'
 	Plug 'dense-analysis/ale'
 	Plug 'machakann/vim-highlightedyank'
 	Plug 'tpope/vim-commentary'

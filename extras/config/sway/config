@@ -167,7 +167,7 @@ include /etc/sway/config-vars.d/*
     floating_modifier $mod normal
     bindsym $mod+$shf+$float floating toggle
     bindsym $mod+$float focus mode_toggle
-    bindsym $mod+$alt+$float nop sticky toggle
+    bindsym $mod+$ctl+$float sticky toggle
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+$shf+e exec swaynag -t warning \
@@ -203,15 +203,15 @@ include /etc/sway/config-vars.d/*
     workspace_auto_back_and_forth yes
 
     # set names
-    set $ws1 10: main
-    set $ws2 20: alt
-    set $ws3 30: code
-    set $ws4 40: game
-    set $ws5 50: media
+    set $ws1 10:main
+    set $ws2 20:alt
+    set $ws3 30:code
+    set $ws4 40:game
+    set $ws5 50:media
     set $ws6 60
     set $ws7 70
     set $ws8 80
-    set $ws9 90: bg
+    set $ws9 90:bg
     set $ws0 99
 
     # move by number
@@ -245,6 +245,13 @@ include /etc/sway/config-vars.d/*
     #bindsym $mod+slash focus output left
     #bindsym $mod+equal focus output right
 
+    # special workspace commands
+    bindsym $mod+$shf+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num-1 | if (10<=. and .<=90 and .%10==0) then "$ws\(./10)" else . end')"
+    bindsym $mod+$shf+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num+1 | if (10<=. and .<=90 and .%10==0) then "$ws\(./10)" else . end')"
+    bindsym $mod+$ctl+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num | ((.-1)/10|floor) | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
+    bindsym $mod+$ctl+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num | (./10+1|floor) | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
+
+
     # scratchpad (technically kind of a workspace)
     bindsym $mod+$shf+minus move scratchpad
     bindsym $mod+minus scratchpad show
@@ -262,7 +269,7 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+r layout toggle tabbed stacking
     bindsym $mod+l split none
     bindsym $mod+w splith
-    bindsym $mod+v split
+    bindsym $mod+v splitv
     bindsym $mod+z workspace back_and_forth
 
     # fullscreen
@@ -280,6 +287,7 @@ include /etc/sway/config-vars.d/*
 #
     bindsym $mod+$alt+f exec env MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
+    bindsym $mod+$alt+d exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
     bindsym $mod+$alt+b exec blueman-manager
     bindsym $mod+$alt+g exec gimp
     bindsym $mod+$alt+$shf+v exec pavucontrol-qt
@@ -341,6 +349,7 @@ include /etc/sway/config-vars.d/*
         position top
         status_command i3blocks
         separator_symbol " | "
+        # strip_workspace_numbers yes
         colors {
             background #323232
             statusline #ffffff
