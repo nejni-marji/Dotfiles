@@ -1,10 +1,10 @@
-font=FiraCodeNerdFont 12
+font=FiraCodeNerdFont 16
 
 text-color=#ffffff
 background-color=#004466
 border-color=#006999
 
-outer-margin=20
+#outer-margin=20
 border-radius=20
 
 max-visible=3

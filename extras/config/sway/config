@@ -58,9 +58,8 @@
     set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
     set $wlsunset wlsunset -t 3000 -T 5000 -s 21:00 -S 9:00
     # wallpapers
-    # TODO: move these to ~/.local/share/wallpapers
-    set $wallpaper       ~/Pictures/wallpapers/fork_yuri_wp7124847.png
-    set $lockscreen      ~/Pictures/wallpapers/fork_yuri_wp7124847_blur.png
+    set $wallpaper       ~/.local/share/wallpapers/fork_yuri_wp7124847.png
+    set $lockscreen      ~/.local/share/wallpapers/fork_yuri_wp7124847_blur.png
     #set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
     # fonts
     set $font FiraCode Nerd Font 16
@@ -79,7 +78,7 @@ include /etc/sway/config-vars.d/*
     exec $wlsunset
     # notification server
     # TODO: sync configs for swaync
-    exec mako
+    exec_always pkill mako ; mako
     # video wallpaper
     # this is stupid... but it works!
     # TODO: sway allows nested variables. use them
