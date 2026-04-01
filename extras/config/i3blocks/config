@@ -1,10 +1,9 @@
 separator_block_width=25
 
-#[workspace]
-#command=swaymsg -t get_workspaces | jq '.. | select(.focused?).representation'
-#color=#808080
-#interval=60
-#signal=5
+[workspace]
+command=~/.config/i3blocks/bin/representation.sh
+color=#808080
+interval=persist
 
 [trans]
 full_text=<span background="#323232"><span foreground="#55CDFC">t</span><span foreground="#F7A8B8">r</span><span foreground="#FFFFFF">a</span><span foreground="#F7A8B8">n</span><span foreground="#55CDFC">s</span> <span foreground="#55CDFC">p</span><span foreground="#F7A8B8">r</span><span foreground="#FFFFFF">i</span><span foreground="#F7A8B8">d</span><span foreground="#55CDFC">e</span><span foreground="#FFFFFF">!</span> <span foreground="#F7A8B8">&lt;3</span></span>
