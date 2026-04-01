@@ -38,9 +38,9 @@
     set $shf Shift
     set $float space
     # direction keys
-    set $left  h
-    set $down  t
-    set $up    n
+    set $left h
+    set $down t
+    set $up n
     set $right s
     # workspace names
     set $ws1 10:main
@@ -78,7 +78,7 @@ include /etc/sway/config-vars.d/*
     exec $wlsunset
     # notification server
     # TODO: sync configs for swaync
-    exec_always pkill mako ; mako
+    exec mako
     # video wallpaper
     # this is stupid... but it works!
     # TODO: sway allows nested variables. use them
