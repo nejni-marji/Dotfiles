@@ -20,20 +20,20 @@ PATH="${PATH:s/\/usr\/games:\/usr\/local\/games/\/usr\/local\/games:\/usr\/games
 ### general environment variables ###
 
 export EDITOR=nvim
-export PAGER=~/bin/lesser
+#export PAGER=~/bin/lesser
 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 export BROWSER=firefox
-export WWW_HOME='https://duckduckgo.com/lite/'
+export WWW_HOME='https://duckduckgo.com/'
 
 export MPC_FORMAT='[[%artist% - ][%album% - ]%title%]|%file%'
 
-export PYTHONSTARTUP=~/.config/python/pythonrc
-export PYTHONPATH=~/.config/python/lib
-export PYTHON_BASIC_REPL=1
+#export PYTHONSTARTUP=~/.config/python/pythonrc
+#export PYTHONPATH=~/.config/python/lib
+#export PYTHON_BASIC_REPL=1
 
-export RUSTC_WRAPPER=sccache
+#export RUSTC_WRAPPER=sccache
 
 
 
