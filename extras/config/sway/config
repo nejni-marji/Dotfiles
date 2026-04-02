@@ -80,6 +80,7 @@ include /etc/sway/config-vars.d/*
     # notification server
     exec mako
     # video wallpaper?
+    #exec mpvpaper --help
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
