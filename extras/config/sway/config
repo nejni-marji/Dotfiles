@@ -87,7 +87,7 @@ include /etc/sway/config-vars.d/*
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
-    exec_always pkill swayidle ; swayidle -w \
+    exec_always pkill swayidle; swayidle -w \
         timeout 600 'swaymsg "output * dpms off"' \
         timeout 630 'swaylock -f -i $lockscreen' \
         resume 'swaymsg "output * dpms on"' \
