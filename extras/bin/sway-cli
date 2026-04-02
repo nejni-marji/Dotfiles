@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-socks=( /run/user/$UID/sway-ipc.$UID.*.sock )
+socks=( $XDG_RUNTIME_DIR/sway-ipc.$UID.*.sock )
 
 for i in $socks ; do
 	swaymsg -s $i $@
