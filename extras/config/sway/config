@@ -126,6 +126,7 @@ include /etc/sway/config-vars.d/*
 
     # borders
     default_border $borders
+    hide_edge_borders smart_no_gaps
     #exec_always swaymsg [tiling] border $borders
     #exec_always swaymsg [floating] border $borders
 
@@ -140,7 +141,6 @@ include /etc/sway/config-vars.d/*
     title_align center
     titlebar_padding 30 4
     force_display_urgency_hint 1000
-    hide_edge_borders smart_no_gaps
     # kind of a training wheel until i learn J/K movement
     focus_wrapping no
 
@@ -362,7 +362,7 @@ include /etc/sway/config-vars.d/*
         position top
         status_command i3blocks
         separator_symbol " | "
-        # strip_workspace_numbers yes
+        strip_workspace_numbers no
         colors {
             background #323232
             statusline #ffffff
