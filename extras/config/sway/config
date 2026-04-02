@@ -24,7 +24,8 @@
 ### WIP
 #
 
-# TODO: why is 'split tabbed' still not an option???
+# why is 'split tabbed' still not an option???
+#
 # workspace_layout tabbed -> H[T[]]
 # workspace_layout auto + layout tabbed -> T[]
 
@@ -77,17 +78,12 @@ include /etc/sway/config-vars.d/*
     # redshift
     exec $wlsunset
     # notification server
-    # TODO: sync configs for swaync
     exec mako
-    # video wallpaper
-    # this is stupid... but it works!
-    # TODO: sway allows nested variables. use them
-    #exec bash -c "mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
-    #bindsym $mod+$shf+d exec bash -c "pkill mpvpaper ; mpvpaper HDMI-A-1 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; mpvpaper HDMI-A-2 --fork --mpv-options 'loop loop-playlist' $video_wallpaper ; sleep 0.1 ; swaymsg reload"
+    # video wallpaper?
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
-    exec_always pkill swayidle ; swayidle -w \
+    exec_always pkill swayidle; swayidle -w \
         timeout 600 'swaymsg "output * dpms off"' \
         timeout 630 'swaylock -f -i $lockscreen' \
         resume 'swaymsg "output * dpms on"' \
@@ -332,7 +328,7 @@ include /etc/sway/config-vars.d/*
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
     # Take screenshots
-    set $screenshot_path ~/Pictures/Screenshot_$(date +"%F_%H%M%S.png")
+    set $screenshot_path ~/Pictures/Screenshots/Screenshot_$(date +"%F_%H%M%S").png
     set $focused_output "$(swaymsg -t get_outputs | jq '.[] | select(.focused).name' -r)" 
     # this is way too many bindings but i'm just covering my bases because i'm kinda dumb
     bindsym --release Print           exec grim -g "$(slurp -d)"   $screenshot_path
