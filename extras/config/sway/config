@@ -292,7 +292,7 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$alt+b exec blueman-manager
     bindsym $mod+$alt+g exec gimp
     bindsym $mod+$alt+v exec foot pulsemixer
-    bindsym $mod+$alt+$shf+v exec pavucontrol-qt
+    bindsym $mod+$alt+$shf+v exec pavucontrol
 
 #
 # Resizing containers:
@@ -329,17 +329,11 @@ include /etc/sway/config-vars.d/*
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
     # Take screenshots
-    set $screenshot_path ~/Pictures/Screenshots/Screenshot_$(date +"%F_%H%M%S").png
-    set $focused_output "$(swaymsg -t get_outputs | jq '.[] | select(.focused).name' -r)" 
-    # this is way too many bindings but i'm just covering my bases because i'm kinda dumb
-    bindsym --release Print           exec grim -g "$(slurp -d)"   $screenshot_path
-    bindsym --release $shf+Print      exec grim -g "$(slurp -d)"   $screenshot_path
-    bindsym --release $ctl+Print      exec grim -o $focused_output $screenshot_path
-    bindsym --release $mod+Print      exec grim -g "$(slurp -d)"   $screenshot_path
-    bindsym --release $mod+$shf+Print exec grim -g "$(slurp -d)"   $screenshot_path
-    bindsym --release $mod+$ctl+Print exec grim -o $focused_output $screenshot_path
-    bindsym --release $mod+p          exec grim -g "$(slurp -d)"   $screenshot_path
-    bindsym --release $mod+$shf+p     exec grim -o $focused_output $screenshot_path
+    bindsym --release Print       exec ~/.config/sway/bin/screenshot.sh
+    bindsym --release $shf+Print  exec ~/.config/sway/bin/screenshot.sh
+    bindsym --release $ctl+Print  exec ~/.config/sway/bin/screenshot.sh
+    bindsym $mod+p                exec ~/.config/sway/bin/screenshot.sh
+    bindsym $mod+$shf+p           exec ~/.config/sway/bin/screenshot.sh
 
 #
 # Status Bar:
