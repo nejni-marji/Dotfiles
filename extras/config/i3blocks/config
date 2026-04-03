@@ -14,17 +14,26 @@ markup=pango
 
 [battery]
 label=⚡︎ 
+label=⚡ 
 command=~/.config/i3blocks/bin/battery.sh
 markup=pango
 interval=60
 
 [volume]
-#label=♪ 
 label=♫ 
+label=🎵 
 command=~/.config/i3blocks/bin/volume.sh
 interval=10
 signal=1
 markup=pango
+
+[brightness]
+label=☼ 
+label=🟙 
+label=🔆 
+command=~/.config/i3blocks/bin/brightness.sh
+interval=10
+signal=2
 
 [date_fuzzy_emoji_clock]
 command=~/.config/i3blocks/bin/date_fuzzy_emoji_clock.py

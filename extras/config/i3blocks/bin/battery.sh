@@ -8,9 +8,13 @@ s/Not charging/808080/;
 s/Discharging/ff0000/;
 s/Charging/00ff00/;
 s/Full/808080/;
-s/ \(~\)//;' |
-tr '\n' , |
-perl -pe 's/,/, /g; s/, $/\n/'
+s/ \(~\)//;
+s/\n/, /;
+' |
+perl -pe '
+s/, ?$/\n/;
+s#</span>, #,</span> #g;
+'
 
 # short
 acpi -b |
@@ -20,6 +24,10 @@ s/Not charging/808080/;
 s/Discharging/ff0000/;
 s/Charging/00ff00/;
 s/Full/ffffff/;
-s/ \(~\)//;' |
-tr '\n' , |
-perl -pe 's/,/, /g; s/, $/\n/'
+s/ \(~\)//;
+s/\n/, /;
+' |
+perl -pe '
+s/, ?$/\n/;
+s#</span>, #,</span> #g;
+'

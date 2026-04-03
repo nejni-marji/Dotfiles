@@ -8,7 +8,7 @@ border-color=#006999cc
 border-radius=20
 
 max-visible=3
-default-timeout=10000
+default-timeout=15000
 height=600
 width=450
 
