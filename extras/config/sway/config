@@ -110,7 +110,7 @@ include /etc/sway/config-vars.d/*
       client.focused_inactive    #666666   #5f676a   #ffffff   #484e50   #5f676a
       client.focused_tab_title   #666666   #5f676a   #ffffff   #484e50   #5f676a
       client.unfocused           #666666   #222222   #888888   #292d2e   #222222
-    # client.urgent              #2f343a   #900000   #ffffff   #900000   #900000
+      client.urgent              #00aeff   #8cdaff   #000000   #ff002f   #8cdaff
 
     # borders
     default_border $borders
@@ -353,6 +353,7 @@ include /etc/sway/config-vars.d/*
             #                  border  bckgrn  text
             focused_workspace  #e667be #ff8cda #000000
             inactive_workspace #666666 #323232 #ffffff
+            urgent_workspace   #00aeff #8cdaff #000000
         }
     }
 

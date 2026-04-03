@@ -1,10 +1,13 @@
-font=FiraCodeNerdFont 16
+font=ComicCode 16
 
-text-color=#ffffffcc
-background-color=#004466cc
-border-color=#006999cc
+#text-color=#ffffffcc
+#background-color=#004466cc
+#border-color=#006999cc
 
-#outer-margin=20
+text-color=#000000cc
+background-color=#8cdaffcc
+border-color=#00aeffcc
+
 border-radius=20
 
 max-visible=3
@@ -12,6 +15,6 @@ default-timeout=15000
 height=600
 width=450
 
-output=HDMI-A-1
+output=eDP-1
 anchor=top-right
 layer=top
