@@ -138,7 +138,7 @@ include /etc/sway/config-vars.d/*
     title_align center
     titlebar_padding 30 4
     force_display_urgency_hint 1000
-    # kind of a training wheel until i learn J/K movement
+    # kind of a training wheel until i learn j/k movement
     focus_wrapping no
 
 #
@@ -168,28 +168,28 @@ include /etc/sway/config-vars.d/*
 #
 ### Key bindings
 #
-    # Start a terminal
+    # start a terminal
     bindsym $mod+Return exec $term
     bindsym $mod+$shf+Return exec $term -T - sleep infinity
     bindsym $mod+$alt+Return exec $term -T - watch -tw -n60 'echo ${COLUMNS}x${LINES} ; echo ${COLUMNS}x${LINES} | figlet -k'
 
-    # Kill focused window
+    # kill focused window
     bindsym $mod+$shf+q kill
 
-    # Start your launcher
+    # start your launcher
     bindsym $alt+Space $menu
     bindsym $mod+d exec $menu
 
-    # Reload the configuration file
+    # reload the configuration file
     bindsym $mod+$shf+c reload
 
-    # Floating windows
+    # floating windows
     floating_modifier $mod normal
     bindsym $mod+$shf+$float floating toggle
     bindsym $mod+$float focus mode_toggle
     bindsym $mod+$ctl+$float sticky toggle
 
-    # Exit sway (logs you out of your Wayland session)
+    # exit sway (logs you out of your wayland session)
     bindsym $mod+$shf+e exec swaynag -t warning \
         -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
         -B 'Yes, exit sway' 'swaymsg exit'
@@ -326,23 +326,27 @@ include /etc/sway/config-vars.d/*
 #
 # Utilities:
 #
-    # Special keys to adjust volume via PulseAudio
+    # special keys to adjust volume via pulseaudio
     set $vol_sig && pkill -SIGRTMIN+1 i3blocks
     bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle $vol_sig
     bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5% $vol_sig
     bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5% $vol_sig
     bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle $vol_sig
 
-    # Special keys to adjust brightness via brightnessctl
+    # special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
-    # Take screenshots
+    # take screenshots
     bindsym --release Print       exec ~/.config/sway/bin/screenshot.sh
     bindsym --release $shf+Print  exec ~/.config/sway/bin/screenshot.sh
     bindsym --release $ctl+Print  exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+p                exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+$shf+p           exec ~/.config/sway/bin/screenshot.sh
+
+    # gaming crosshair
+    bindsym $mod+Home exec wlcrosshairctl toggle
+    bindsym $mod+End  exec wlcrosshairctl reload
 
 #
 # Status Bar:
