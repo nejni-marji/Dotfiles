@@ -63,8 +63,8 @@
     set $lockscreen      ~/.local/share/wallpapers/fork_yuri_wp7124847_blur.png
     #set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
     # fonts
-    set $font FiraCode Nerd Font 16
-    #set $font InputSansNerdFont 16
+    # set $font FiraCode Nerd Font 16
+    set $font Comic Code 16
     # window borders and gaps
     set $borders pixel 2
     set $gaps_inner 10
