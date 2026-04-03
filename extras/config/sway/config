@@ -76,7 +76,7 @@ include /etc/sway/config-vars.d/*
 ### Autostart
 #
     # redshift
-    exec $wlsunset
+    # exec $wlsunset
     # notification server
     exec mako
     # video wallpaper?
