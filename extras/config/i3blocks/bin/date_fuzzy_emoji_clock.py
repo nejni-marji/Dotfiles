@@ -184,8 +184,8 @@ emoji_hour = emoji[hours-1]
 
 
 # date format
-date_long = now.strftime('%a, %b %d,')
-date_short = now.strftime('%a, %b %d %H:%M')
+date_long = now.strftime('%a, %b %-d,')
+date_short = now.strftime('%a, %b %-d %H:%M')
 
 
 

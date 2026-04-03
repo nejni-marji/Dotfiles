@@ -261,9 +261,9 @@ include /etc/sway/config-vars.d/*
 # Layout stuff:
 #
     # left-hand layout keys
-    bindsym $mod+o layout toggle tabbed stacking
-    bindsym $mod+comma layout split tabbed stacking
-    bindsym $mod+period layout toggle split
+    # bindsym $mod+o layout toggle tabbed stacking
+    # bindsym $mod+comma layout split tabbed stacking
+    # bindsym $mod+period layout toggle split
 
     # right-hand layout keys
     bindsym $mod+c layout toggle split
