@@ -356,12 +356,12 @@ include /etc/sway/config-vars.d/*
         font pango:$font
         position top
         status_command i3blocks
-        separator_symbol " | "
+        separator_symbol " ⟨ "
         strip_workspace_numbers no
         colors {
             background #323232
             statusline #ffffff
-            separator #70afcc
+            separator #ff8cda
             #                  border  bckgrn  text
             focused_workspace  #e667be #ff8cda #000000
             inactive_workspace #666666 #323232 #ffffff
