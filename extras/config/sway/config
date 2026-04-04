@@ -63,9 +63,9 @@
     set $lockscreen      ~/.local/share/wallpapers/pastel-splash-gauss10.png
     set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
     # fonts
-    set $font FiraCodeNerdFont 12
-    #set $font InputSansNerdFont 12
-    # window borders and gaps
+    #set $font FiraCodeNerdFont 12
+    set $font ComicCode 12
+    #6window borders and gaps
     set $borders normal 3
     set $gaps_inner 10
     set $gaps_outer 20
