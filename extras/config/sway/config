@@ -298,11 +298,13 @@ include /etc/sway/config-vars.d/*
 #
 # Application binds
 #
+    bindsym $mod+$alt+b exec blueman-manager
+    bindsym $mod+$alt+d exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
     bindsym $mod+$alt+f exec env MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
-    bindsym $mod+$alt+d exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
-    bindsym $mod+$alt+b exec blueman-manager
     bindsym $mod+$alt+g exec gimp
+    bindsym $mod+$alt+s exec signal-desktop
+    bindsym $mod+$alt+t exec thunar
     bindsym $mod+$alt+v exec foot pulsemixer
     bindsym $mod+$alt+$shf+v exec pavucontrol
 
