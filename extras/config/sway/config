@@ -62,13 +62,16 @@
     set $wallpaper       ~/.local/share/wallpapers/fork_yuri_wp7124847.png
     set $lockscreen      ~/.local/share/wallpapers/fork_yuri_wp7124847_blur.png
     #set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
-    # fonts
+    # fonts and themes
     # set $font FiraCode Nerd Font 16
     set $font Comic Code 16
+    set $cursor catppuccin-latte-pink-cursors 36
     # window borders and gaps
     set $borders pixel 2
-    set $gaps_inner 10
-    set $gaps_outer 20
+    set $hide_edge_borders both
+    set $gaps_inner 0
+    set $gaps_outer 0
+    set $strip_workspace_numbers yes
 
 include /etc/sway/config-vars.d/*
 
@@ -76,7 +79,7 @@ include /etc/sway/config-vars.d/*
 ### Autostart
 #
     # redshift
-    exec $wlsunset
+    # exec $wlsunset
     # notification server
     exec mako
     # video wallpaper?
@@ -114,22 +117,22 @@ include /etc/sway/config-vars.d/*
 
     # borders
     default_border $borders
-    hide_edge_borders both
+    hide_edge_borders $hide_edge_borders
     #exec_always swaymsg [tiling] border $borders
     #exec_always swaymsg [floating] border $borders
 
     # configure gaps
     smart_gaps inverse_outer
-    gaps inner 0
-    gaps outer 0
-    bindsym $mod+$ctl+g      gaps inner all set $gaps_inner ; gaps outer all set $gaps_outer
-    bindsym $mod+$ctl+$shf+g gaps inner all set 0      ; gaps outer all set 0
+    gaps inner $gaps_inner
+    gaps outer $gaps_outer
+    # bindsym $mod+$ctl+g      gaps inner all set $gaps_inner ; gaps outer all set $gaps_outer
+    # bindsym $mod+$ctl+$shf+g gaps inner all set 0      ; gaps outer all set 0
 
     # miscellaneous options
     title_align center
     titlebar_padding 30 4
     force_display_urgency_hint 1000
-    # kind of a training wheel until i learn J/K movement
+    # kind of a training wheel until i learn j/k movement
     focus_wrapping no
 
 #
@@ -153,34 +156,34 @@ include /etc/sway/config-vars.d/*
     }
 
     # hide cursor when idle, in ms
-    seat seat0 xcursor_theme catppuccin-latte-pink-cursors 36
+    seat seat0 xcursor_theme $cursor
     seat * hide_cursor 5000
 
 #
 ### Key bindings
 #
-    # Start a terminal
+    # start a terminal
     bindsym $mod+Return exec $term
     bindsym $mod+$shf+Return exec $term -T - sleep infinity
     bindsym $mod+$alt+Return exec $term -T - watch -tw -n60 'echo ${COLUMNS}x${LINES} ; echo ${COLUMNS}x${LINES} | figlet -k'
 
-    # Kill focused window
+    # kill focused window
     bindsym $mod+$shf+q kill
 
-    # Start your launcher
+    # start your launcher
     bindsym $alt+Space $menu
     bindsym $mod+d exec $menu
 
-    # Reload the configuration file
+    # reload the configuration file
     bindsym $mod+$shf+c reload
 
-    # Floating windows
+    # floating windows
     floating_modifier $mod normal
     bindsym $mod+$shf+$float floating toggle
     bindsym $mod+$float focus mode_toggle
     bindsym $mod+$ctl+$float sticky toggle
 
-    # Exit sway (logs you out of your Wayland session)
+    # exit sway (logs you out of your wayland session)
     bindsym $mod+$shf+e exec swaynag -t warning \
         -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
         -B 'Yes, exit sway' 'swaymsg exit'
@@ -317,7 +320,7 @@ include /etc/sway/config-vars.d/*
 #
 # Utilities:
 #
-    # Special keys to adjust volume via PulseAudio
+    # special keys to adjust volume via pulseaudio
     set $vol_sig && pkill -SIGRTMIN+1 i3blocks
     bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle $vol_sig
     bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5% $vol_sig
@@ -329,12 +332,16 @@ include /etc/sway/config-vars.d/*
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%- $bright_sig
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+ $bright_sig
 
-    # Take screenshots
+    # take screenshots
     bindsym --release Print       exec ~/.config/sway/bin/screenshot.sh
     bindsym --release $shf+Print  exec ~/.config/sway/bin/screenshot.sh
     bindsym --release $ctl+Print  exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+p                exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+$shf+p           exec ~/.config/sway/bin/screenshot.sh
+
+    # gaming crosshair
+    bindsym $mod+Home exec wlcrosshairctl toggle
+    bindsym $mod+End  exec wlcrosshairctl reload
 
 #
 # Status Bar:
@@ -344,12 +351,12 @@ include /etc/sway/config-vars.d/*
         font pango:$font
         position top
         status_command i3blocks
-        separator_symbol " | "
-        strip_workspace_numbers yes
+        separator_symbol " ⟨ "
+        strip_workspace_numbers $strip_workspace_numbers
         colors {
             background #323232
             statusline #ffffff
-            separator #70afcc
+            separator #ff8cda
             #                  border  bckgrn  text
             focused_workspace  #e667be #ff8cda #000000
             inactive_workspace #666666 #323232 #ffffff
@@ -358,8 +365,3 @@ include /etc/sway/config-vars.d/*
     }
 
 include /etc/sway/config.d/*
-
-# WIP
-
-bindsym $mod+Home exec wlcrosshairctl toggle
-bindsym $mod+End  exec wlcrosshairctl reload
