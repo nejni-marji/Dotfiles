@@ -62,13 +62,16 @@
     set $wallpaper       ~/.local/share/wallpapers/pastel-splash.jpg
     set $lockscreen      ~/.local/share/wallpapers/pastel-splash-gauss10.png
     set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
-    # fonts
+    # fonts and themes
     #set $font FiraCodeNerdFont 12
     set $font ComicCode 12
-    #6window borders and gaps
+    set $cursor catppuccin-latte-pink-cursors 24
+    # window borders and gaps
     set $borders normal 3
+    set $hide_edge_borders smart_no_gaps
     set $gaps_inner 10
     set $gaps_outer 20
+    set $strip_workspace_numbers no
 
 include /etc/sway/config-vars.d/*
 
@@ -119,11 +122,11 @@ include /etc/sway/config-vars.d/*
       client.focused_inactive    #666666   #5f676a   #ffffff   #484e50   #5f676a
       client.focused_tab_title   #666666   #5f676a   #ffffff   #484e50   #5f676a
       client.unfocused           #666666   #222222   #888888   #292d2e   #222222
-    # client.urgent              #2f343a   #900000   #ffffff   #900000   #900000
+      client.urgent              #00aeff   #8cdaff   #000000   #ff002f   #8cdaff
 
     # borders
     default_border $borders
-    hide_edge_borders smart_no_gaps
+    hide_edge_borders $hide_edge_borders
     #exec_always swaymsg [tiling] border $borders
     #exec_always swaymsg [floating] border $borders
 
@@ -131,8 +134,8 @@ include /etc/sway/config-vars.d/*
     smart_gaps inverse_outer
     gaps inner $gaps_inner
     gaps outer $gaps_outer
-    bindsym $mod+$ctl+g      gaps inner all set $gaps_inner ; gaps outer all set $gaps_outer
-    bindsym $mod+$ctl+$shf+g gaps inner all set 0      ; gaps outer all set 0
+    # bindsym $mod+$ctl+g      gaps inner all set $gaps_inner ; gaps outer all set $gaps_outer
+    # bindsym $mod+$ctl+$shf+g gaps inner all set 0      ; gaps outer all set 0
 
     # miscellaneous options
     title_align center
@@ -162,7 +165,7 @@ include /etc/sway/config-vars.d/*
     }
 
     # hide cursor when idle, in ms
-    seat seat0 xcursor_theme catppuccin-latte-pink-cursors 24
+    seat seat0 xcursor_theme $cursor
     seat * hide_cursor 5000
 
 #
@@ -270,9 +273,9 @@ include /etc/sway/config-vars.d/*
 # Layout stuff:
 #
     # left-hand layout keys
-    bindsym $mod+o layout toggle tabbed stacking
-    bindsym $mod+comma layout split tabbed stacking
-    bindsym $mod+period layout toggle split
+    # bindsym $mod+o layout toggle tabbed stacking
+    # bindsym $mod+comma layout split tabbed stacking
+    # bindsym $mod+period layout toggle split
 
     # right-hand layout keys
     bindsym $mod+c layout toggle split
@@ -333,9 +336,10 @@ include /etc/sway/config-vars.d/*
     bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5% $vol_sig
     bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle $vol_sig
 
-    # special keys to adjust brightness via brightnessctl
-    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+    # Special keys to adjust brightness via brightnessctl
+    set $bright_sig && pkill -SIGRTMIN+2 i3blocks
+    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%- $bright_sig
+    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+ $bright_sig
 
     # take screenshots
     bindsym --release Print       exec ~/.config/sway/bin/screenshot.sh
@@ -357,7 +361,7 @@ include /etc/sway/config-vars.d/*
         position top
         status_command i3blocks
         separator_symbol " ⟨ "
-        strip_workspace_numbers no
+        strip_workspace_numbers $strip_workspace_numbers
         colors {
             background #323232
             statusline #ffffff
@@ -365,6 +369,7 @@ include /etc/sway/config-vars.d/*
             #                  border  bckgrn  text
             focused_workspace  #e667be #ff8cda #000000
             inactive_workspace #666666 #323232 #ffffff
+            urgent_workspace   #00aeff #8cdaff #000000
         }
     }
 
