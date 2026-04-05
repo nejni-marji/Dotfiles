@@ -19,7 +19,7 @@ markup=pango
 #interval=60
 
 [volume]
-label=🎵 
+label=🔊 
 command=~/.config/i3blocks/bin/volume.sh
 interval=10
 signal=1
