@@ -56,14 +56,14 @@
     set $ws0 99
     # preferred executables
     set $term foot
-    set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N ffc68c -n 000000 -S ff8cda -s 000000
+    set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
     set $wlsunset wlsunset -t 3500 -T 6500 -s 21:00 -S 9:00
     # wallpapers
     set $wallpaper       ~/.local/share/wallpapers/pastel-splash.jpg
     set $lockscreen      ~/.local/share/wallpapers/pastel-splash-gauss10.png
     set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
     # fonts and themes
-    #set $font FiraCodeNerdFont 12
+    # set $font FiraCodeNerdFont 12
     set $font ComicCode 12
     set $cursor catppuccin-latte-pink-cursors 24
     # window borders and gaps
@@ -79,11 +79,11 @@ include /etc/sway/config-vars.d/*
 ### Autostart
 #
     # redshift
-    #exec $wlsunset
+    # exec $wlsunset
     # notification server
     exec mako
     # video wallpaper?
-    #exec mpvpaper --help
+    # exec mpvpaper --help
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
@@ -122,13 +122,13 @@ include /etc/sway/config-vars.d/*
       client.focused_inactive    #666666   #5f676a   #ffffff   #484e50   #5f676a
       client.focused_tab_title   #666666   #5f676a   #ffffff   #484e50   #5f676a
       client.unfocused           #666666   #222222   #888888   #292d2e   #222222
-      client.urgent              #00aeff   #ffc68c   #000000   #8cdaff   #ffc68c
+      client.urgent              #ff9933   #ffc68c   #000000   #8cdaff   #ffc68c
 
     # borders
     default_border $borders
     hide_edge_borders $hide_edge_borders
-    #exec_always swaymsg [tiling] border $borders
-    #exec_always swaymsg [floating] border $borders
+    # exec_always swaymsg [tiling] border $borders
+    # exec_always swaymsg [floating] border $borders
 
     # configure gaps
     smart_gaps inverse_outer
@@ -256,8 +256,8 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+BackSpace workspace back_and_forth
     bindsym $mod+$shf+BackSpace move container to workspace back_and_forth
     bindsym $alt+Tab focus output right
-    #bindsym $mod+slash focus output left
-    #bindsym $mod+equal focus output right
+    # bindsym $mod+slash focus output left
+    # bindsym $mod+equal focus output right
 
     # special workspace commands
     bindsym $mod+$shf+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num-1 | if (10<=. and .<=90 and .%10==0) then "$ws\(./10)" else . end')"
