@@ -56,7 +56,7 @@
     set $ws0 99
     # preferred executables
     set $term foot
-    set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
+    set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N ffc68c -n 000000 -S ff8cda -s 000000
     set $wlsunset wlsunset -t 3500 -T 6500 -s 21:00 -S 9:00
     # wallpapers
     set $wallpaper       ~/.local/share/wallpapers/pastel-splash.jpg
@@ -118,11 +118,11 @@ include /etc/sway/config-vars.d/*
 
     # colors
     #       .class               outline   bckgrnd   frgrnd    indctr    border
-      client.focused             #e667be   #ff8cda   #000000   #8cffeb   #ff8cda
+      client.focused             #e667be   #ff8cda   #000000   #8cdaff   #ff8cda
       client.focused_inactive    #666666   #5f676a   #ffffff   #484e50   #5f676a
       client.focused_tab_title   #666666   #5f676a   #ffffff   #484e50   #5f676a
       client.unfocused           #666666   #222222   #888888   #292d2e   #222222
-      client.urgent              #00aeff   #8cdaff   #000000   #ff002f   #8cdaff
+      client.urgent              #00aeff   #ffc68c   #000000   #8cdaff   #ffc68c
 
     # borders
     default_border $borders
@@ -371,7 +371,7 @@ include /etc/sway/config-vars.d/*
             #                  border  bckgrn  text
             focused_workspace  #e667be #ff8cda #000000
             inactive_workspace #666666 #323232 #ffffff
-            urgent_workspace   #00aeff #8cdaff #000000
+            urgent_workspace   #ff9933 #ffc68c #000000
         }
     }
 
