@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 case $BLOCK_BUTTON in
 	4)
