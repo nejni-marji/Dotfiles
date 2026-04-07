@@ -1,2 +1,3 @@
 wmenu-based hotswap
 auto-hibernate on low power
+progress color in mako
