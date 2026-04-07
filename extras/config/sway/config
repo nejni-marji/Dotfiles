@@ -56,15 +56,15 @@
     set $ws0 99
     # preferred executables
     set $term foot
-    set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N ffc68c -n 000000 -S ff8cda -s 000000
-    set $wlsunset wlsunset -t 3000 -T 5000 -s 21:00 -S 9:00
+    set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
+    set $wlsunset wlsunset -t 3000 -T 4500 -s 21:00 -S 9:00
     # wallpapers
     set $wallpaper       ~/.local/share/wallpapers/fork_yuri_wp7124847.png
     set $lockscreen      ~/.local/share/wallpapers/fork_yuri_wp7124847_blur.png
-    #set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
+    # set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
     # fonts and themes
-    # set $font FiraCode Nerd Font 16
-    set $font Comic Code 16
+    # set $font FiraCodeNerdFont 16
+    set $font ComicCode 16
     set $cursor catppuccin-latte-pink-cursors 36
     # window borders and gaps
     set $borders pixel 2
@@ -79,11 +79,11 @@ include /etc/sway/config-vars.d/*
 ### Autostart
 #
     # redshift
-    #exec $wlsunset
+    exec $wlsunset
     # notification server
     exec mako
     # video wallpaper?
-    #exec mpvpaper --help
+    # exec mpvpaper --help
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
@@ -118,8 +118,8 @@ include /etc/sway/config-vars.d/*
     # borders
     default_border $borders
     hide_edge_borders $hide_edge_borders
-    #exec_always swaymsg [tiling] border $borders
-    #exec_always swaymsg [floating] border $borders
+    # exec_always swaymsg [tiling] border $borders
+    # exec_always swaymsg [floating] border $borders
 
     # configure gaps
     smart_gaps inverse_outer
@@ -247,8 +247,8 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+BackSpace workspace back_and_forth
     bindsym $mod+$shf+BackSpace move container to workspace back_and_forth
     bindsym $alt+Tab focus output right
-    #bindsym $mod+slash focus output left
-    #bindsym $mod+equal focus output right
+    # bindsym $mod+slash focus output left
+    # bindsym $mod+equal focus output right
 
     # special workspace commands
     bindsym $mod+$shf+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num-1 | if (10<=. and .<=90 and .%10==0) then "$ws\(./10)" else . end')"
