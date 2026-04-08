@@ -188,6 +188,10 @@ include /etc/sway/config-vars.d/*
         -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
         -B 'Yes, exit sway' 'swaymsg exit'
 
+    # lock sway manually
+    bindsym $ctl+$alt+l exec swaylock -f -i $lockscreen
+    bindsym $mod+$ctl+l exec swaylock -f -i $lockscreen
+
 
 #
 # Moving around:
@@ -259,6 +263,7 @@ include /etc/sway/config-vars.d/*
     # scratchpad (technically kind of a workspace)
     bindsym $mod+$shf+minus move scratchpad
     bindsym $mod+minus scratchpad show
+    bindsym $mod+Next scratchpad show
 
 #
 # Layout stuff:
@@ -274,7 +279,6 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+l split none
     bindsym $mod+w splith
     bindsym $mod+v splitv
-    bindsym $mod+z workspace back_and_forth
 
     # fullscreen
     bindsym $mod+f fullscreen
@@ -336,10 +340,13 @@ include /etc/sway/config-vars.d/*
 
     # take screenshots
     bindsym --release Print       exec ~/.config/sway/bin/screenshot.sh
-    bindsym --release $shf+Print  exec ~/.config/sway/bin/screenshot.sh
-    bindsym --release $ctl+Print  exec ~/.config/sway/bin/screenshot.sh
+    # bindsym --release $shf+Print  exec ~/.config/sway/bin/screenshot.sh
+    # bindsym --release $ctl+Print  exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+p                exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+$shf+p           exec ~/.config/sway/bin/screenshot.sh
+
+    # locate cursor
+    bindsym $mod+z exec ~/Working/swaywm/git/wl-find-cursor-reticle/target/release/wl-reticle
 
     # gaming crosshair
     bindsym $mod+Home exec wlcrosshairctl toggle
