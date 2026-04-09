@@ -341,8 +341,8 @@ include /etc/sway/config-vars.d/*
 
     # take screenshots
     bindsym --release Print       exec ~/.config/sway/bin/screenshot.sh
-    # bindsym --release $shf+Print  exec ~/.config/sway/bin/screenshot.sh
-    # bindsym --release $ctl+Print  exec ~/.config/sway/bin/screenshot.sh
+    bindsym --release $shf+Print  exec ~/.config/sway/bin/screenshot.sh
+    bindsym --release $ctl+Print  exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+p                exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+$shf+p           exec ~/.config/sway/bin/screenshot.sh
 
