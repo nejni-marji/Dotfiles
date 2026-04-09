@@ -250,7 +250,8 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+bracketright workspace next_on_output
     bindsym $mod+BackSpace workspace back_and_forth
     bindsym $mod+$shf+BackSpace move container to workspace back_and_forth
-    bindsym $alt+Tab focus output right
+    bindsym $alt+Tab exec '[[ "$(swaymsg -t get_outputs | jq length)" -eq 1 ]] && swaymsg workspace back_and_forth || swaymsg focus output right'
+
     # bindsym $mod+slash focus output left
     # bindsym $mod+equal focus output right
 
