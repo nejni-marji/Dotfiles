@@ -44,16 +44,16 @@
     set $up n
     set $right s
     # workspace names
-    set $ws1 10: main
-    set $ws2 20: alt
+    set $ws1 10: chat
+    set $ws2 20: web
     set $ws3 30: code
     set $ws4 40: game
     set $ws5 50: media
     set $ws6 60
     set $ws7 70
     set $ws8 80
-    set $ws9 90: bg
-    set $ws0 99
+    set $ws9 90
+    set $ws0 100
     # preferred executables
     set $term foot
     set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
@@ -101,6 +101,13 @@ include /etc/sway/config-vars.d/*
     output HDMI-A-1 resolution 1920x1080 position 1920,0
     output HDMI-A-2 resolution 1920x1080 position 0,0
 
+    # set wallpapers
+    # we might also set a video wallpaper, but this is a fallback
+    output * bg $wallpaper fill
+
+    # font
+    font pango:$font
+
     # default workspaces
     workspace $ws1 output HDMI-A-2
     workspace $ws2 output HDMI-A-1
@@ -108,13 +115,12 @@ include /etc/sway/config-vars.d/*
     workspace $ws4 output HDMI-A-1
     workspace $ws5 output HDMI-A-1
     workspace $ws9 output HDMI-A-2
+    workspace $ws0 output HDMI-A-2
 
-    # set wallpapers
-    # we might also set a video wallpaper, but this is a fallback
-    output * bg $wallpaper fill
-
-    # font
-    font pango:$font
+    # assign apps to workspaces
+    assign [app_id="^[Dd]iscord$"] workspace $ws1
+    assign [app_id="^[Ss]ignal$"]  workspace $ws1
+    assign [class="^[Ss]team$"]    workspace $ws4
 
     # colors
     #       .class               outline   bckgrnd   frgrnd    indctr    border

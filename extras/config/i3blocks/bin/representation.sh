@@ -8,8 +8,9 @@ while
 		| if .==null then
 		"•" else
 			gsub("(?<=\\[| )[\\w_-]+(?!\\[) ?"; "•")
-			| gsub("(?<a>•{6,})"; "\(.a | length)")
 			| gsub("•(?<a>[HVTS])"; "• \(.a)")
+			#| gsub("(?<a>•{6,})"; "\(.a | length)")
+			#| gsub("(?<b>\\d)(?<a>[HVTS])"; "\(.b) \(.a)")
 		end'
 	)"
 
@@ -23,13 +24,13 @@ while
 	)"
 
 	# get subindex of focus
-	local -i subindex="$(swaymsg -t get_tree |
-		jq '..
-		| select(.nodes?)
-		| select(.nodes[].focused)
-		| [.nodes[].focused]
-		| index(true)+1'
-	)"
+	#local -i subindex="$(swaymsg -t get_tree |
+	#	jq '..
+	#	| select(.nodes?)
+	#	| select(.nodes[].focused)
+	#	| [.nodes[].focused]
+	#	| index(true)+1'
+	#)"
 
 	# "crawl the tape" to determine the real offset
 	local -i tape=0
@@ -64,9 +65,9 @@ while
 		span1='<span foreground="#ff8cda">'
 		span2='</span>'
 
-		if [[ '0123456789' == *${rep[$tape+1]}* ]] ; then
-			frac="${subindex}/"
-		fi
+		#if [[ '0123456789' == *${rep[$tape+1]}* ]] ; then
+		#	frac="${subindex}/"
+		#fi
 	fi
 
 	echo "${rep[1,$tape]}${span1}${frac}${rep[$tape+1]}${span2}${rep[$tape+2,-1]}"
