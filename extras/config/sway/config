@@ -107,6 +107,11 @@ include /etc/sway/config-vars.d/*
     # font
     font pango:$font
 
+    # assign apps to workspaces
+    assign [app_id="^[Dd]iscord$"] workspace $ws1
+    assign [app_id="^[Ss]ignal$"]  workspace $ws1
+    assign [class="^[Ss]team$"]    workspace $ws4
+
     # colors
     #       .class               outline   bckgrnd   frgrnd    indctr    border
       client.focused             #e667be   #ff8cda   #000000   #8cdaff   #ff8cda
