@@ -23,6 +23,11 @@ for i in * ; do
 	ln -srfnv $i ~/.config/$i
 done
 
+cd ~/Dotfiles/extras/config
+mkdir -pv nvim/data/backup/$HOST
+mkdir -pv nvim/data/swap/$HOST
+mkdir -pv nvim/data/undo/$HOST
+
 cd ~/Dotfiles
 host_suffixed=(
 	extras/config/foot/foot.ini
@@ -38,9 +43,5 @@ for i in $host_suffixed ; do
 	ln -srv $i-$HOST $i
 done
 
-cd ~
-mkdir -pv nvim/data/backup/$HOST
-mkdir -pv nvim/data/swap/$HOST
-mkdir -pv nvim/data/undo/$HOST
-
+cd ~/Dotfiles
 git submodule update --init
