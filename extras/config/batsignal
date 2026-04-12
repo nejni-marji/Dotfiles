@@ -1,0 +1,17 @@
+-w 20
+-WBattery low
+
+-c 5
+-CBattery critical, hibernating soon
+
+-d 2
+-Dsystemctl hibernate
+
+-FBattery full
+
+-p
+-USwitching to battery...
+-PCharging...
+
+-m 0
+-e

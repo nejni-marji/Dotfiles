@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# update batsignal
+pkill -SIGUSR1 batsignal
+
 # long
 acpi -b |
 perl -pe '
