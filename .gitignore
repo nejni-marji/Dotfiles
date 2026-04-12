@@ -1,8 +1,8 @@
 **/__pycache__
 /.stfolder
 /.stversions
-/extras/bin/manual
-/extras/config/amfora/local_share_amfora/
+
+# random crap that shouldnt be saved
 /extras/config/cava/shaders
 /extras/config/cava/themes
 /extras/config/mpd/database
@@ -13,6 +13,16 @@
 /extras/config/mpv/watch_later/
 /extras/config/nvim/data/
 /extras/config/weechat
+/zsh/*.lck
+
+# secrets
 /extras/.deadname_re
 /extras/secrets
-/zsh/*.lck
+
+# hostname-suffixed symlinks
+/extras/config/foot/foot.ini
+/extras/config/i3blocks/bin/date_fuzzy_emoji_clock.py
+/extras/config/i3blocks/bin/representation.sh
+/extras/config/i3blocks/config
+/extras/config/mako/config
+/extras/config/sway/config
