@@ -14,21 +14,16 @@ for i in * ; do
 	ln -srfnv $i ~/.$i
 done
 
-cd extras
+cd ~/Dotfiles/extras
 ln -srfnv bin ~/bin
 
-cd config
+cd ~/Dotfiles/extras/config
 mkdir -v ~/.config
 for i in * ; do
 	ln -srfnv $i ~/.config/$i
 done
 
-mkdir -pv nvim/data/backup/$HOST
-mkdir -pv nvim/data/swap/$HOST
-mkdir -pv nvim/data/undo/$HOST
-
-git submodule update --init
-
+cd ~/Dotfiles
 host_suffixed=(
 	extras/config/foot/foot.ini
 	extras/config/i3blocks/bin/date_fuzzy_emoji_clock.py
@@ -38,6 +33,14 @@ host_suffixed=(
 	extras/config/sway/config
 )
 
+cd ~/Dotfiles
 for i in $host_suffixed ; do
 	ln -srv $i-$HOST $i
 done
+
+cd ~
+mkdir -pv nvim/data/backup/$HOST
+mkdir -pv nvim/data/swap/$HOST
+mkdir -pv nvim/data/undo/$HOST
+
+git submodule update --init
