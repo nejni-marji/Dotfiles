@@ -84,6 +84,7 @@ bindkey -M vicmd v edit-command-line
 # 2023-01-30 01:20:15
 # Why is this section such a mess?
 
+hash -d dots=~/Dotfiles
 hash -d terezi=/media/$USER/terezi
 hash -d roxy=/media/$USER/roxy
 
