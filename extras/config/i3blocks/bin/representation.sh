@@ -8,8 +8,8 @@ while
 		| if .==null then
 		"•" else
 			gsub("(?<=\\[| )[\\w_-]+(?!\\[) ?"; "•")
-			| gsub("•(?<a>[HVTS])"; "• \(.a)")
 			#| gsub("(?<a>•{6,})"; "\(.a | length)")
+			| gsub("•(?<a>[HVTS])"; "• \(.a)")
 			#| gsub("(?<b>\\d)(?<a>[HVTS])"; "\(.b) \(.a)")
 		end'
 	)"
