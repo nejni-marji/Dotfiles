@@ -44,8 +44,8 @@
     set $up n
     set $right s
     # workspace names
-    set $ws1 10:main
-    set $ws2 20:alt
+    set $ws1 10:chat
+    set $ws2 20:web
     set $ws3 30:code
     set $ws4 40:game
     set $ws5 50:media
@@ -57,7 +57,7 @@
     # preferred executables
     set $term foot
     set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
-    set $wlsunset wlsunset -t 3000 -T 4500 -s 21:00 -S 9:00
+    set $wlsunset wlsunset -t 4000 -T 5500 -s 21:00 -S 9:00
     # wallpapers
     set $wallpaper       ~/.local/share/wallpapers/fork_yuri_wp7124847.png
     set $lockscreen      ~/.local/share/wallpapers/fork_yuri_wp7124847_blur.png
@@ -106,6 +106,10 @@ include /etc/sway/config-vars.d/*
 
     # font
     font pango:$font
+
+    # default workspaces
+    workspace $ws1 output eDP-1
+    workspace $ws2 output eDP-1
 
     # assign apps to workspaces
     assign [app_id="^[Dd]iscord$"] workspace $ws1
