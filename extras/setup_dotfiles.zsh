@@ -40,6 +40,7 @@ host_suffixed=(
 
 cd ~/Dotfiles
 for i in $host_suffixed ; do
+	[[ -f $i-$HOST ]] &&
 	ln -srv $i-$HOST $i
 done
 
