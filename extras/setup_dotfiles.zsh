@@ -28,3 +28,16 @@ mkdir -pv nvim/data/swap/$HOST
 mkdir -pv nvim/data/undo/$HOST
 
 git submodule update --init
+
+host_suffixed=(
+	extras/config/foot/foot.ini
+	extras/config/i3blocks/bin/date_fuzzy_emoji_clock.py
+	extras/config/i3blocks/bin/representation.sh
+	extras/config/i3blocks/config
+	extras/config/mako/config
+	extras/config/sway/config
+)
+
+for i in $host_suffixed ; do
+	ln -srv $i-$HOST $i
+done

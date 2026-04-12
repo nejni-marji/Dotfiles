@@ -1,0 +1,31 @@
+[main]
+font=ComicCode:size=16
+
+[colors-dark]
+alpha=0.9
+foreground=ffffff
+background=000000
+
+# handcrafted palette <3
+#regular0=
+regular1=cc5c70 # red
+regular2=70cc5c # green
+regular3=ccc45c # yellow
+regular4=5ca8cc # blue
+regular5=cc5ca8 # magenta
+regular6=5cccb8 # cyan
+regular7=ffdaf3 # white
+#bright0=
+bright1=ff8ca1 # red
+bright2=a1ff8c # green
+bright3=edff8c # yellow
+bright4=8cdaff # blue
+bright5=ff8cda # magenta <3
+bright6=8cffeb # cyan
+bright7=ffffff # white
+
+[bell]
+urgent=yes
+
+[url]
+label-letters=oaeuhtn.,jmlid

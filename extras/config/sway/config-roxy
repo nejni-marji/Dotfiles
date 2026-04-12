@@ -1,0 +1,380 @@
+#
+# ~/.config/sway/config
+#
+# vim: et ts=4 sw=4
+
+### TABLE OF CONTENTS
+#   * Variables
+#   * Autostart
+#   * Output configuration
+#     * Themeing
+#   * Input configuration
+#   * Key bindings
+#     * Basics
+#     * Movement
+#     * Workspace bindings
+#       * Workspace configs
+#     * Layout bindings
+#     * Application bindings
+#   * Resizing
+#   * Utilities
+#   * Status bar
+
+#
+### WIP
+#
+
+# why is 'split tabbed' still not an option???
+#
+# workspace_layout tabbed -> H[T[]]
+# workspace_layout auto + layout tabbed -> T[]
+
+#
+### Variables
+#
+    # modifier keys
+    set $mod Mod4
+    set $alt Mod1
+    set $ctl Ctrl
+    set $shf Shift
+    set $float space
+    # direction keys
+    set $left h
+    set $down t
+    set $up n
+    set $right s
+    # workspace names
+    set $ws1 10:main
+    set $ws2 20:alt
+    set $ws3 30:code
+    set $ws4 40:game
+    set $ws5 50:media
+    set $ws6 60
+    set $ws7 70
+    set $ws8 80
+    set $ws9 90:bg
+    set $ws0 99
+    # preferred executables
+    set $term foot
+    set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
+    set $wlsunset wlsunset -t 3000 -T 4500 -s 21:00 -S 9:00
+    # wallpapers
+    set $wallpaper       ~/.local/share/wallpapers/fork_yuri_wp7124847.png
+    set $lockscreen      ~/.local/share/wallpapers/fork_yuri_wp7124847_blur.png
+    # set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
+    # fonts and themes
+    # set $font FiraCodeNerdFont 16
+    set $font ComicCode 16
+    set $cursor catppuccin-latte-pink-cursors 36
+    # window borders and gaps
+    set $borders pixel 2
+    set $hide_edge_borders both
+    set $gaps_inner 0
+    set $gaps_outer 0
+    set $strip_workspace_numbers yes
+
+include /etc/sway/config-vars.d/*
+
+#
+### Autostart
+#
+    # redshift
+    exec $wlsunset
+    # notification server
+    exec mako
+    # video wallpaper?
+    # exec mpvpaper --help
+
+    # idle configuration aka powersaving aka screenlock
+    # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
+    exec_always pkill swayidle; swayidle -w \
+        timeout 600 'swaymsg "output * dpms off"' \
+        timeout 630 'swaylock -f -i $lockscreen' \
+        resume 'swaymsg "output * dpms on"' \
+        before-sleep 'swaylock -f -i $lockscreen' \
+        ;
+
+#
+### Output configuration
+#
+    # configure output arrangement
+    output eDP-1 resolution 1920x1080 position 0,0
+
+    # set wallpapers
+    # we might also set a video wallpaper, but this is a fallback
+    output * bg $wallpaper fill
+
+    # font
+    font pango:$font
+
+    # assign apps to workspaces
+    assign [app_id="^[Dd]iscord$"] workspace $ws1
+    assign [app_id="^[Ss]ignal$"]  workspace $ws1
+    assign [class="^[Ss]team$"]    workspace $ws4
+
+    # colors
+    #       .class               outline   bckgrnd   frgrnd    indctr    border
+      client.focused             #e667be   #ff8cda   #000000   #8cdaff   #ff8cda
+      client.focused_inactive    #666666   #5f676a   #ffffff   #484e50   #5f676a
+      client.focused_tab_title   #666666   #5f676a   #ffffff   #484e50   #5f676a
+      client.unfocused           #666666   #222222   #888888   #292d2e   #222222
+      client.urgent              #ff9933   #ffc68c   #000000   #8cdaff   #ffc68c
+
+    # borders
+    default_border $borders
+    hide_edge_borders $hide_edge_borders
+    # exec_always swaymsg [tiling] border $borders
+    # exec_always swaymsg [floating] border $borders
+
+    # configure gaps
+    smart_gaps inverse_outer
+    gaps inner $gaps_inner
+    gaps outer $gaps_outer
+    # bindsym $mod+$ctl+g      gaps inner all set $gaps_inner ; gaps outer all set $gaps_outer
+    # bindsym $mod+$ctl+$shf+g gaps inner all set 0      ; gaps outer all set 0
+
+    # miscellaneous options
+    title_align center
+    titlebar_padding 30 4
+    force_display_urgency_hint 1000
+    # kind of a training wheel until i learn j/k movement
+    focus_wrapping no
+
+#
+### Input configuration
+#
+    # run 'swaymsg -t get_inputs' and 'man 5 sway-input'
+    input type:keyboard {
+        xkb_layout us
+        xkb_variant dvorak
+        xkb_options caps:ctrl_modifier,caps:swapcaps,ctrl:swap_lwin_lctl,ctrl:swap_rwin_rctl
+    }
+
+    input type:pointer {
+        accel_profile adaptive
+        pointer_accel -0.35
+    }
+
+    input type:touchpad {
+        tap enabled
+        scroll_method two_finger
+    }
+
+    # hide cursor when idle, in ms
+    seat seat0 xcursor_theme $cursor
+    seat * hide_cursor 5000
+
+#
+### Key bindings
+#
+    # start a terminal
+    bindsym $mod+Return exec $term
+    bindsym $mod+$shf+Return exec $term -T - sleep infinity
+    bindsym $mod+$alt+Return exec $term -T - watch -tw -n60 'echo ${COLUMNS}x${LINES} ; echo ${COLUMNS}x${LINES} | figlet -k'
+
+    # kill focused window
+    bindsym $mod+$shf+q kill
+
+    # start your launcher
+    bindsym $alt+Space $menu
+    bindsym $mod+d exec $menu
+
+    # reload the configuration file
+    bindsym $mod+$shf+c reload
+
+    # floating windows
+    floating_modifier $mod normal
+    bindsym $mod+$shf+$float floating toggle
+    bindsym $mod+$float focus mode_toggle
+    bindsym $mod+$ctl+$float sticky toggle
+
+    # exit sway (logs you out of your wayland session)
+    bindsym $mod+$shf+e exec swaynag -t warning \
+        -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
+        -B 'Yes, exit sway' 'swaymsg exit'
+
+    # lock sway manually
+    bindsym $ctl+$alt+l exec swaylock -f -i $lockscreen
+    bindsym $mod+$ctl+l exec swaylock -f -i $lockscreen
+
+
+#
+# Moving around:
+#
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    bindsym $mod+$shf+$left move left
+    bindsym $mod+$shf+$down move down
+    bindsym $mod+$shf+$up move up
+    bindsym $mod+$shf+$right move right
+    bindsym $mod+$shf+Left move left
+    bindsym $mod+$shf+Down move down
+    bindsym $mod+$shf+Up move up
+    bindsym $mod+$shf+Right move right
+
+    # select most regent urgent container
+    bindsym $mod+m [urgent=latest] focus
+
+#
+# Workspaces:
+#
+    # workspace options
+    workspace_auto_back_and_forth yes
+
+    # move by number
+    bindsym $mod+1 workspace number $ws1
+    bindsym $mod+2 workspace number $ws2
+    bindsym $mod+3 workspace number $ws3
+    bindsym $mod+4 workspace number $ws4
+    bindsym $mod+5 workspace number $ws5
+    bindsym $mod+6 workspace number $ws6
+    bindsym $mod+7 workspace number $ws7
+    bindsym $mod+8 workspace number $ws8
+    bindsym $mod+9 workspace number $ws9
+    bindsym $mod+0 workspace number $ws0
+    bindsym $mod+$shf+1 move container to workspace number $ws1
+    bindsym $mod+$shf+2 move container to workspace number $ws2
+    bindsym $mod+$shf+3 move container to workspace number $ws3
+    bindsym $mod+$shf+4 move container to workspace number $ws4
+    bindsym $mod+$shf+5 move container to workspace number $ws5
+    bindsym $mod+$shf+6 move container to workspace number $ws6
+    bindsym $mod+$shf+7 move container to workspace number $ws7
+    bindsym $mod+$shf+8 move container to workspace number $ws8
+    bindsym $mod+$shf+9 move container to workspace number $ws9
+    bindsym $mod+$shf+0 move container to workspace number $ws0
+
+    # move between workspaces and outputs
+    bindsym $mod+bracketleft workspace prev_on_output
+    bindsym $mod+bracketright workspace next_on_output
+    bindsym $mod+BackSpace workspace back_and_forth
+    bindsym $mod+$shf+BackSpace move container to workspace back_and_forth
+    bindsym $alt+Tab exec '[[ "$(swaymsg -t get_outputs | jq length)" -eq 1 ]] && swaymsg workspace back_and_forth || swaymsg focus output right'
+
+    # bindsym $mod+slash focus output left
+    # bindsym $mod+equal focus output right
+
+    # special workspace commands
+    bindsym $mod+$shf+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num-1 | if (10<=. and .<=90 and .%10==0) then "$ws\(./10)" else . end')"
+    bindsym $mod+$shf+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num+1 | if (10<=. and .<=90 and .%10==0) then "$ws\(./10)" else . end')"
+    bindsym $mod+$ctl+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num | ((.-1)/10|floor) | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
+    bindsym $mod+$ctl+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num | (./10+1|floor) | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
+
+    # scratchpad (technically kind of a workspace)
+    bindsym $mod+$shf+minus move scratchpad
+    bindsym $mod+minus scratchpad show
+    bindsym $mod+Next scratchpad show
+
+#
+# Layout stuff:
+#
+    # left-hand layout keys
+    # bindsym $mod+o layout toggle tabbed stacking
+    # bindsym $mod+comma layout split tabbed stacking
+    # bindsym $mod+period layout toggle split
+
+    # right-hand layout keys
+    bindsym $mod+c layout toggle split
+    bindsym $mod+r layout toggle tabbed stacking
+    bindsym $mod+l split none
+    bindsym $mod+w splith
+    bindsym $mod+v splitv
+
+    # fullscreen
+    bindsym $mod+f fullscreen
+    bindsym $mod+u fullscreen
+
+    # parent/child
+    bindsym $mod+a focus parent
+    bindsym $mod+$shf+a focus child
+    bindsym $mod+g focus parent
+    bindsym $mod+$shf+g focus child
+
+#
+# Application binds
+#
+    bindsym $mod+$alt+b exec blueman-manager
+    bindsym $mod+$alt+d exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+    bindsym $mod+$alt+f exec env MOZ_ENABLE_WAYLAND=1 firefox
+    bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
+    bindsym $mod+$alt+g exec gimp
+    bindsym $mod+$alt+s exec signal-desktop
+    bindsym $mod+$alt+t exec thunar
+    bindsym $mod+$alt+v exec foot pulsemixer
+    bindsym $mod+$alt+$shf+v exec pavucontrol
+
+#
+# Resizing containers:
+#
+    bindsym $mod+$shf+r mode "resize"
+    mode "resize" {
+        bindsym $left resize shrink width 10px
+        bindsym $down resize grow height 10px
+        bindsym $up resize shrink height 10px
+        bindsym $right resize grow width 10px
+        bindsym Left resize shrink width 10px
+        bindsym Down resize grow height 10px
+        bindsym Up resize shrink height 10px
+        bindsym Right resize grow width 10px
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+$shf+r mode "default"
+        bindsym $mod+r mode "default"
+    }
+
+#
+# Utilities:
+#
+    # special keys to adjust volume via pulseaudio
+    set $vol_sig && pkill -SIGRTMIN+1 i3blocks
+    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle $vol_sig
+    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5% $vol_sig
+    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5% $vol_sig
+    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle $vol_sig
+
+    # special keys to adjust brightness via brightnessctl
+    set $bright_sig && pkill -SIGRTMIN+2 i3blocks
+    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%- $bright_sig
+    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+ $bright_sig
+
+    # take screenshots
+    bindsym --release Print       exec ~/.config/sway/bin/screenshot.sh
+    bindsym $mod+p                exec ~/.config/sway/bin/screenshot.sh
+    bindsym $mod+$shf+p           exec ~/.config/sway/bin/screenshot.sh
+
+    # locate cursor
+    bindsym $mod+z exec ~/Working/swaywm/git/wl-find-cursor-reticle/target/release/wl-reticle
+
+    # gaming crosshair
+    bindsym $mod+Home exec wlcrosshairctl toggle
+    bindsym $mod+End  exec wlcrosshairctl reload
+
+#
+# Status Bar:
+#
+    bar {
+        tray_output none
+        font pango:$font
+        position top
+        status_command i3blocks
+        separator_symbol " ⟨ "
+        strip_workspace_numbers $strip_workspace_numbers
+        colors {
+            background #323232
+            statusline #ffffff
+            separator #ff8cda
+            #                  border  bckgrn  text
+            focused_workspace  #e667be #ff8cda #000000
+            inactive_workspace #666666 #323232 #ffffff
+            urgent_workspace   #ff9933 #ffc68c #000000
+        }
+    }
+
+include /etc/sway/config.d/*

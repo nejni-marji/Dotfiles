@@ -1,0 +1,20 @@
+font=ComicCode 16
+
+#text-color=#ffffffcc
+#background-color=#004466cc
+#border-color=#006999cc
+
+text-color=#000000cc
+background-color=#ffc68ccc
+border-color=#ff9933cc
+
+border-radius=20
+
+max-visible=3
+default-timeout=15000
+height=600
+width=450
+
+output=eDP-1
+anchor=top-right
+layer=overlay
