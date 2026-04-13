@@ -151,7 +151,7 @@ include /etc/sway/config-vars.d/*
     input type:keyboard {
         xkb_layout us
         xkb_variant dvorak
-        xkb_options caps:ctrl_modifier,caps:swapcaps,ctrl:swap_lwin_lctl,ctrl:swap_rwin_rctl
+        #xkb_options ctrl:swap_lwin_lctl,ctrl:swap_rwin_rctl,caps:ctrl_modifier,caps:nocaps
     }
 
     input type:pointer {
