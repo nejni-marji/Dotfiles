@@ -53,7 +53,7 @@
     set $ws7 70
     set $ws8 80
     set $ws9 90:bg
-    set $ws0 99
+    set $ws0 100
     # preferred executables
     set $term foot
     set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
