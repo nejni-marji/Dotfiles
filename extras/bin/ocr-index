@@ -58,7 +58,7 @@ def index_file(fn):
 
 if __name__ == '__main__':
 
-	file_extensions = [ 'png', 'jpg', 'jpeg' ]
+	file_extensions = [ 'png', 'jpg', 'jpeg', 'webp' ]
 	GLOBSTR = '*.%s'
 	queries = []
 	for ext in file_extensions:
