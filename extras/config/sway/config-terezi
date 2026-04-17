@@ -94,6 +94,10 @@ include /etc/sway/config-vars.d/*
         before-sleep 'swaylock -f -i $lockscreen' \
         ;
 
+    # per-host programs
+    # idle inhibitor for gaming and movies
+    exec sway-audio-idle-inhibit
+
 #
 ### Output configuration
 #

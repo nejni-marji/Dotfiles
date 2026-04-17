@@ -94,6 +94,10 @@ include /etc/sway/config-vars.d/*
         before-sleep 'swaylock -f -i $lockscreen' \
         ;
 
+    # per-host programs
+    # laptop battery monitor
+    exec batsignal
+
 #
 ### Output configuration
 #
