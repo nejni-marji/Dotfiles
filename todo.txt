@@ -1,7 +1,5 @@
 wmenu-based hotswap
-auto-hibernate on low power
 progress color in mako
-copy vimium configs between machines
 fix representation crap
 use upower for battery
 fix suspend/hibernate on terezi
