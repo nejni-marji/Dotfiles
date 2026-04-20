@@ -142,8 +142,6 @@ include /etc/sway/config-vars.d/*
     # borders
     default_border $borders
     hide_edge_borders $hide_edge_borders
-    # exec_always swaymsg [tiling] border $borders
-    # exec_always swaymsg [floating] border $borders
 
     # configure gaps
     smart_gaps inverse_outer
@@ -278,6 +276,7 @@ include /etc/sway/config-vars.d/*
 
     # bindsym $mod+slash focus output left
     # bindsym $mod+equal focus output right
+    bindsym $alt+grave move workspace to output right
 
     # special workspace commands
     bindsym $mod+$shf+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num-1 | if (10<=. and .<=90 and .%10==0) then "$ws\(./10)" else . end')"

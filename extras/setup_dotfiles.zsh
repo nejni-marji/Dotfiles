@@ -32,7 +32,6 @@ cd ~/Dotfiles
 host_suffixed=(
 	extras/config/foot/foot.ini
 	extras/config/i3blocks/bin/date_fuzzy_emoji_clock.py
-	extras/config/i3blocks/bin/representation.sh
 	extras/config/i3blocks/config
 	extras/config/mako/config
 	extras/config/sway/config

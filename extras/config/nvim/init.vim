@@ -285,6 +285,9 @@ set updatetime=100
 	highlight Normal guibg=#f5e4e5
 	highlight DiagnosticWarn ctermfg=3 guifg=yellow guibg=grey
 	highlight DiagnosticError ctermfg=3 guifg=red guibg=lightgrey
+	highlight MatchParen ctermfg=223 ctermbg=62 guifg=#ffdab9 guibg=#6a5acd
+	highlight MatchParen ctermfg=62 ctermbg=223 guifg=#6a5acd guibg=#ffdab9
+
 
 	" for cool-retro-term
 	if exists('$ASCII_ONLY')

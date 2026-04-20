@@ -136,8 +136,6 @@ include /etc/sway/config-vars.d/*
     # borders
     default_border $borders
     hide_edge_borders $hide_edge_borders
-    # exec_always swaymsg [tiling] border $borders
-    # exec_always swaymsg [floating] border $borders
 
     # configure gaps
     smart_gaps inverse_outer
