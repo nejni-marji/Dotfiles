@@ -126,6 +126,11 @@ include /etc/sway/config-vars.d/*
     assign [app_id="^[Ss]ignal$"]  workspace $ws1
     assign [class="^[Ss]team$"]    workspace $ws4
 
+    # window rules
+    for_window [title="Open Files"] move floating
+    for_window [title="pen Files"] resize set width 50 ppt height 80 ppt
+    for_window [title="pen Files"] move position center
+
     # colors
     #       .class               outline   bckgrnd   frgrnd    indctr    border
       client.focused             #e667be   #ff8cda   #000000   #8cdaff   #ff8cda
