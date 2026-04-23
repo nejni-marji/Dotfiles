@@ -21,15 +21,6 @@
 #   * Status bar
 
 #
-### WIP
-#
-
-# why is 'split tabbed' still not an option???
-#
-# workspace_layout tabbed -> H[T[]]
-# workspace_layout auto + layout tabbed -> T[]
-
-#
 ### Variables
 #
     # modifier keys
@@ -63,7 +54,6 @@
     set $lockscreen      ~/.local/share/wallpapers/pastel-splash-gauss10.png
     # set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
     # fonts and themes
-    # set $font FiraCodeNerdFont 12
     set $font ComicCode 12
     set $cursor catppuccin-latte-pink-cursors 24
     # window borders and gaps
@@ -96,7 +86,7 @@ include /etc/sway/config-vars.d/*
 
     # per-host programs
     # idle inhibitor for gaming and movies
-    exec sway-audio-idle-inhibit
+    # exec sway-audio-idle-inhibit
     for_window [all] inhibit_idle fullscreen
 
 #

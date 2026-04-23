@@ -21,15 +21,6 @@
 #   * Status bar
 
 #
-### WIP/TODO
-#
-
-# why is 'split tabbed' still not an option???
-#
-# workspace_layout tabbed -> H[T[]]
-# workspace_layout auto + layout tabbed -> T[]
-
-#
 ### Variables
 #
     # modifier keys
@@ -63,7 +54,6 @@
     set $lockscreen      ~/.local/share/wallpapers/fork_yuri_wp7124847_blur.png
     # set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
     # fonts and themes
-    # set $font FiraCodeNerdFont 16
     set $font ComicCode 16
     set $cursor catppuccin-latte-pink-cursors 36
     # window borders and gaps
