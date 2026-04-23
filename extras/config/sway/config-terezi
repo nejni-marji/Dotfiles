@@ -49,7 +49,7 @@
     set $ws3 30: code
     set $ws4 40: game
     set $ws5 50: media
-    set $ws6 60
+    set $ws6 60: docs
     set $ws7 70
     set $ws8 80
     set $ws9 90
@@ -98,6 +98,7 @@ include /etc/sway/config-vars.d/*
     # idle inhibitor for gaming and movies
     exec sway-audio-idle-inhibit
 
+
 #
 ### Output configuration
 #
@@ -118,6 +119,7 @@ include /etc/sway/config-vars.d/*
     workspace $ws3 output HDMI-A-1
     workspace $ws4 output HDMI-A-1
     workspace $ws5 output HDMI-A-1
+    workspace $ws6 output HDMI-A-2
     workspace $ws9 output HDMI-A-2
     workspace $ws0 output HDMI-A-2
 
@@ -187,6 +189,7 @@ include /etc/sway/config-vars.d/*
     # start a terminal
     bindsym $mod+Return exec $term
     bindsym $mod+$shf+Return exec $term -T - sleep infinity
+    bindsym $mod+$ctl+Return exec $term -T - sleep 60
     bindsym $mod+$alt+Return exec $term -T - watch -tw -n60 'echo ${COLUMNS}x${LINES} ; echo ${COLUMNS}x${LINES} | figlet -k'
 
     # kill focused window

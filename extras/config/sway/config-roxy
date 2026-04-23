@@ -181,6 +181,7 @@ include /etc/sway/config-vars.d/*
     # start a terminal
     bindsym $mod+Return exec $term
     bindsym $mod+$shf+Return exec $term -T - sleep infinity
+    bindsym $mod+$ctl+Return exec $term -T - sleep 60
     bindsym $mod+$alt+Return exec $term -T - watch -tw -n60 'echo ${COLUMNS}x${LINES} ; echo ${COLUMNS}x${LINES} | figlet -k'
 
     # kill focused window
@@ -270,6 +271,7 @@ include /etc/sway/config-vars.d/*
 
     # bindsym $mod+slash focus output left
     # bindsym $mod+equal focus output right
+    bindsym $alt+grave move workspace to output right
 
     # special workspace commands
     bindsym $mod+$shf+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num-1 | if (10<=. and .<=90 and .%10==0) then "$ws\(./10)" else . end')"

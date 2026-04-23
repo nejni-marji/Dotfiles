@@ -33,7 +33,9 @@ export MPC_FORMAT='[[%artist% - ][%album% - ]%title%]|%file%'
 #export PYTHONPATH=~/.config/python/lib
 #export PYTHON_BASIC_REPL=1
 
-#export RUSTC_WRAPPER=sccache
+export RUSTC_WRAPPER=sccache
+
+[[ -v SWAYSOCK ]] || { pgrep -x sway >/dev/null && export SWAYSOCK=( $XDG_RUNTIME_DIR/sway-ipc.$UID.*.sock(Om[1]) ) }
 
 
 
