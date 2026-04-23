@@ -97,7 +97,7 @@ include /etc/sway/config-vars.d/*
     # per-host programs
     # idle inhibitor for gaming and movies
     exec sway-audio-idle-inhibit
-
+    for_window [all] inhibit_idle fullscreen
 
 #
 ### Output configuration

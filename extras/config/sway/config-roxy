@@ -391,3 +391,15 @@ include /etc/sway/config-vars.d/*
     }
 
 include /etc/sway/config.d/*
+
+#
+## WIP
+#
+
+bindsym $mod+$shf+b mode "disable binds"
+mode "disable binds" {
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+$shf+b mode "default"
+    bindsym $mod+b mode "default"
+}
