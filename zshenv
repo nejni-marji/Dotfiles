@@ -37,7 +37,7 @@ export RUSTC_WRAPPER=sccache
 
 [[ -v SWAYSOCK ]] || {
 	pgrep -x sway >/dev/null &&
-	export SWAYSOCK="$(ls $XDG_RUNTIME_DIR/sway-ipc.$UID.*.sock(Om[1]))"
+	export SWAYSOCK="$(echo $XDG_RUNTIME_DIR/sway-ipc.$UID.*.sock(Om[1]))"
 }
 
 
