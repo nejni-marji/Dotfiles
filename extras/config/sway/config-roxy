@@ -20,6 +20,8 @@
 #   * Utilities
 #   * Status bar
 
+
+
 #
 ### Variables
 #
@@ -370,7 +372,7 @@ include /etc/sway/config-vars.d/*
         separator_symbol " ⟨ "
         strip_workspace_numbers $strip_workspace_numbers
         colors {
-            background #323232
+            background #323232c0
             statusline #ffffff
             separator #ff8cda
             #                  border  bckgrn  text
