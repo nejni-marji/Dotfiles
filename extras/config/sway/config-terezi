@@ -15,8 +15,8 @@
 #     * Workspace bindings
 #       * Workspace configs
 #     * Layout bindings
-#     * Application bindings
-#   * Resizing
+#     * Resizing
+#   * Application bindings
 #   * Utilities
 #   * Status bar
 
@@ -121,9 +121,12 @@ include /etc/sway/config-vars.d/*
     assign [class="^[Ss]team$"]    workspace $ws4
 
     # window rules
-    for_window [title="Open Files"] move floating
-    for_window [title="pen Files"] resize set width 50 ppt height 80 ppt
-    for_window [title="pen Files"] move position center
+    for_window [title="Open Files"] floating enable
+    for_window [title="Open Files"] resize set width 50 ppt height 80 ppt
+    for_window [title="Open Files"] move position center
+
+    for_window [title="^pulsemixer$"] exec swaymsg 'mark volume, move scratchpad'
+    for_window [title="Natural Ambience Sound Generator"] exec swaymsg 'mark mynoise'
 
     # colors
     #       .class               outline   bckgrnd   frgrnd    indctr    border
@@ -135,6 +138,7 @@ include /etc/sway/config-vars.d/*
 
     # borders
     default_border $borders
+    default_floating_border $borders
     hide_edge_borders $hide_edge_borders
 
     # configure gaps
@@ -196,7 +200,7 @@ include /etc/sway/config-vars.d/*
 
     # floating windows
     floating_modifier $mod normal
-    bindsym $mod+$shf+$float floating toggle
+    bindsym $mod+$shf+$float floating toggle, border $borders
     bindsym $mod+$float focus mode_toggle
     bindsym $mod+$ctl+$float sticky toggle
 
@@ -310,19 +314,6 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$shf+g focus child
 
 #
-# Application binds
-#
-    bindsym $mod+$alt+b exec blueman-manager
-    bindsym $mod+$alt+d exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
-    bindsym $mod+$alt+f exec env MOZ_ENABLE_WAYLAND=1 firefox
-    bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
-    bindsym $mod+$alt+g exec gimp
-    bindsym $mod+$alt+s exec signal-desktop
-    bindsym $mod+$alt+t exec thunar
-    bindsym $mod+$alt+v exec foot pulsemixer
-    bindsym $mod+$alt+$shf+v exec pavucontrol
-
-#
 # Resizing containers:
 #
     bindsym $mod+$shf+r mode "resize"
@@ -340,6 +331,28 @@ include /etc/sway/config-vars.d/*
         bindsym Escape mode "default"
         bindsym $mod+$shf+r mode "default"
         bindsym $mod+r mode "default"
+    }
+
+#
+# Application binds
+#
+    bindsym $mod+$alt+b exec blueman-manager
+    bindsym $mod+$alt+d exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+    bindsym $mod+$alt+f exec env MOZ_ENABLE_WAYLAND=1 firefox
+    bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
+    bindsym $mod+$alt+g exec gimp
+    bindsym $mod+$alt+s exec signal-desktop
+    bindsym $mod+$alt+t exec thunar
+    bindsym $mod+$alt+v exec foot pulsemixer
+    bindsym $mod+$alt+$shf+v exec pavucontrol
+
+    # app launcher mode
+    set $app_mode "find app: my[n]oise"
+    bindsym $mod+b mode $app_mode
+    mode $app_mode {
+        bindsym n [con_mark="^mynoise$"] focus, mode default
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
     }
 
 #
