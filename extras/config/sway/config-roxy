@@ -351,29 +351,24 @@ include ~/Dotfiles/extras/secrets/sway-secrets
 #
 # Application binds
 #
-    bindsym $mod+$alt+b exec blueman-manager
-    bindsym $mod+$alt+c exec $term -T 'nvim sway config' nvim ~/.config/sway/config
-    bindsym $mod+$alt+$shf+c exec $term -T 'nvim -d sway config' nvim -d ~/.config/sway/config-*
-    bindsym $mod+$alt+d exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
-    bindsym $mod+$alt+f exec env MOZ_ENABLE_WAYLAND=1 firefox
+    bindsym $mod+$alt+b      exec blueman-manager
+    bindsym $mod+$alt+c      mode $cfg_mode
+    bindsym $mod+$alt+d      exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+    bindsym $mod+$alt+f      exec env MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
-    bindsym $mod+$alt+g exec gimp
-    bindsym $mod+$alt+$shf+g $cmd_secure
-    bindsym $mod+$alt+n exec ~/.config/sway/bin/mynoise_mark.sh
-    bindsym $mod+$alt+s exec signal-desktop
+    bindsym $mod+$alt+g      exec gimp
+    bindsym $mod+$alt+$shf+g exec $cmd_secure
+    bindsym $mod+$alt+n      exec ~/.config/sway/bin/mynoise_mark.sh
+    bindsym $mod+$alt+s      exec signal-desktop
     bindsym $mod+$alt+$shf+s exec steam --disable-gpu -cef-disable-gpu -no-cef-sandbox
-    bindsym $mod+$alt+t exec thunar
-    bindsym $mod+$alt+v exec ~/.config/sway/bin/volume_mark.sh
+    bindsym $mod+$alt+t      exec thunar
+    bindsym $mod+$alt+v      exec ~/.config/sway/bin/volume_mark.sh
     bindsym $mod+$alt+$shf+v exec pavucontrol
 
     # app launcher mode
     set $app_mode "quick apps: sS, g, G"
-    set $cfg_mode "configs: sway"
     bindsym $mod+b mode $app_mode
     mode $app_mode {
-        # bindsym c mode $cfg_mode
-        # bindsym s exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
-        # bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
         # bindsym g exec gimp, mode default
         # bindsym $shf+g $cmd_secure, mode default
 
@@ -383,9 +378,14 @@ include ~/Dotfiles/extras/secrets/sway-secrets
         bindsym BackSpace mode default
     }
 
+    # edit configs quickly
+    set $cfg_mode "configs: dsSzZ"
     mode $cfg_mode {
-        # bindsym s exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
-        # bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
+        bindsym d      exec $term -D ~/Dotfiles, mode default
+        bindsym s      exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
+        bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
+        bindsym z      exec $term -T 'nvim zshrc' nvim ~/.zsh, mode defaultrc
+        bindsym $shf+z exec $term -T 'nvim zshrc' nvim ~/.zshenv, mode default
 
         bindsym $mod+b mode default
         bindsym Return mode default
@@ -398,20 +398,20 @@ include ~/Dotfiles/extras/secrets/sway-secrets
 #
     # special keys to adjust volume via pulseaudio
     set $vol_sig && pkill -SIGRTMIN+1 i3blocks
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle $vol_sig
-    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5% $vol_sig
-    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5% $vol_sig
-    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle $vol_sig
+    bindsym --locked XF86AudioMute        exec pactl set-sink-mute   \@DEFAULT_SINK@   toggle $vol_sig
+    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@   -5%    $vol_sig
+    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@   +5%    $vol_sig
+    bindsym --locked XF86AudioMicMute     exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle $vol_sig
 
     # special keys to adjust brightness via brightnessctl
     set $bright_sig && pkill -SIGRTMIN+2 i3blocks
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%- $bright_sig
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+ $bright_sig
+    bindsym --locked XF86MonBrightnessUp   exec brightnessctl set 5%+ $bright_sig
 
     # take screenshots
-    bindsym --release Print       exec ~/.config/sway/bin/screenshot.sh
-    bindsym $mod+p                exec ~/.config/sway/bin/screenshot.sh
-    bindsym $mod+$shf+p           exec ~/.config/sway/bin/screenshot.sh
+    bindsym --release Print exec ~/.config/sway/bin/screenshot.sh
+    bindsym $mod+p          exec ~/.config/sway/bin/screenshot.sh
+    bindsym $mod+$shf+p     exec ~/.config/sway/bin/screenshot.sh
 
     # locate cursor
     bindsym $mod+semicolon exec ~/Working/swaywm/git/wl-find-cursor-reticle/target/release/wl-reticle
