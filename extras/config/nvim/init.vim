@@ -128,7 +128,7 @@ set updatetime=100
 		set ignorecase smartcase
 	" movement
 		set number relativenumber
-		set cursorline nocursorcolumn
+		set cursorline cursorcolumn
 		set nostartofline "todo: default on, why?
 		" buffer space at edge of screen:
 		set scrolloff=5

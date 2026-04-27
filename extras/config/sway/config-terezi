@@ -36,37 +36,9 @@
     set $down t
     set $up n
     set $right s
-    # workspace names
-    set $ws1 10: chat
-    set $ws2 20: web
-    set $ws3 30: code
-    set $ws4 40: game
-    set $ws5 50: media
-    set $ws6 60: docs
-    set $ws7 70
-    set $ws8 80
-    set $ws9 90
-    set $ws0 100
-    # preferred executables
-    set $term foot
-    set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
-    set $wlsunset wlsunset -t 4500 -T 6500 -s 21:00 -S 9:00
-    # wallpapers
-    set $wallpaper       ~/.local/share/wallpapers/symphogear/2391197.png
-    set $lockscreen      ~/.local/share/wallpapers/symphogear/2391197_blur.png
-    # set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
-    # fonts and themes
-    set $font ComicCode 12
-    set $cursor catppuccin-latte-pink-cursors 24
-    # window borders and gaps
-    set $borders normal 3
-    set $hide_edge_borders smart_no_gaps
-    set $gaps_inner 10
-    set $gaps_outer 20
-    set $strip_workspace_numbers no
-
-include /etc/sway/config-vars.d/*
-include ~/Dotfiles/extras/secrets/sway-secrets
+    # include
+    include ~/.config/sway/config.d/host-include
+    include ~/Dotfiles/extras/secrets/sway-secrets
 
 #
 ### Autostart
@@ -87,30 +59,13 @@ include ~/Dotfiles/extras/secrets/sway-secrets
         before-sleep 'swaylock -f -i $lockscreen' \
         ;
 
-    # per-host programs
-    # idle inhibitor for gaming and movies
-    for_window [all] inhibit_idle fullscreen
 
 #
 ### Output configuration
 #
-    # configure output arrangement
-    output HDMI-A-1 resolution 1920x1080 position 1920,0
-    output HDMI-A-2 resolution 1920x1080 position 0,0
-
     # set wallpapers
     # we might also set a video wallpaper, but this is a fallback
     output * bg $wallpaper fill
-
-    # default workspaces
-    workspace $ws1 output HDMI-A-2
-    workspace $ws2 output HDMI-A-1
-    workspace $ws3 output HDMI-A-1
-    workspace $ws4 output HDMI-A-1
-    workspace $ws5 output HDMI-A-1
-    workspace $ws6 output HDMI-A-2
-    workspace $ws9 output HDMI-A-2
-    workspace $ws0 output HDMI-A-2
 
     # assign apps to workspaces
     assign [app_id="^[Dd]iscord$"] workspace $ws1
@@ -391,6 +346,7 @@ include ~/Dotfiles/extras/secrets/sway-secrets
         bindsym d      exec $term -D ~/Dotfiles, mode default
         bindsym s      exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
         bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
+        bindsym v      exec $term -T 'nvim vimrc' nvim ~/.config/nvim/init.vim, mode default
         bindsym z      exec $term -T 'nvim zshrc' nvim ~/.zsh, mode defaultrc
         bindsym $shf+z exec $term -T 'nvim zshrc' nvim ~/.zshenv, mode default
 
@@ -448,5 +404,3 @@ include ~/Dotfiles/extras/secrets/sway-secrets
             urgent_workspace   #ff9933 #ffc68c #000000
         }
     }
-
-include /etc/sway/config.d/*
