@@ -13,6 +13,7 @@
 /extras/config/mpv/watch_later/
 /extras/config/nvim/data/
 /extras/config/weechat
+/extras/config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 /zsh/*.lck
 
 # secrets
