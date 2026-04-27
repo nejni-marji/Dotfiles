@@ -118,15 +118,6 @@ include /etc/sway/config-vars.d/*
     assign [class="^[Ss]team$"]    workspace $ws4
 
     # window rules
-    for_window [title="^Open Files$"] floating enable
-    for_window [title="^Open Files$"] resize set width 50 ppt height 80 ppt
-    for_window [title="^Open Files$"] move position center
-
-    for_window [app_id="^blueman-manager$"] mark bt
-    for_window [app_id="^blueman-manager$"] floating enable
-    for_window [app_id="^blueman-manager$"] resize set width 50 ppt height 80 ppt
-    for_window [app_id="^blueman-manager$"] move position center
-
     for_window [title="^pulsemixer$"] mark vol
     for_window [title="^pulsemixer$"] floating enable
     for_window [title="^pulsemixer$"] move scratchpad
@@ -137,6 +128,15 @@ include /etc/sway/config-vars.d/*
     for_window [app_id="^org.pulseaudio.pavucontrol$"] floating enable
     for_window [app_id="^org.pulseaudio.pavucontrol$"] resize set width 50 ppt height 80 ppt
     for_window [app_id="^org.pulseaudio.pavucontrol$"] move position center
+
+    for_window [title="^Open Files$"] floating enable
+    for_window [title="^Open Files$"] resize set width 50 ppt height 80 ppt
+    for_window [title="^Open Files$"] move position center
+
+    for_window [app_id="^blueman-manager$"] mark bt
+    for_window [app_id="^blueman-manager$"] floating enable
+    for_window [app_id="^blueman-manager$"] resize set width 50 ppt height 80 ppt
+    for_window [app_id="^blueman-manager$"] move position center
 
     for_window [title="myNoise ®|Natural Ambience Sound Generator"] mark mynoise
     for_window [title="myNoise ®|Natural Ambience Sound Generator"] floating enable
