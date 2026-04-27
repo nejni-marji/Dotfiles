@@ -24,4 +24,5 @@ export RUSTC_WRAPPER=sccache
 }
 
 # envvar to allow for android-specific configs
+export MyAndroid=false
 [[ $(uname -o) == Android ]] && export MyAndroid=true
