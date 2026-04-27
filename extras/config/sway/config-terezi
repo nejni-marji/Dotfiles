@@ -360,8 +360,9 @@ include ~/Dotfiles/extras/secrets/sway-secrets
 # Application binds
 #
     bindsym $mod+$alt+b exec blueman-manager
-    bindsym $mod+$alt+c exec $term -T 'nvim sway config' nvim ~/.config/sway/config
-    bindsym $mod+$alt+$shf+c exec $term -T 'nvim -d sway config' nvim -d ~/.config/sway/config-*
+    bindsym $mod+$alt+c mode $cfg_mode
+    # bindsym $mod+$alt+c exec $term -T 'nvim sway config' nvim ~/.config/sway/config
+    # bindsym $mod+$alt+$shf+c exec $term -T 'nvim -d sway config' nvim -d ~/.config/sway/config-*
     bindsym $mod+$alt+d exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
     bindsym $mod+$alt+f exec env MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
@@ -392,8 +393,9 @@ include ~/Dotfiles/extras/secrets/sway-secrets
     }
 
     mode $cfg_mode {
-        # bindsym s exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
-        # bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
+        bindsym s      exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
+        bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
+        bindsym d      exec $term -D ~/Dotfiles
 
         bindsym $mod+b mode default
         bindsym Return mode default
