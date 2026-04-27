@@ -13,13 +13,10 @@
 	set $ws9 90:bg
 	set $ws0 100
 	# preferred executables
-	set $term foot
-	set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
 	set $wlsunset wlsunset -t 4000 -T 5500 -s 21:00 -S 9:00
 	# wallpapers
 	set $wallpaper       ~/.local/share/wallpapers/fork_yuri_wp7124847.png
 	set $lockscreen      ~/.local/share/wallpapers/fork_yuri_wp7124847_blur.png
-	# set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
 	# fonts and themes
 	set $font ComicCode 16
 	set $cursor catppuccin-latte-pink-cursors 36
@@ -38,7 +35,6 @@
 
 #
 ### Output configuration
-#
 #
     # configure output arrangement
     output eDP-1 resolution 1920x1080 position 0,0

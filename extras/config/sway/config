@@ -6,7 +6,8 @@
 ### TABLE OF CONTENTS
 #   * Variables
 #   * Autostart
-#   * Output configuration
+#   * Includes
+#   * Graphical configuration
 #     * Themeing
 #   * Input configuration
 #   * Key bindings
@@ -36,6 +37,10 @@
     set $down t
     set $up n
     set $right s
+    # preferred executables
+    set $term foot
+    set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
+
     # include
     include ~/.config/sway/config.d/host-include
     include ~/Dotfiles/extras/secrets/sway-secrets
@@ -43,12 +48,11 @@
 #
 ### Autostart
 #
-    # redshift
+    # screen dimming
     # exec $wlsunset
+
     # notification server
     exec mako
-    # video wallpaper?
-    # exec mpvpaper --help
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
@@ -59,13 +63,38 @@
         before-sleep 'swaylock -f -i $lockscreen' \
         ;
 
-
 #
-### Output configuration
+### Graphical configuration
 #
     # set wallpapers
-    # we might also set a video wallpaper, but this is a fallback
     output * bg $wallpaper fill
+
+    # font
+    font pango:$font
+
+    # colors
+    #       .class               outline   bckgrnd   frgrnd    indctr    border
+      client.focused             #e667be   #ff8cda   #000000   #8cdaff   #ff8cda
+      client.focused_inactive    #666666   #5f676a   #ffffff   #484e50   #5f676a
+      client.focused_tab_title   #666666   #5f676a   #ffffff   #484e50   #5f676a
+      client.unfocused           #666666   #222222   #888888   #292d2e   #222222
+      client.urgent              #ff9933   #ffc68c   #000000   #8cdaff   #ffc68c
+
+    # borders
+    default_border $borders
+    default_floating_border $borders
+    hide_edge_borders $hide_edge_borders
+
+    # configure gaps
+    smart_gaps inverse_outer
+    gaps inner $gaps_inner
+    gaps outer $gaps_outer
+
+    # sway ux settings
+    title_align center
+    titlebar_padding 30 4
+    force_display_urgency_hint 500
+    focus_wrapping no
 
     # assign apps to workspaces
     assign [app_id="^[Dd]iscord$"] workspace $ws1
@@ -103,33 +132,6 @@
 
     for_window [title="^Steam Settings$"] floating enable
     for_window [title="^Steam Settings$"] border $borders
-
-    # colors
-    #       .class               outline   bckgrnd   frgrnd    indctr    border
-      client.focused             #e667be   #ff8cda   #000000   #8cdaff   #ff8cda
-      client.focused_inactive    #666666   #5f676a   #ffffff   #484e50   #5f676a
-      client.focused_tab_title   #666666   #5f676a   #ffffff   #484e50   #5f676a
-      client.unfocused           #666666   #222222   #888888   #292d2e   #222222
-      client.urgent              #ff9933   #ffc68c   #000000   #8cdaff   #ffc68c
-
-    # font
-    font pango:$font
-
-    # borders
-    default_border $borders
-    default_floating_border $borders
-    hide_edge_borders $hide_edge_borders
-
-    # configure gaps
-    smart_gaps inverse_outer
-    gaps inner $gaps_inner
-    gaps outer $gaps_outer
-
-    # miscellaneous options
-    title_align center
-    titlebar_padding 30 4
-    force_display_urgency_hint 500
-    focus_wrapping no
 
 #
 ### Input configuration
@@ -345,7 +347,7 @@
     mode $cfg_mode {
         bindsym d      exec $term -D ~/Dotfiles, mode default
         bindsym s      exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
-        bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
+        bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config.d/host-include-*, mode default
         bindsym v      exec $term -T 'nvim vimrc' nvim ~/.config/nvim/init.vim, mode default
         bindsym z      exec $term -T 'nvim zshrc' nvim ~/.zsh, mode defaultrc
         bindsym $shf+z exec $term -T 'nvim zshrc' nvim ~/.zshenv, mode default
@@ -398,6 +400,7 @@
             background #323232
             statusline #ffffff
             separator #ff8cda
+            binding_mode #5cccb8 #8cdaff #000000
             #                  border  bckgrn  text
             focused_workspace  #e667be #ff8cda #000000
             inactive_workspace #666666 #323232 #ffffff
