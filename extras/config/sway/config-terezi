@@ -134,6 +134,10 @@ include /etc/sway/config-vars.d/*
     for_window [title="^pulsemixer$"] resize set width 50 ppt height 80 ppt
     for_window [title="^pulsemixer$"] move position center
 
+    for_window [app_id="^org.pulseaudio.pavucontrol$"] floating enable
+    for_window [app_id="^org.pulseaudio.pavucontrol$"] resize set width 50 ppt height 80 ppt
+    for_window [app_id="^org.pulseaudio.pavucontrol$"] move position center
+
     # colors
     #       .class               outline   bckgrnd   frgrnd    indctr    border
       client.focused             #e667be   #ff8cda   #000000   #8cdaff   #ff8cda
@@ -350,10 +354,7 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$alt+g exec gimp
     bindsym $mod+$alt+s exec signal-desktop
     bindsym $mod+$alt+t exec thunar
-    bindsym $mod+$alt+v exec swaymsg -t get_marks | \
-        jq -e 'contains(["vol"])' && \
-        swaymsg '[con_mark="^vol$"] focus' || \
-        swaymsg 'exec $term -T pulsemixer pulsemixer'
+    bindsym $mod+$alt+v exec ~/.config/sway/bin/volume_mark.sh
     bindsym $mod+$alt+$shf+v exec pavucontrol
 
     # app launcher mode
