@@ -125,7 +125,7 @@ include /etc/sway/config-vars.d/*
     for_window [title="Open Files"] resize set width 50 ppt height 80 ppt
     for_window [title="Open Files"] move position center
 
-    for_window [title="^pulsemixer$"] exec swaymsg 'mark volume, move scratchpad'
+    #for_window [title="^pulsemixer$"] exec swaymsg 'mark volume, move scratchpad'
     for_window [title="Natural Ambience Sound Generator"] exec swaymsg 'mark mynoise'
 
     # colors
@@ -151,7 +151,7 @@ include /etc/sway/config-vars.d/*
     # miscellaneous options
     title_align center
     titlebar_padding 30 4
-    force_display_urgency_hint 1000
+    force_display_urgency_hint 500
     # kind of a training wheel until i learn j/k movement
     focus_wrapping no
 
