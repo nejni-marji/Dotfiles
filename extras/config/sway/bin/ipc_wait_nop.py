@@ -14,10 +14,6 @@ def on_binding(self, event):
 def run_cmd(*args):
 	print(args)
 
-	if args[0] == 'focus-or-create':
-		if args[1] == 'volume':
-			pass
-
 if __name__ == '__main__':
 	sway.on('binding', on_binding)
 	sway.main()

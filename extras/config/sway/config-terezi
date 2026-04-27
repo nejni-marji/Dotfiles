@@ -102,9 +102,6 @@ include /etc/sway/config-vars.d/*
     # we might also set a video wallpaper, but this is a fallback
     output * bg $wallpaper fill
 
-    # font
-    font pango:$font
-
     # default workspaces
     workspace $ws1 output HDMI-A-2
     workspace $ws2 output HDMI-A-1
@@ -121,12 +118,21 @@ include /etc/sway/config-vars.d/*
     assign [class="^[Ss]team$"]    workspace $ws4
 
     # window rules
-    for_window [title="Open Files"] floating enable
-    for_window [title="Open Files"] resize set width 50 ppt height 80 ppt
-    for_window [title="Open Files"] move position center
+    for_window [title="^Open Files$"] floating enable
+    for_window [title="^Open Files$"] resize set width 50 ppt height 80 ppt
+    for_window [title="^Open Files$"] move position center
 
-    #for_window [title="^pulsemixer$"] exec swaymsg 'mark volume, move scratchpad'
-    for_window [title="Natural Ambience Sound Generator"] exec swaymsg 'mark mynoise'
+    for_window [app_id="^blueman-manager$"] mark bt
+    for_window [app_id="^blueman-manager$"] floating enable
+    for_window [app_id="^blueman-manager$"] resize set width 50 ppt height 80 ppt
+    for_window [app_id="^blueman-manager$"] move position center
+
+    for_window [title="^pulsemixer$"] mark vol
+    for_window [title="^pulsemixer$"] floating enable
+    for_window [title="^pulsemixer$"] move scratchpad
+    for_window [title="^pulsemixer$"] scratchpad show
+    for_window [title="^pulsemixer$"] resize set width 50 ppt height 80 ppt
+    for_window [title="^pulsemixer$"] move position center
 
     # colors
     #       .class               outline   bckgrnd   frgrnd    indctr    border
@@ -135,6 +141,9 @@ include /etc/sway/config-vars.d/*
       client.focused_tab_title   #666666   #5f676a   #ffffff   #484e50   #5f676a
       client.unfocused           #666666   #222222   #888888   #292d2e   #222222
       client.urgent              #ff9933   #ffc68c   #000000   #8cdaff   #ffc68c
+
+    # font
+    font pango:$font
 
     # borders
     default_border $borders
@@ -145,23 +154,20 @@ include /etc/sway/config-vars.d/*
     smart_gaps inverse_outer
     gaps inner $gaps_inner
     gaps outer $gaps_outer
-    # bindsym $mod+$ctl+g      gaps inner all set $gaps_inner ; gaps outer all set $gaps_outer
-    # bindsym $mod+$ctl+$shf+g gaps inner all set 0      ; gaps outer all set 0
 
     # miscellaneous options
     title_align center
     titlebar_padding 30 4
     force_display_urgency_hint 500
-    # kind of a training wheel until i learn j/k movement
     focus_wrapping no
 
 #
 ### Input configuration
 #
-    # run 'swaymsg -t get_inputs' and 'man 5 sway-input'
     input type:keyboard {
         xkb_layout us
         xkb_variant dvorak
+        # disabled due to keyd
         #xkb_options ctrl:swap_lwin_lctl,ctrl:swap_rwin_rctl,caps:ctrl_modifier,caps:nocaps
     }
 
@@ -175,9 +181,10 @@ include /etc/sway/config-vars.d/*
         scroll_method two_finger
     }
 
-    # hide cursor when idle, in ms
-    seat seat0 xcursor_theme $cursor
-    seat * hide_cursor 5000
+    seat * {
+        xcursor_theme $cursor
+        hide_cursor 5000
+    }
 
 #
 ### Key bindings
@@ -271,10 +278,10 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+bracketright workspace next_on_output
     bindsym $mod+BackSpace workspace back_and_forth
     bindsym $mod+$shf+BackSpace move container to workspace back_and_forth
-    bindsym $alt+Tab exec '[[ "$(swaymsg -t get_outputs | jq length)" -eq 1 ]] && swaymsg workspace back_and_forth || swaymsg focus output right'
-
-    # bindsym $mod+slash focus output left
-    # bindsym $mod+equal focus output right
+    bindsym $alt+Tab exec swaymsg -t get_outputs | \
+        jq -e 'length==1' && \
+        swaymsg workspace back_and_forth || \
+        swaymsg focus output right
     bindsym $alt+grave move workspace to output right
 
     # special workspace commands
@@ -343,8 +350,10 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$alt+g exec gimp
     bindsym $mod+$alt+s exec signal-desktop
     bindsym $mod+$alt+t exec thunar
-    bindsym $mod+$alt+v exec foot pulsemixer
-    #bindsym $mod+alt+v nop ipc focus-or-create volume
+    bindsym $mod+$alt+v exec swaymsg -t get_marks | \
+        jq -e 'contains(["vol"])' && \
+        swaymsg '[con_mark="^vol$"] focus' || \
+        swaymsg 'exec $term -T pulsemixer pulsemixer'
     bindsym $mod+$alt+$shf+v exec pavucontrol
 
     # app launcher mode
