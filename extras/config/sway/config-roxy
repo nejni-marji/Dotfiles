@@ -405,6 +405,7 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$shf+p           exec ~/.config/sway/bin/screenshot.sh
 
     # locate cursor
+    bindsym $mod+semicolon exec ~/Working/swaywm/git/wl-find-cursor-reticle/target/release/wl-reticle
     bindsym $mod+z exec ~/Working/swaywm/git/wl-find-cursor-reticle/target/release/wl-reticle
 
     # gaming crosshair
