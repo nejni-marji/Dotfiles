@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 while
 	swaymsg -t get_tree |
