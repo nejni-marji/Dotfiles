@@ -110,11 +110,11 @@ set updatetime=100
 		" status line
 			"todo: maybe a better stl?
 			"todo: this WILL make \V break lightline
-			set statusline=
-			set stl+=%f\ %<%m%r%y
-			set stl+=%=
-			set stl+=0x%B\ 
-			set stl+=%-8(%l/%L%)\ %-7(%c%V%)\ %P
+			" set statusline=
+			" set stl+=%f\ %<%m%r%y
+			" " set stl+=%=
+			" set stl+=0x%B\ 
+			" set stl+=%-8(%l/%L%)\ %-7(%c%V%)\ %P
 		set showmode
 	" }}}
 	" tabs, windows, buffers
