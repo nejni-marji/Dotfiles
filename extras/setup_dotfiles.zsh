@@ -30,6 +30,7 @@ mkdir -pv nvim/data/undo/$HOST
 
 cd ~/Dotfiles
 host_suffixed=(
+	# remember to update the .gitignore in tandem with this
 	extras/config/foot/foot.ini
 	extras/config/i3blocks/bin/date_fuzzy_emoji_clock.py
 	extras/config/i3blocks/config
