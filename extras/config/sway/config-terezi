@@ -52,8 +52,8 @@
     set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
     set $wlsunset wlsunset -t 4500 -T 6500 -s 21:00 -S 9:00
     # wallpapers
-    set $wallpaper       ~/.local/share/wallpapers/pastel-splash.jpg
-    set $lockscreen      ~/.local/share/wallpapers/pastel-splash-gauss10.png
+    set $wallpaper       ~/.local/share/wallpapers/symphogear/2391197.png
+    set $lockscreen      ~/.local/share/wallpapers/symphogear/2391197_blur.png
     # set $video_wallpaper ~/.local/share/wallpapers/fish-aquarium.1920x1080.mp4
     # fonts and themes
     set $font ComicCode 12
@@ -66,6 +66,7 @@
     set $strip_workspace_numbers no
 
 include /etc/sway/config-vars.d/*
+include ~/Dotfiles/extras/secrets/sway-secrets
 
 #
 ### Autostart
@@ -79,7 +80,7 @@ include /etc/sway/config-vars.d/*
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
-    exec swayidle -w \
+    exec_always pkill swayidle; swayidle -w \
         timeout 600 'swaymsg "output * dpms off"' \
         timeout 630 'swaylock -f -i $lockscreen' \
         resume 'swaymsg "output * dpms on"' \
@@ -360,12 +361,15 @@ include /etc/sway/config-vars.d/*
 #
     bindsym $mod+$alt+b exec blueman-manager
     bindsym $mod+$alt+c exec $term -T 'nvim sway config' nvim ~/.config/sway/config
+    bindsym $mod+$alt+$shf+c exec $term -T 'nvim -d sway config' nvim -d ~/.config/sway/config-*
     bindsym $mod+$alt+d exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
     bindsym $mod+$alt+f exec env MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
     bindsym $mod+$alt+g exec gimp
+    bindsym $mod+$alt+$shf+g $cmd_secure
     bindsym $mod+$alt+n exec ~/.config/sway/bin/mynoise_mark.sh
     bindsym $mod+$alt+s exec signal-desktop
+    bindsym $mod+$alt+$shf+s exec steam --disable-gpu -cef-disable-gpu -no-cef-sandbox
     bindsym $mod+$alt+t exec thunar
     bindsym $mod+$alt+v exec ~/.config/sway/bin/volume_mark.sh
     bindsym $mod+$alt+$shf+v exec pavucontrol
@@ -375,10 +379,11 @@ include /etc/sway/config-vars.d/*
     set $cfg_mode "configs: sway"
     bindsym $mod+b mode $app_mode
     mode $app_mode {
-        bindsym c mode $cfg_mode
-        bindsym s exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
-        bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
-        bindsym g exec gimp, mode default
+        # bindsym c mode $cfg_mode
+        # bindsym s exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
+        # bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
+        # bindsym g exec gimp, mode default
+        # bindsym $shf+g $cmd_secure, mode default
 
         bindsym $mod+b mode default
         bindsym Return mode default
@@ -387,8 +392,8 @@ include /etc/sway/config-vars.d/*
     }
 
     mode $cfg_mode {
-        bindsym s exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
-        bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
+        # bindsym s exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
+        # bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
 
         bindsym $mod+b mode default
         bindsym Return mode default

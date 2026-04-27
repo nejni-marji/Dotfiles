@@ -66,6 +66,7 @@
     set $strip_workspace_numbers yes
 
 include /etc/sway/config-vars.d/*
+include ~/Dotfiles/extras/secrets/sway-secrets
 
 #
 ### Autostart
@@ -352,12 +353,15 @@ include /etc/sway/config-vars.d/*
 #
     bindsym $mod+$alt+b exec blueman-manager
     bindsym $mod+$alt+c exec $term -T 'nvim sway config' nvim ~/.config/sway/config
+    bindsym $mod+$alt+$shf+c exec $term -T 'nvim -d sway config' nvim -d ~/.config/sway/config-*
     bindsym $mod+$alt+d exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
     bindsym $mod+$alt+f exec env MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
     bindsym $mod+$alt+g exec gimp
+    bindsym $mod+$alt+$shf+g $cmd_secure
     bindsym $mod+$alt+n exec ~/.config/sway/bin/mynoise_mark.sh
     bindsym $mod+$alt+s exec signal-desktop
+    bindsym $mod+$alt+$shf+s exec steam --disable-gpu -cef-disable-gpu -no-cef-sandbox
     bindsym $mod+$alt+t exec thunar
     bindsym $mod+$alt+v exec ~/.config/sway/bin/volume_mark.sh
     bindsym $mod+$alt+$shf+v exec pavucontrol
@@ -367,10 +371,11 @@ include /etc/sway/config-vars.d/*
     set $cfg_mode "configs: sway"
     bindsym $mod+b mode $app_mode
     mode $app_mode {
-        bindsym c mode $cfg_mode
-        bindsym s exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
-        bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
-        bindsym g exec gimp, mode default
+        # bindsym c mode $cfg_mode
+        # bindsym s exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
+        # bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
+        # bindsym g exec gimp, mode default
+        # bindsym $shf+g $cmd_secure, mode default
 
         bindsym $mod+b mode default
         bindsym Return mode default
@@ -379,8 +384,8 @@ include /etc/sway/config-vars.d/*
     }
 
     mode $cfg_mode {
-        bindsym s exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
-        bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
+        # bindsym s exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
+        # bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config-*, mode default
 
         bindsym $mod+b mode default
         bindsym Return mode default
