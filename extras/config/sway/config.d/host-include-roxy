@@ -7,10 +7,10 @@
 	set $ws3 30:code
 	set $ws4 40:game
 	set $ws5 50:media
-	set $ws6 60
+	set $ws6 60:docs
 	set $ws7 70
 	set $ws8 80
-	set $ws9 90:bg
+	set $ws9 90
 	set $ws0 100
 	# preferred executables
 	set $wlsunset wlsunset -t 4000 -T 5500 -s 21:00 -S 9:00
