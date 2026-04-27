@@ -335,17 +335,17 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$alt+g exec gimp
     bindsym $mod+$alt+s exec signal-desktop
     bindsym $mod+$alt+t exec thunar
-    # bindsym $mod+$alt+v exec foot pulsemixer
-    bindsym $mod+alt+v nop ipc focus-or-create volume
+    bindsym $mod+$alt+v exec foot pulsemixer
+    #bindsym $mod+alt+v nop ipc focus-or-create volume
     bindsym $mod+$alt+$shf+v exec pavucontrol
 
     # app launcher mode
-    set $app_mode "goto: [v]olume, my[n]oise"
+    set $app_mode "wip: [v]olume, my[n]oise"
     bindsym $mod+b mode $app_mode
     mode $app_mode {
         # this does not mode default if it can't find the container
         bindsym n [title="Natural Ambience Sound Generator"] focus, mode "default"
-        # bindsym v [title="^pulsemixer$"] focus, mode "default"
+        bindsym v [title="^pulsemixer$"] focus, mode "default"
 
         bindsym $mod+b mode "default"
         bindsym Return mode "default"
