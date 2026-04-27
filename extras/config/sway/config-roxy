@@ -71,7 +71,7 @@ include /etc/sway/config-vars.d/*
 ### Autostart
 #
     # redshift
-    exec $wlsunset
+    # exec $wlsunset
     # notification server
     exec mako
     # video wallpaper?
@@ -129,6 +129,13 @@ include /etc/sway/config-vars.d/*
     for_window [app_id="^org.pulseaudio.pavucontrol$"] floating enable
     for_window [app_id="^org.pulseaudio.pavucontrol$"] resize set width 50 ppt height 80 ppt
     for_window [app_id="^org.pulseaudio.pavucontrol$"] move position center
+
+    for_window [title="myNoise ®|Natural Ambience Sound Generator"] mark mynoise
+    for_window [title="myNoise ®|Natural Ambience Sound Generator"] floating enable
+    for_window [title="myNoise ®|Natural Ambience Sound Generator"] move scratchpad
+    for_window [title="myNoise ®|Natural Ambience Sound Generator"] scratchpad show
+    for_window [title="myNoise ®|Natural Ambience Sound Generator"] resize set width 50 ppt height 80 ppt
+    for_window [title="myNoise ®|Natural Ambience Sound Generator"] move position center
 
     # colors
     #       .class               outline   bckgrnd   frgrnd    indctr    border
@@ -344,6 +351,7 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+$alt+f exec env MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
     bindsym $mod+$alt+g exec gimp
+    bindsym $mod+$alt+n exec ~/.config/sway/bin/mynoise_mark.sh
     bindsym $mod+$alt+s exec signal-desktop
     bindsym $mod+$alt+t exec thunar
     bindsym $mod+$alt+v exec ~/.config/sway/bin/volume_mark.sh
