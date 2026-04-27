@@ -293,10 +293,10 @@ include ~/Dotfiles/extras/secrets/sway-secrets
     bindsym $alt+grave move workspace to output right
 
     # special workspace commands
-    bindsym $mod+$shf+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num-1 | if (10<=. and .<=90 and .%10==0) then "$ws\(./10)" else . end')"
-    bindsym $mod+$shf+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num+1 | if (10<=. and .<=90 and .%10==0) then "$ws\(./10)" else . end')"
-    bindsym $mod+$ctl+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num | ((.-1)/10|floor) | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
-    bindsym $mod+$ctl+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num | (./10+1|floor) | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
+    bindsym $mod+$shf+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num-1 | if (10<=. and .<=90 and .%10==0)      then "$ws\(./10)" else . end')"
+    bindsym $mod+$shf+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num+1 | if (10<=. and .<=90 and .%10==0)      then "$ws\(./10)" else . end')"
+    bindsym $mod+$ctl+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num   | ((.-1)/10|floor) | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
+    bindsym $mod+$ctl+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num   | (./10+1|floor) | if (1<=. and .<=9)   then "$ws\(.)" else .*10 end')"
 
     # scratchpad (technically kind of a workspace)
     bindsym $mod+$shf+minus move scratchpad
@@ -312,7 +312,7 @@ include ~/Dotfiles/extras/secrets/sway-secrets
     # bindsym $mod+period layout toggle split
 
     # right-hand layout keys
-    bindsym $mod+c layout toggle split
+    bindsym $mod+c layout toggle splith splitv
     bindsym $mod+r layout toggle tabbed stacking
     bindsym $mod+l split none
     bindsym $mod+w splith
