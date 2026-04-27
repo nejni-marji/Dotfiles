@@ -309,10 +309,12 @@
         bindsym Up resize shrink height 10px
         bindsym Right resize grow width 10px
 
-        bindsym Return mode default
-        bindsym Escape mode default
         bindsym $mod+$shf+r mode default
         bindsym $mod+r mode default
+        bindsym Return mode default
+        bindsym Escape mode default
+        bindsym BackSpace mode default
+        bindsym $ctl+bracketleft mode default
     }
 
 #
@@ -343,10 +345,11 @@
         bindsym Return mode default
         bindsym Escape mode default
         bindsym BackSpace mode default
+        bindsym $ctl+bracketleft mode default
     }
 
     # edit configs quickly
-    set $cfg_mode "configs: dsSzZ"
+    set $cfg_mode "configs: dsSvzZ"
     mode $cfg_mode {
         bindsym d      exec $term -D ~/Dotfiles, mode default
         bindsym s      exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
@@ -355,10 +358,11 @@
         bindsym z      exec $term -T 'nvim zshrc' nvim ~/.zsh, mode defaultrc
         bindsym $shf+z exec $term -T 'nvim zshrc' nvim ~/.zshenv, mode default
 
-        bindsym $mod+b mode default
+        bindsym $mod+$alt+c mode default
         bindsym Return mode default
         bindsym Escape mode default
         bindsym BackSpace mode default
+        bindsym $ctl+bracketleft mode default
     }
 
 #
