@@ -14,9 +14,6 @@
 	set $ws0 100
 	# preferred executables
 	set $wlsunset wlsunset -t 4000 -T 5500 -s 21:00 -S 9:00
-	# wallpapers
-	set $wallpaper       ~/.local/share/wallpapers/fork_yuri_wp7124847.png
-	set $lockscreen      ~/.local/share/wallpapers/fork_yuri_wp7124847_blur.png
 	# fonts and themes
 	set $font ComicCode 16
 	set $cursor catppuccin-latte-pink-cursors 36

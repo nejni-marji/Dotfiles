@@ -14,9 +14,6 @@
 	set $ws0 100
 	# preferred executables
 	set $wlsunset wlsunset -t 4500 -T 6500 -s 21:00 -S 9:00
-	# wallpapers
-	set $wallpaper       ~/.local/share/wallpapers/symphogear/2391197.png
-	set $lockscreen      ~/.local/share/wallpapers/symphogear/2391197_blur.png
 	# fonts and themes
 	set $font ComicCode 12
 	set $cursor catppuccin-latte-pink-cursors 24

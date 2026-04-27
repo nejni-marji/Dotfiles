@@ -40,6 +40,9 @@
     # preferred executables
     set $term foot
     set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
+    # wallpapers
+    set $wallpaper  ~/.local/share/wallpapers/wallpaper
+    set $lockscreen ~/.local/share/wallpapers/lockscreen
 
     # include
     include ~/.config/sway/config.d/host-include
