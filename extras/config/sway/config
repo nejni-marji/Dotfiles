@@ -167,7 +167,6 @@
     # start a terminal
     bindsym $mod+Return exec $term
     bindsym $mod+$shf+Return exec $term -T - sleep infinity
-    bindsym $mod+$ctl+Return exec $term -T - sleep 60
     bindsym $mod+$alt+Return exec $term -T - watch -tw -n60 'echo ${COLUMNS}x${LINES} ; echo ${COLUMNS}x${LINES} | figlet -k'
 
     # kill focused window
