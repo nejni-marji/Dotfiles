@@ -184,6 +184,8 @@
     bindsym $mod+$shf+$float floating toggle, border $borders
     bindsym $mod+$float focus mode_toggle
     bindsym $mod+$ctl+$float sticky toggle
+    # TODO: make this check if the focused window is floating
+    bindsym $mod+$shf+m resize set width 50 ppt height 80 ppt, move position center
 
     # exit sway (logs you out of your wayland session)
     bindsym $mod+$shf+e exec swaynag -t warning \

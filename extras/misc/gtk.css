@@ -1,0 +1,18 @@
+/* define color variables */
+@define-color theme_selected_bg_color #ff8cda;
+@define-color theme_selected_fg_color #000000;
+
+entry selection,
+entry selection:focus,
+textview text:selected,
+textview text selection,
+textview text selection:focus,
+.view:selected,
+.view text:selected,
+.view text selection,
+.view text selection:focus,
+*:selected,
+*:selected:focus {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
