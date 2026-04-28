@@ -58,7 +58,7 @@ def recurse:
 $workspace |
 recurse |
 # after ], dot, >,   before HVTS[
-gsub("(?<=[]•>])(?<a>[HVTS]\\[)"; " \(.a)") |
+gsub("(?<=[]•>])(?<a>(<span foreground=\"#[0-9A-Fa-f]{6}\">)?[HTVS](</span>)?\\[)"; " \(.a)") |
 # after ], before dot, <
 gsub("(?<=])(?<a>•|<)"; " \(.a)") |
 
