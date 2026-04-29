@@ -60,11 +60,11 @@
 
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
-    exec swayidle -w \
+    exec_always swayidle -w \
         timeout 600 'swaymsg "output * dpms off"' \
         timeout 630 'swaylock -f -i $lockscreen' \
-        before-sleep 'swaylock -f -i $lockscreen' \
-        resume 'swaymsg "output * dpms on"'
+        resume 'swaymsg "output * dpms on"' \
+        before-sleep 'swaylock -f -i $lockscreen'
 
     # this is stupid. but it works
     exec dbus-update-activation-environment --systemd GDK_BACKEND=wayland XDG_CURRENT_DESKTOP=sway WAYLAND_DISPLAY
