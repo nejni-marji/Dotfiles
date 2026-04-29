@@ -67,7 +67,8 @@
         resume 'swaymsg "output * dpms on"'
 
     # this is stupid. but it works
-    exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY
+    exec dbus-update-activation-environment --systemd GDK_BACKEND=wayland XDG_CURRENT_DESKTOP=sway WAYLAND_DISPLAY
+
 
 #
 ### Graphical configuration
