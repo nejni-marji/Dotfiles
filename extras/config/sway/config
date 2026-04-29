@@ -66,6 +66,9 @@
         before-sleep 'swaylock -f -i $lockscreen' \
         resume 'swaymsg "output * dpms on"'
 
+    # this is stupid. but it works
+    exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY
+
 #
 ### Graphical configuration
 #
