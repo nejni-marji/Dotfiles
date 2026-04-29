@@ -52,12 +52,6 @@
 #
 ### Autostart
 #
-    # screen dimming
-    # exec $wlsunset
-
-    # notification server
-    exec mako
-
     # idle configuration aka powersaving aka screenlock
     # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
     exec swayidle -w \
@@ -69,6 +63,14 @@
     # this is stupid. but it works
     exec dbus-update-activation-environment --systemd GDK_BACKEND=wayland XDG_CURRENT_DESKTOP=sway WAYLAND_DISPLAY
 
+    # screen dimming
+    # exec $wlsunset
+
+    # notification server
+    exec mako
+
+    # titlebar icons
+    exec ~/.cargo/bin/swaycons
 
 #
 ### Graphical configuration
@@ -116,9 +118,9 @@
     for_window [title="^pulsemixer$"] resize set width 50 ppt height 80 ppt
     for_window [title="^pulsemixer$"] move position center
 
-    for_window [app_id="^org.pulseaudio.pavucontrol$"] floating enable
-    for_window [app_id="^org.pulseaudio.pavucontrol$"] resize set width 50 ppt height 80 ppt
-    for_window [app_id="^org.pulseaudio.pavucontrol$"] move position center
+    for_window [app_id="^org\.pulseaudio\.pavucontrol$"] floating enable
+    for_window [app_id="^org\.pulseaudio\.pavucontrol$"] resize set width 50 ppt height 80 ppt
+    for_window [app_id="^org\.pulseaudio\.pavucontrol$"] move position center
 
     for_window [title="^Open Files$"] floating enable
     for_window [title="^Open Files$"] resize set width 50 ppt height 80 ppt
@@ -129,13 +131,13 @@
     for_window [app_id="^blueman-manager$"] resize set width 50 ppt height 80 ppt
     for_window [app_id="^blueman-manager$"] move position center
 
-    for_window [title="myNoise"] mark mynoise
-    for_window [title="myNoise"] floating enable
-    for_window [title="myNoise"] border $borders
-    for_window [title="myNoise"] move scratchpad
-    for_window [title="myNoise"] scratchpad show
-    for_window [title="myNoise"] resize set width 50 ppt height 80 ppt
-    for_window [title="myNoise"] move position center
+    for_window [title="mynoise\.net"] mark mynoise
+    for_window [title="mynoise\.net"] floating enable
+    for_window [title="mynoise\.net"] border $borders
+    for_window [title="mynoise\.net"] move scratchpad
+    for_window [title="mynoise\.net"] scratchpad show
+    for_window [title="mynoise\.net"] resize set width 50 ppt height 80 ppt
+    for_window [title="mynoise\.net"] move position center
 
     for_window [title="^Steam Settings$"] floating enable
     for_window [title="^Steam Settings$"] border $borders
