@@ -6,18 +6,6 @@
 
 " This file is poorly organized.
 
-nnoremap <leader>Te :source ~/.config/nvim/misc/eo-x/start.vim<CR>
-nnoremap <leader>TE :source ~/.config/nvim/misc/eo-x/start.vim<CR>
-
-" nnoremap "+y   :w !wl-copy -n<CR><CR>
-" nnoremap "+yy :.w !wl-copy<CR><CR>
-" nnoremap "+p   :r !wl-paste -n<CR>
-
-
-
-
-
-
 set nocompatible
 filetype plugin on
 filetype indent on
@@ -31,24 +19,17 @@ set updatetime=100
 " {{{ backup, undo, swap
 	set backup
 	set undofile
-	" let &backupdir = "~/.config/nvim/data/backup/" . hostname() . "/,~/.config/nvim/data/backup/,~/.vim/backup/,~/,."
-	" let &directory = "~/.config/nvim/data/swap/"   . hostname() . "//,~/.config/nvim/data/swap//,~/.vim/swap//,~//,.//"
-	" let &undodir   = "~/.config/nvim/data/undo/"   . hostname() . "/,~/.config/nvim/data/undo/,~/.vim/undo/,~/,."
 	let &backupdir = "~/.config/nvim/data/backup/" . hostname() . "/,~/.config/nvim/data/backup/"
 	let &directory = "~/.config/nvim/data/swap/"   . hostname() . "//,~/.config/nvim/data/swap//"
 	let &undodir   = "~/.config/nvim/data/undo/"   . hostname() . "/,~/.config/nvim/data/undo/"
 	:exe "set backupdir=" . &backupdir
 	:exe "set undodir="   . &undodir
 	:exe "set directory=" . &directory
-	" set backupdir="~/.config/nvim/data/backup/,~/.vim/backup/,~/,."
-	" set directory="~/.config/nvim/data/swap//,~/.vim/swap//,~//,.//"
-	" set undodir=~/.config/nvim/data/undo/,~/.vim/undo/,~/,."
 
 " }}}
 " {{{ plugins
 	call plug#begin()
-
-	"Plug 'airblade/vim-gitgutter'
+	Plug 'airblade/vim-gitgutter'
 	Plug 'dense-analysis/ale'
 	Plug 'machakann/vim-highlightedyank'
 	Plug 'tpope/vim-commentary'
@@ -71,24 +52,9 @@ set updatetime=100
 		let g:gitgutter_sign_removed_above_and_below = '{'
 		let g:gitgutter_sign_modified_removed        = 'w'
 	" }}}
-	" ale {{{
-		" let  g:ale_use_neovim_diagnostics_api = 0
-	" }}}
 " }}}
 
 " {{{ tabs (ts sw sta sts et ci pi)
-	" {{{ here's the defaults for some stuff (by experimentation)
-		" set	shiftwidth=8
-		" set	tabstop=8
-		" set	softtabstop=0
-		" set noexpandtab
-		" set	smarttab
-		" set	autoindent
-		" set nosmartindent
-		" set nocindent
-		" set nocopyindent
-		" set nopreserveindent
-	" }}}
 	set ts=4 sw=0 sta	sts=0 noet	ci nopi
 	set ts=4 sw=0 sts=0 sta noet ci nopi
 	" {{{ notes on these settings
@@ -108,13 +74,11 @@ set updatetime=100
 		set laststatus=2
 		set showcmd
 		" status line
-			"todo: maybe a better stl?
-			"todo: this WILL make \V break lightline
-			" set statusline=
-			" set stl+=%f\ %<%m%r%y
-			" " set stl+=%=
-			" set stl+=0x%B\ 
-			" set stl+=%-8(%l/%L%)\ %-7(%c%V%)\ %P
+			set statusline=
+			set stl+=%m%r%y
+			set stl+=%=
+			set stl+=0x%B\ 
+			set stl+=%-8(%l/%L%)\ %-7(%c%V%)\ %P
 		set showmode
 	" }}}
 	" tabs, windows, buffers
@@ -139,9 +103,6 @@ set updatetime=100
 		set breakindent breakindentopt=min:20,shift:4
 	" miscellaneous
 		set list listchars=tab:>-,trail:~,extends:>,precedes:<,nbsp:+
-		" set list listchars=tab:\|\ ,trail:~,extends:>,precedes:<,nbsp:+
-		" set list listchars=tab:│\ ,trail:~,extends:>,precedes:<,nbsp:+
-		" set list listchars=tab:>\ ,trail:~,extends:>,precedes:<,nbsp:+
 		" j command adds 1 space rather than 2 after .?!
 		set nojoinspaces
 " }}}
@@ -222,46 +183,16 @@ set updatetime=100
 			au FileType gemtext				setl fo-=o
 		augroup END
 	" }}}
-	augroup InsertIdle
-		autocmd!
-		" exit insert mode while idling
-		" autocmd CursorHoldI * stopinsert
-		" autocmd InsertEnter * let updaterestore=&updatetime
-		" autocmd InsertEnter * let &updatetime=4000
-		" autocmd InsertLeave * let &updatetime=updaterestore
-		"todo: this is fully disabled lmfao
-		autocmd!
-	augroup END
-	" :help last-position-jump
 	au BufReadPost *
 		\ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
 		\ |   exe "normal! g`\""
 		\ | endif
-	" {{{ dumb cursorline augroup
-	" augroup CursorLine
-	"	au!
-	"	au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-	"	au WinLeave * setlocal nocursorline
-	" augroup END
-	" }}}
-" }}}
-
-" nothing in this fold is active
-" unsorted options (and testing?) {{{
-	" {{{ stuff from the old conf that i have questions about
-		" set ttimeoutlen=50
-		" this one might have been set because you mapped kj to <ESC>?
-		" set updatetime=250
-		"todo: if you touch this part, read this post you found:
-		" https://old.reddit.com/r/vim/comments/3ql651/what_do_you_set_your_updatetime_to/
-	" }}}
 " }}}
 
 " this must go at the end?
 " {{{ appearance (cursor, TERM, syntax, :hi)
 
 	set guicursor=
-	" autocmd OptionSet guicursor noautocmd set guicursor=
 
 	if $TERM == "xterm-kitty"
 		set termguicolors
@@ -269,29 +200,10 @@ set updatetime=100
 
 	syntax on
 
-	" colorscheme default
-	" highlight CursorLine guibg=Grey15
-	" highlight Comment guifg=Cyan
-	" highlight NonText guifg=SlateBlue
-	" highlight Folded guibg=Grey25 guifg=Cyan
-
-	" Mon, Mar 13 2023, 15:20
-	" highlight CursorLine cterm=underline guibg=LightGrey
-	" highlight Comment ctermfg=4 guifg=#8cdaff
-	" highlight Comment ctermfg=4 guifg=grey
-	" highlight Visual ctermbg=7 guibg=#ff8cda
 	colorscheme peachpuff
-	" setting `:hi Normal` and only setting one value might break something, but I'm not sure what. Mon, Apr 3 2023, 13:17
 	highlight Normal guibg=#f5e4e5
 	highlight DiagnosticWarn ctermfg=3 guifg=yellow guibg=grey
 	highlight DiagnosticError ctermfg=3 guifg=red guibg=lightgrey
 	highlight MatchParen ctermfg=223 ctermbg=62 guifg=#ffdab9 guibg=#6a5acd
 	highlight MatchParen ctermfg=62 ctermbg=223 guifg=#6a5acd guibg=#ffdab9
-
-
-	" for cool-retro-term
-	if exists('$ASCII_ONLY')
-		set background=dark
-		colorscheme vim
-	endif
 " }}}
