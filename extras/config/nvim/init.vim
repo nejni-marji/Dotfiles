@@ -9,7 +9,7 @@
 set nocompatible
 filetype plugin on
 filetype indent on
-" se tw=80 fo+=c
+se tw=80 fo+=c
 " default fo is tcqj
 " options -- all options and mappings (also global values for local options)
 " disabling this means :mks doesn't store global stuff (can be reloaded!)
@@ -36,8 +36,6 @@ set updatetime=100
 	Plug 'tpope/vim-sensible'
 	Plug 'tpope/vim-surround'
 	Plug 'unblevable/quick-scope'
-
-
 	call plug#end()
 	" gitgutter {{{
 		" highlight SignColumn      guibg=#000000 ctermbg=0
@@ -92,7 +90,7 @@ set updatetime=100
 		set ignorecase smartcase
 	" movement
 		set number relativenumber
-		set cursorline cursorcolumn
+		set cursorline nocursorcolumn
 		set nostartofline "todo: default on, why?
 		" buffer space at edge of screen:
 		set scrolloff=5

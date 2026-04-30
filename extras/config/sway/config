@@ -273,9 +273,12 @@
     bindsym $mod+$ctl+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num   | (./10+1|floor) | if (1<=. and .<=9)   then "$ws\(.)" else .*10 end')"
 
     # scratchpad (technically kind of a workspace)
-    bindsym $mod+$shf+minus move scratchpad
-    bindsym $mod+minus scratchpad show
-    bindsym $mod+Next scratchpad show
+    bindsym $mod+$shf+minus      move scratchpad
+    bindsym $mod+minus                scratchpad show
+    bindsym $mod+$shf+apostrophe move scratchpad
+    bindsym $mod+apostrophe           scratchpad show
+    bindsym $mod+$shf+Next       move scratchpad
+    bindsym $mod+Next                 scratchpad show
 
 #
 # Layout stuff:
@@ -362,6 +365,7 @@
         bindsym d      exec $term -D ~/Dotfiles, mode default
         bindsym s      exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
         bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config.d/host-include-*, mode default
+        bindsym t      exec $term -T 'nvim todo.txt' nvim ~/Dotfiles/extras/todo.txt, mode default
         bindsym v      exec $term -T 'nvim vimrc' nvim ~/.config/nvim/init.vim, mode default
         bindsym z      exec $term -T 'nvim zshrc' nvim ~/.zsh, mode defaultrc
         bindsym $shf+z exec $term -T 'nvim zshrc' nvim ~/.zshenv, mode default
