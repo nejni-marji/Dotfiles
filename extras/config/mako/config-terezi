@@ -7,6 +7,7 @@ font=ComicCode 12
 text-color=#000000cc
 background-color=#ffc68ccc
 border-color=#ff9933cc
+progress-color=#ff800080
 
 border-radius=20
 
