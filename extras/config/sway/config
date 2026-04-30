@@ -289,7 +289,6 @@
     bindsym $mod+c layout toggle splith splitv
     bindsym $mod+r layout toggle tabbed stacking
     bindsym $mod+l split none
-    #bindsym $mod+$shf+l exec ~/.config/sway/bin/unsplit.sh
     bindsym $mod+$shf+l [all] split none
     bindsym $mod+w splith
     bindsym $mod+v splitv
