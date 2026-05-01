@@ -181,6 +181,7 @@
     # start your launcher
     bindsym $alt+Space $menu
     bindsym $mod+d exec $menu
+    bindsym $mod+$shf+d exec ~/.config/sway/bin/wmenu-windows.sh
 
     # reload the configuration file
     bindsym $mod+$shf+c reload
