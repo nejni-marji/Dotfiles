@@ -31,15 +31,15 @@ if [[ $mod_time -le 0 ]] ; then
 fi
 
 # data log
-echo sec_per_day ...... $sec_per_day
-echo drift_offset ..... $drift_offset
-echo modulus .......... $modulus
-echo prev_time ........ $prev_time
-echo curr_time ........ $curr_time
-echo delta_time ....... $delta_time
-echo mod_time ......... $mod_time
+echo sec_per_day .... $sec_per_day
+echo drift_offset ... $drift_offset
+echo modulus ........ $modulus
+echo prev_time ...... $prev_time
+echo curr_time ...... $curr_time
+echo delta_time ..... $delta_time
+echo mod_time ....... $mod_time
 # print mod_time as human-readable
-echo mod_time ......... $(units -- "${mod_time}s" hms)
+echo mod_time ....... $(units -- "${mod_time}s" hms)
 
 case $HOSTNAME in
 	roxy)
