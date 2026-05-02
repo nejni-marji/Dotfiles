@@ -4,10 +4,8 @@ SLEEP_FILE=${XDG_CACHE_HOME=~/.cache}/last_known_sleep_time
 
 case $1 in
 	set)
-		prev_time=$( date --date="${*:2}" +%s )
-		echo "storing ${*:2} to $SLEEP_FILE"
+		prev_time=$( date --date="${*:2}" +%s ) || exit $?
 		echo $prev_time > $SLEEP_FILE
-		exit 21
 		;;
 	*)
 		prev_time=$(cat $SLEEP_FILE)
@@ -27,6 +25,11 @@ delta_time=$(( $curr_time - $prev_time ))
 
 mod_time=$(( $delta_time % $modulus ))
 
+if [[ $mod_time -le 0 ]] ; then
+	>&2 echo 'wakeup time is in the future'
+	exit 11
+fi
+
 # data log
 echo sec_per_day ...... $sec_per_day
 echo drift_offset ..... $drift_offset
@@ -36,7 +39,7 @@ echo curr_time ........ $curr_time
 echo delta_time ....... $delta_time
 echo mod_time ......... $mod_time
 # print mod_time as human-readable
-echo mod_time ......... $(units "${mod_time}s" hms)
+echo mod_time ......... $(units -- "${mod_time}s" hms)
 
 case $HOSTNAME in
 	roxy)
