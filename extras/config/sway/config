@@ -63,8 +63,7 @@
     # this is stupid. but it works
     exec dbus-update-activation-environment --systemd GDK_BACKEND=wayland XDG_CURRENT_DESKTOP=sway WAYLAND_DISPLAY
 
-    # screen dimming
-    # exec $wlsunset
+    # screen dimming now handled in i3blocks
 
     # notification server
     exec mako

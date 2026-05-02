@@ -12,8 +12,6 @@
 	set $ws8 80
 	set $ws9 90
 	set $ws0 100
-	# preferred executables
-	set $wlsunset wlsunset -t 4500 -T 6500 -s 21:00 -S 9:00
 	# fonts and themes
 	set $font ComicCode 12
 	set $cursor catppuccin-latte-pink-cursors 24
