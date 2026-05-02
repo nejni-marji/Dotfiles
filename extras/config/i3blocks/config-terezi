@@ -1,5 +1,12 @@
 separator_block_width=25
 
+[gammastep]
+command=~/.config/i3blocks/bin/sleep_gamma.sh 2>&1 >/dev/null
+interval=300
+label=
+full_text=
+short_text=
+
 [workspace]
 command=~/.config/i3blocks/bin/representation.sh
 color=#808080
