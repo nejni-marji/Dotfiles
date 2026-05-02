@@ -225,6 +225,15 @@
     bindsym $mod+$shf+Up move up
     bindsym $mod+$shf+Right move right
 
+    bindsym $mod+$ctl+$left   fullscreen disable; focus left; fullscreen enable
+    bindsym $mod+$ctl+$down   fullscreen disable; focus down; fullscreen enable
+    bindsym $mod+$ctl+$up     fullscreen disable; focus up; fullscreen enable
+    bindsym $mod+$ctl+$right  fullscreen disable; focus right; fullscreen enable
+    bindsym $mod+$ctl+Left    fullscreen disable; focus left; fullscreen enable
+    bindsym $mod+$ctl+Down    fullscreen disable; focus down; fullscreen enable
+    bindsym $mod+$ctl+Up      fullscreen disable; focus up; fullscreen enable
+    bindsym $mod+$ctl+Right   fullscreen disable; focus right; fullscreen enable
+
     # select most regent urgent container
     bindsym $mod+m [urgent=latest] focus
 
