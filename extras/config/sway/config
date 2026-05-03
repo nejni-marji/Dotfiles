@@ -273,6 +273,10 @@
         jq -e 'length==1' && \
         swaymsg workspace back_and_forth || \
         swaymsg focus output right
+    bindsym $alt+$shf+Tab exec swaymsg -t get_outputs | \
+        jq -e 'length==1' && \
+        swaymsg move container to workspace back_and_forth || \
+        swaymsg move container to output right
     bindsym $alt+grave move workspace to output right
 
     # special workspace commands
@@ -343,6 +347,7 @@
     bindsym $mod+$alt+b      exec blueman-manager
     bindsym $mod+$alt+c      mode $cfg_mode
     bindsym $mod+$alt+d      exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+    bindsym $mod+$alt+$shf+d exec deluge-gtk
     bindsym $mod+$alt+f      exec env MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
     bindsym $mod+$alt+g      exec gimp
