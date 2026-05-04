@@ -1,3 +1,4 @@
 wmenu-based hotswap
 - replaced with automated marks?
 use upower for battery
+make thunar open dir even when file is selected

@@ -61,4 +61,6 @@ recurse |
 gsub("(?<=[]•>])(?<a>(<span foreground=\"#[0-9A-Fa-f]{6}\">)?[HTVS](</span>)?\\[)"; " \(.a)") |
 # after ], before dot, HVTS[
 gsub("(?<=])(?<a>(<span foreground=\"#[0-9A-Fa-f]{6}\">)?[HTVS•](</span>)?\\[?)"; " \(.a)") |
+# i don't know why this works
+gsub("(?<=[)(<span foreground=\"[0-9A-Fa-f]{6}\">) (?<a>[HVTS])"; "\(.a)") |
 .

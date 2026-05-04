@@ -1,0 +1,41 @@
+# Halloy config.
+#
+# For a complete list of available options,
+# please visit https://halloy.chat/configuration.html
+
+scale_factor = 1.25
+theme = "vanimo"
+
+[servers.liberachat]
+nickname = "nejni-marji"
+server = "irc.libera.chat"
+channels = ["#halloy", "#sway", "#archlinux", "#archlinux-offtopic", "#linux"]
+
+[servers.liberachat.sasl.plain]
+username = "nejni-marji"
+password_file = "~/Dotfiles/extras/secrets/halloy"
+
+[font]
+family = "Comic Code"
+size = 12
+
+[actions.buffer]
+click_channel_name = "replace-pane"
+click_highlight = "replace-pane"
+click_username = "replace-pane"
+local = "replace-pane"
+message_channel = "replace-pane"
+message_user = "replace-pane"
+
+[actions.sidebar]
+buffer = "replace-pane"
+
+[sidebar]
+max_width = 150
+
+[buffer.channel.nicklist]
+enabled = false
+
+[buffer.nickname]
+alignment = "right"
+brackets = { left = "<", right = ">" }
