@@ -3,3 +3,5 @@ wmenu-based hotswap
 use upower for battery
 make thunar open dir even when file is selected
 store mac address of terezi
+make i3blocks date block clickable
+merge .config/sway/bin/*_mark.sh

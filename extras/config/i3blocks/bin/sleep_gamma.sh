@@ -25,7 +25,7 @@ delta_time=$(( $curr_time - $prev_time ))
 
 mod_time=$(( $delta_time % $modulus ))
 
-if [[ $mod_time -le 0 ]] ; then
+if [[ $mod_time -lt 0 ]] ; then
 	>&2 echo 'wakeup time is in the future'
 	exit 11
 fi
