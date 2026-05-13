@@ -56,7 +56,7 @@ case $HOSTNAME in
 		;;
 esac
 
-if [[ $mod_time -gt $(( 60*60*13 )) && $mod_time -lt $(( $modulus-60*60*2 )) ]] ; then
+if [[ $mod_time -gt $(( 60*60*14 )) && $mod_time -lt $(( $modulus-60*60*2 )) ]] ; then
 	echo nighttime colors
 	cmd="gammastep -o -O $night_color"
 else
