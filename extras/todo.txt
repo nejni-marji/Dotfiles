@@ -1,7 +1,6 @@
-wmenu-based hotswap
-- replaced with automated marks?
-use upower for battery
+wmenu-based hotswap - replaced with automated marks? +sway
+use upower for battery +sway
 make thunar open dir even when file is selected
 store mac address of terezi
-make i3blocks date block clickable
-merge .config/sway/bin/*_mark.sh
+make i3blocks date block clickable +sway
+merge .config/sway/bin/*_mark.sh +sway

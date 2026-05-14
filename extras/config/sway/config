@@ -345,7 +345,6 @@
 # Application binds
 #
     bindsym $mod+$alt+b      exec blueman-manager
-    bindsym $mod+$alt+c      mode $cfg_mode
     bindsym $mod+$alt+d      exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
     bindsym $mod+$alt+$shf+d exec deluge-gtk
     bindsym $mod+$alt+f      exec env MOZ_ENABLE_WAYLAND=1 firefox
@@ -359,32 +358,23 @@
     bindsym $mod+$alt+v      exec ~/.config/sway/bin/volume_mark.sh
     bindsym $mod+$alt+$shf+v exec pavucontrol
 
-    # app launcher mode
-    set $app_mode "quick apps: sS, g, G"
-    bindsym $mod+b mode $app_mode
-    mode $app_mode {
-        # bindsym g exec gimp, mode default
-        # bindsym $shf+g $cmd_secure, mode default
-
-        bindsym $mod+b mode default
-        bindsym Return mode default
-        bindsym Escape mode default
-        bindsym BackSpace mode default
-        bindsym $ctl+bracketleft mode default
-    }
-
     # edit configs quickly
-    set $cfg_mode "configs: dsSvzZ"
+    set $cfg_mode "configs: dsStTvzZ"
+    bindsym $mod+$alt+c      mode $cfg_mode
+    # temporary option
+    bindsym $mod+b mode $cfg_mode
     mode $cfg_mode {
-        bindsym d      exec $term -D ~/Dotfiles, mode default
-        bindsym s      exec $term -T 'nvim sway config' nvim ~/.config/sway/config, mode default
-        bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config.d/host-include-*, mode default
-        bindsym t      exec $term -T 'nvim todo.txt' nvim ~/Dotfiles/extras/todo.txt, mode default
-        bindsym v      exec $term -T 'nvim vimrc' nvim ~/.config/nvim/init.vim, mode default
+        bindsym d      exec $term -D ~/Dotfiles , mode default
+        bindsym s      exec $term -T 'nvim sway config' nvim ~/.config/sway/config , mode default
+        bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config.d/host-include-* , mode default
+        bindsym t      exec $term -T 'nvim todo.txt' nvim ~/Dotfiles/extras/todo.txt , mode default
+        bindsym $shf+t exec $term -T 'nvim todo config' nvim ~/.todo/config , mode default
+        bindsym v      exec $term -T 'nvim vimrc' nvim ~/.config/nvim/init.vim , mode default
         bindsym z      exec $term -T 'nvim zshrc' nvim ~/.zsh, mode defaultrc
-        bindsym $shf+z exec $term -T 'nvim zshrc' nvim ~/.zshenv, mode default
+        bindsym $shf+z exec $term -T 'nvim zshrc' nvim ~/.zshenv , mode default
 
         bindsym $mod+$alt+c mode default
+        bindsym $mod+b mode default
         bindsym Return mode default
         bindsym Escape mode default
         bindsym BackSpace mode default
