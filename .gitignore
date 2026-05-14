@@ -13,6 +13,9 @@
 /extras/config/mpv/watch_later/
 /extras/config/nvim/data/
 /extras/config/weechat
+/extras/config/xfce4/desktop/
+/extras/config/xfce4/panel/
+/extras/config/xfce4/xfconf/
 /extras/config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 /zsh/*.lck
 
