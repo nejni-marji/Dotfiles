@@ -147,8 +147,7 @@
     input type:keyboard {
         xkb_layout us
         xkb_variant dvorak
-        # disabled due to keyd
-        #xkb_options ctrl:swap_lwin_lctl,ctrl:swap_rwin_rctl,caps:ctrl_modifier,caps:nocaps
+        xkb_options compose:ralt
     }
 
     input type:pointer {
