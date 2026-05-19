@@ -110,36 +110,39 @@
     assign [class="^[Ss]team$"]    workspace $ws4
 
     # window rules
-    for_window [title="^pulsemixer$"] mark vol
-    for_window [title="^pulsemixer$"] floating enable
-    for_window [title="^pulsemixer$"] move scratchpad
-    for_window [title="^pulsemixer$"] scratchpad show
-    for_window [title="^pulsemixer$"] resize set width 50 ppt height 80 ppt
-    for_window [title="^pulsemixer$"] move position center
+    for_window [title="^Open Files$"] floating enable
+    for_window [title="^Open Files$"] resize set width 50 ppt height 80 ppt
+    for_window [title="^Open Files$"] move position center
 
     for_window [app_id="^org\.pulseaudio\.pavucontrol$"] floating enable
     for_window [app_id="^org\.pulseaudio\.pavucontrol$"] resize set width 50 ppt height 80 ppt
     for_window [app_id="^org\.pulseaudio\.pavucontrol$"] move position center
 
-    for_window [title="^Open Files$"] floating enable
-    for_window [title="^Open Files$"] resize set width 50 ppt height 80 ppt
-    for_window [title="^Open Files$"] move position center
-
-    for_window [app_id="^blueman-manager$"] mark bt
-    for_window [app_id="^blueman-manager$"] floating enable
-    for_window [app_id="^blueman-manager$"] resize set width 50 ppt height 80 ppt
-    for_window [app_id="^blueman-manager$"] move position center
-
-    for_window [title="mynoise\.net"] mark mynoise
-    for_window [title="mynoise\.net"] floating enable
-    for_window [title="mynoise\.net"] border $borders
-    for_window [title="mynoise\.net"] move scratchpad
-    for_window [title="mynoise\.net"] scratchpad show
-    for_window [title="mynoise\.net"] resize set width 50 ppt height 80 ppt
-    for_window [title="mynoise\.net"] move position center
-
     for_window [title="^Steam Settings$"] floating enable
     for_window [title="^Steam Settings$"] border $borders
+
+    # scratchpad window rules
+    for_window [title="^pulsemixer$"] mark vol
+    for_window [con_mark="^vol$"] floating enable
+    for_window [con_mark="^vol$"] move scratchpad
+    for_window [con_mark="^vol$"] scratchpad show
+    for_window [con_mark="^vol$"] resize set width 50 ppt height 80 ppt
+    for_window [con_mark="^vol$"] move position center
+
+    for_window [app_id="^blueman-manager$"] mark bt
+    for_window [con_mark="^bt$"] floating enable
+    for_window [con_mark="^bt$"] move scratchpad
+    for_window [con_mark="^bt$"] scratchpad show
+    for_window [con_mark="^bt$"] resize set width 50 ppt height 80 ppt
+    for_window [con_mark="^bt$"] move position center
+
+    for_window [title="mynoise\.net"] mark mynoise
+    for_window [con_mark="^mynoise$"] floating enable
+    for_window [con_mark="^mynoise$"] border $borders
+    for_window [con_mark="^mynoise$"] move scratchpad
+    for_window [con_mark="^mynoise$"] scratchpad show
+    for_window [con_mark="^mynoise$"] resize set width 50 ppt height 80 ppt
+    for_window [con_mark="^mynoise$"] move position center
 
 #
 ### Input configuration
@@ -343,7 +346,7 @@
 #
 # Application binds
 #
-    bindsym $mod+$alt+b      exec blueman-manager
+    bindsym $mod+$alt+b      exec ~/.config/sway/bin/bluetooth_mark.sh
     bindsym $mod+$alt+d      exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
     bindsym $mod+$alt+$shf+d exec deluge-gtk
     bindsym $mod+$alt+f      exec env MOZ_ENABLE_WAYLAND=1 firefox
