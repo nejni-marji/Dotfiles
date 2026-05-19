@@ -1,7 +1,7 @@
 #!/usr/bin/jq -f
 
 {
-	"hours": "hr",
+	"hours": "h",
 	"minutes": "m",
 	"seconds": "s",
 } as $hms |
@@ -21,17 +21,17 @@ end |
 "<span foreground=\"#\(.[0])\">\(.[1] | floor)%\(
 	# add comma if printing time
 	if .[2] then "," else "" end
-	)</span>\(
+	)\(
 	# print time only if nonempty
 	if .[2]
-	then " ~\(
+	then " \(
 		# round minutes/seconds
 		if .[3] == "hours"
 		then .[2]
 		else .[2] | floor
 		end
-	)\($hms[.[3]])"
+	)\($hms[.[3]])</span>"
 	else ""
 	end
 )
-<span foreground=\"#\(.[0])\">\(.[1] | floor)%</span>"
+# <span foreground=\"#\(.[0])\">\(.[1] | floor)%</span>"
