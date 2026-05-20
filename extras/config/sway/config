@@ -302,13 +302,11 @@
     # bindsym $mod+c layout toggle splith splitv
     # bindsym $mod+r layout toggle tabbed stacking
     bindsym $mod+c exec swaymsg -t get_tree | \
-        jq -e '.. | select(has("nodes")? and \
-        (.nodes | map(.focused) | any)).type=="workspace"' && \
+        jq -e '.. | select([.nodes?[]?.focused] | any).type=="workspace"' && \
         swaymsg 'focus parent; layout toggle splith splitv; focus child' || \
         swaymsg 'layout toggle splith splitv'
     bindsym $mod+r exec swaymsg -t get_tree | \
-        jq -e '.. | select(has("nodes")? and \
-        (.nodes | map(.focused) | any)).type=="workspace"' && \
+        jq -e '.. | select([.nodes?[]?.focused] | any).type=="workspace"' && \
         swaymsg 'focus parent; layout toggle tabbed stacking; focus child' || \
         swaymsg 'layout toggle tabbed stacking'
     bindsym $mod+l split none
