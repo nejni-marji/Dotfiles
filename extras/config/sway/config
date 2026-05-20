@@ -298,14 +298,19 @@
 #
 # Layout stuff:
 #
-    # left-hand layout keys
-    # bindsym $mod+o layout toggle tabbed stacking
-    # bindsym $mod+comma layout split tabbed stacking
-    # bindsym $mod+period layout toggle split
-
     # right-hand layout keys
-    bindsym $mod+c layout toggle splith splitv
-    bindsym $mod+r layout toggle tabbed stacking
+    # bindsym $mod+c layout toggle splith splitv
+    # bindsym $mod+r layout toggle tabbed stacking
+    bindsym $mod+c exec swaymsg -t get_tree | \
+        jq -e '.. | select(has("nodes")? and \
+        (.nodes | map(.focused) | any)).type=="workspace"' && \
+        swaymsg 'focus parent; layout toggle splith splitv; focus child' || \
+        swaymsg 'layout toggle splith splitv'
+    bindsym $mod+r exec swaymsg -t get_tree | \
+        jq -e '.. | select(has("nodes")? and \
+        (.nodes | map(.focused) | any)).type=="workspace"' && \
+        swaymsg 'focus parent; layout toggle tabbed stacking; focus child' || \
+        swaymsg 'layout toggle tabbed stacking'
     bindsym $mod+l split none
     bindsym $mod+$shf+l [all] split none
     bindsym $mod+w splith

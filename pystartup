@@ -1,0 +1,4 @@
+from time import sleep
+from pprint import pprint
+import readline
+readline.parse_and_bind("set editing-mode vi")

@@ -1,6 +1,11 @@
 #!/usr/bin/jq -f
 
-.. | select(.type?=="workspace" and (.. | .focused?)) as $workspace |
+(.. |
+	select(.type?=="workspace" and (.. | .focused?)))
+	as $workspace |
+([.. |
+	select(.scratchpad_state? | . and .!="none")] | length)
+	as $scratchpad_length |
 
 # prefixes for split types
 {
@@ -63,4 +68,5 @@ gsub("(?<=[]•>])(?<a>(<span foreground=\"#[0-9A-Fa-f]{6}\">)?[HTVS](</span>)?\
 gsub("(?<=])(?<a>(<span foreground=\"#[0-9A-Fa-f]{6}\">)?[HTVS•](</span>)?\\[?)"; " \(.a)") |
 # i don't know why this works
 gsub("(?<=[)(<span foreground=\"[0-9A-Fa-f]{6}\">) (?<a>[HVTS])"; "\(.a)") |
+if $scratchpad_length==0 then . else "\(.) +\($scratchpad_length)" end |
 .

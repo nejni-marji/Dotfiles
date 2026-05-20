@@ -16,6 +16,7 @@ export BROWSER=firefox
 export WWW_HOME='https://duckduckgo.com/'
 export MPC_FORMAT='[[%artist% - ][%album% - ]%title%]|%file%'
 export RUSTC_WRAPPER=sccache
+export PYTHONSTARTUP=~/.pystartup
 
 # be careful with swaysock
 [[ -v SWAYSOCK ]] || {
