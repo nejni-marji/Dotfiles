@@ -24,8 +24,14 @@ bright5=ff8cda # magenta <3
 bright6=8cffeb # cyan
 bright7=ffffff # white
 
+[url]
+label-letters=oaeuhtn.,jmlid
+
 [bell]
 urgent=yes
 
-[url]
-label-letters=oaeuhtn.,jmlid
+[cursor]
+unfocused-style=none
+
+[mouse]
+hide-when-typing=yes
