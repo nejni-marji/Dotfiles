@@ -310,7 +310,7 @@
     bindsym $mod+$ctl+c exec swaymsg -t get_tree | \
         jq -e '.. | select([.nodes?[]?.focused] | any).type=="workspace"' && \
         swaymsg 'focus parent; layout toggle splitv splith; focus child' || \
-        swaymsg 'layout toggle splith splitv'
+        swaymsg 'layout toggle splitv splith'
     bindsym $mod+$ctl+r exec swaymsg -t get_tree | \
         jq -e '.. | select([.nodes?[]?.focused] | any).type=="workspace"' && \
         swaymsg 'focus parent; layout toggle stacking tabbed; focus child' || \
