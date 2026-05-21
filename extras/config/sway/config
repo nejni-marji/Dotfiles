@@ -298,9 +298,7 @@
 #
 # Layout stuff:
 #
-    # right-hand layout keys
-    # bindsym $mod+c layout toggle splith splitv
-    # bindsym $mod+r layout toggle tabbed stacking
+    # splits
     bindsym $mod+c exec swaymsg -t get_tree | \
         jq -e '.. | select([.nodes?[]?.focused] | any).type=="workspace"' && \
         swaymsg 'focus parent; layout toggle splith splitv; focus child' || \
@@ -309,10 +307,20 @@
         jq -e '.. | select([.nodes?[]?.focused] | any).type=="workspace"' && \
         swaymsg 'focus parent; layout toggle tabbed stacking; focus child' || \
         swaymsg 'layout toggle tabbed stacking'
+    bindsym $mod+$ctl+c exec swaymsg -t get_tree | \
+        jq -e '.. | select([.nodes?[]?.focused] | any).type=="workspace"' && \
+        swaymsg 'focus parent; layout toggle splitv splith; focus child' || \
+        swaymsg 'layout toggle splith splitv'
+    bindsym $mod+$ctl+r exec swaymsg -t get_tree | \
+        jq -e '.. | select([.nodes?[]?.focused] | any).type=="workspace"' && \
+        swaymsg 'focus parent; layout toggle stacking tabbed; focus child' || \
+        swaymsg 'layout toggle stacking tabbed'
     bindsym $mod+l split none
     bindsym $mod+$shf+l [all] split none
     bindsym $mod+w splith
     bindsym $mod+v splitv
+    bindsym $mod+$shf+w split t; layout tabbed
+    bindsym $mod+$shf+v split t; layout stacking
 
     # fullscreen
     bindsym $mod+f fullscreen
