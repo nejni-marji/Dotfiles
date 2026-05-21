@@ -374,8 +374,6 @@
     # edit configs quickly
     set $mode_cfg "configs: dsStTvzZ"
     bindsym $mod+$alt+c      mode $mode_cfg
-    # temporary option
-    bindsym $mod+b mode $mode_cfg
     mode $mode_cfg {
         bindsym d      exec $term -D ~/Dotfiles , mode default
         bindsym s      exec $term -T 'nvim sway config' nvim ~/.config/sway/config , mode default
@@ -387,7 +385,6 @@
         bindsym $shf+z exec $term -T 'nvim zshrc' nvim ~/.zshenv , mode default
 
         bindsym $mod+$alt+c mode default
-        bindsym $mod+b mode default
         bindsym Return mode default
         bindsym Escape mode default
         bindsym BackSpace mode default
