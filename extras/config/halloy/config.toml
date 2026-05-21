@@ -9,7 +9,7 @@ theme = "vanimo"
 [servers.liberachat]
 nickname = "nejni-marji"
 server = "irc.libera.chat"
-channels = ["#halloy", "#sway", "#archlinux", "#archlinux-offtopic", "#linux"]
+channels = ["#sway", "#archlinux", "#archlinux-offtopic", "#linux"]
 
 [servers.liberachat.sasl.plain]
 username = "nejni-marji"
