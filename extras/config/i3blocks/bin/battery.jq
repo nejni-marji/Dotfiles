@@ -35,8 +35,8 @@ end |
 		then .[2]
 		else .[2] | floor
 		end
-	)\($hms[.[3]])</span>"
+	)\($hms[.[3]])"
 	else ""
 	end
-)
+)</span>
 <span foreground=\"#\(.[0])\">\(.[1] | floor)%</span>"
