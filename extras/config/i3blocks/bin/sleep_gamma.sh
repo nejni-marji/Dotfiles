@@ -13,7 +13,7 @@ case $1 in
 esac
 
 # avg drift 1:13, in sec
-drift_offset=$(( 73*60 ))
+drift_offset=$(( 60*65 ))
 
 sec_per_day=$(( 60 * 60 * 24 ))
 
