@@ -1,6 +1,7 @@
 #!/bin/bash
 
 SLEEP_FILE=${XDG_CACHE_HOME=~/.cache}/last_known_sleep_time
+DATE_FMT="%a, %b %-d, %H:%M"
 
 case $1 in
 	set)
@@ -35,6 +36,7 @@ echo sec_per_day .... $sec_per_day
 echo drift_offset ... $drift_offset
 echo modulus ........ $modulus
 echo prev_time ...... $prev_time
+echo prev_time ...... $(date --date "@$prev_time" "+$DATE_FMT")
 echo curr_time ...... $curr_time
 echo delta_time ..... $delta_time
 echo mod_time ....... $mod_time
