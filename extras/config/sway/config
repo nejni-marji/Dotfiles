@@ -161,6 +161,7 @@
     input type:touchpad {
         tap enabled
         scroll_method two_finger
+        drag_lock enabled_sticky
     }
 
     seat * {

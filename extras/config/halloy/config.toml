@@ -4,7 +4,7 @@
 # please visit https://halloy.chat/configuration.html
 
 scale_factor = 1.25
-theme = "vanimo"
+theme = "Catppuccin Latte"
 
 [servers.liberachat]
 nickname = "nejni-marji"

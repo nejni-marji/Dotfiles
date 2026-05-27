@@ -4,6 +4,7 @@ while
 	swaymsg -t get_tree |
 		$(dirname $0)/representation.jq
 do
+	sleep 0.004
 	swaymsg -t subscribe \
 		'["window", "workspace", "output", "binding"]' \
 		>/dev/null 2>&1
