@@ -17,7 +17,7 @@ password_file = "~/Dotfiles/extras/secrets/halloy"
 
 [font]
 family = "Comic Code"
-size = 12
+size = 14
 
 [actions.buffer]
 click_channel_name = "replace-pane"
@@ -31,7 +31,7 @@ message_user = "replace-pane"
 buffer = "replace-pane"
 
 [sidebar]
-max_width = 150
+max_width = 125
 
 [buffer.channel.nicklist]
 enabled = false
