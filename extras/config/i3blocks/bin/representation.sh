@@ -4,10 +4,9 @@ while
 	swaymsg -t get_tree |
 		$(dirname $0)/representation.jq
 do
-	sleep 0.004
 	swaymsg -t subscribe \
-		'["window", "workspace", "output", "binding"]' \
+		'["window", "workspace", "output", "binding", "tick"]' \
 		>/dev/null 2>&1
-	# sleep for quarter a 60Hz refresh, should be enough
-	sleep 0.004
+	# sleep for half a 60Hz refresh, should be enough. we *are* fighting a race condition here
+	sleep 0.008
 done
