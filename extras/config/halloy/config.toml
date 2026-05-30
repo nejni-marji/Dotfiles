@@ -39,3 +39,4 @@ enabled = false
 [buffer.nickname]
 alignment = "right"
 brackets = { left = "<", right = ">" }
+truncate = 10
