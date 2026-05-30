@@ -40,7 +40,8 @@
     set $right s
     # preferred executables
     set $term foot
-    set $menu exec wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
+    set $menu wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
+    set $menu_alt i3-dmenu-desktop --dmenu='wmenu -i -l 15 -f "$font" -p Run: -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000'
     # wallpapers
     set $wallpaper  ~/.local/share/wallpapers/wallpaper
     set $lockscreen ~/.local/share/wallpapers/lockscreen
@@ -180,10 +181,11 @@
     # kill focused window
     bindsym $mod+$shf+q kill
 
-    # start your launcher
-    bindsym $alt+Space $menu
-    bindsym $mod+d exec $menu
-    bindsym $mod+$shf+d exec ~/.config/sway/bin/wmenu-windows.sh
+    # app launchers
+    bindsym $alt+Space  exec $menu
+    bindsym $mod+d      exec $menu
+    bindsym $mod+$shf+d exec $menu_alt
+    bindsym $mod+$ctl+d exec ~/.config/sway/bin/wmenu-windows.sh
 
     # reload the configuration file
     bindsym $mod+$shf+c reload
