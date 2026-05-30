@@ -121,7 +121,11 @@
 
     for_window [class="^[Ss]team$" title="^Steam Settings$"] floating enable
     for_window [class="^[Ss]team$" title="^Steam Settings$"] border $borders
-    for_window [class="^[Ss]team$" title="Friends List"] floating enable, resize set width 284 px height 75 ppt
+
+    for_window [class="^[Ss]team$" title="Friends List"] floating enable
+    for_window [class="^[Ss]team$" title="Friends List"] border $borders
+    for_window [class="^[Ss]team$" title="Friends List"] resize set width 284 px height 75 ppt
+    for_window [class="^[Ss]team$" title="Friends List"] move position 80 ppt 10 ppt
 
     # scratchpad window rules
     for_window [title="^pulsemixer$"] mark vol
