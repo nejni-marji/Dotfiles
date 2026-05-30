@@ -300,8 +300,6 @@
     bindsym $mod+minus                scratchpad show
     bindsym $mod+$shf+apostrophe move scratchpad
     bindsym $mod+apostrophe           scratchpad show
-    # bindsym $mod+$shf+Next       move scratchpad
-    # bindsym $mod+Next                 scratchpad show
 
 #
 # Layout stuff:
