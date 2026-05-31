@@ -432,13 +432,10 @@
     bindsym --locked $mod+equal      exec ~/.config/sway/bin/playerctl_notify.sh
     bindsym --locked $mod+$shf+slash exec playerctl -p $player previous
     bindsym --locked $mod+$shf+equal exec playerctl -p $player next
-    # volume keys?
     bindsym --locked $mod+$alt+slash exec playerctl -p $player volume 0.1-
     bindsym --locked $mod+$alt+equal exec playerctl -p $player volume 0.1+
-    bindsym --locked $mod+$ctl+slash exec playerctl -p $player volume 0.1-
-    bindsym --locked $mod+$ctl+equal exec playerctl -p $player volume 0.1+
-    bindsym --locked $mod+Next       exec playerctl -p $player volume 0.1-
-    bindsym --locked $mod+Prior      exec playerctl -p $player volume 0.1+
+    bindsym --locked $mod+$ctl+slash exec playerctld   shift; exec ~/.config/sway/bin/playerctl_notify.sh
+    bindsym --locked $mod+$ctl+equal exec playerctld unshift; exec ~/.config/sway/bin/playerctl_notify.sh
 
     # locate cursor
     bindsym $mod+semicolon exec ~/Working/swaywm/git/wl-find-cursor-reticle/target/release/wl-reticle
