@@ -422,20 +422,20 @@
 
     # media playback keys
     set $player $(playerctl -l | head -n1)
-    bindsym --locked XF86AudioPlay   exec playerctl -p $player play-pause
-    bindsym --locked XF86AudioPause  exec playerctl -p $player play-pause
-    bindsym --locked XF86AudioPrev   exec playerctl -p $player previous
-    bindsym --locked XF86AudioNext   exec playerctl -p $player next
-    bindsym --locked XF86AudioStop   exec playerctl -p $player stop
-    # playback keys
-    bindsym --locked $mod+slash      exec playerctl -p $player play-pause
-    bindsym --locked $mod+equal      exec ~/.config/sway/bin/playerctl_notify.sh
-    bindsym --locked $mod+$shf+slash exec playerctl -p $player previous
-    bindsym --locked $mod+$shf+equal exec playerctl -p $player next
-    bindsym --locked $mod+$alt+slash exec playerctl -p $player volume 0.1-
-    bindsym --locked $mod+$alt+equal exec playerctl -p $player volume 0.1+
-    bindsym --locked $mod+$ctl+slash exec playerctld   shift; exec ~/.config/sway/bin/playerctl_notify.sh
-    bindsym --locked $mod+$ctl+equal exec playerctld unshift; exec ~/.config/sway/bin/playerctl_notify.sh
+    set $player_notify ~/.config/sway/bin/playerctl_notify.zsh
+    bindsym --locked XF86AudioPlay   exec playerctl -p $player play-pause && $player_notify
+    bindsym --locked XF86AudioPause  exec playerctl -p $player play-pause && $player_notify
+    bindsym --locked XF86AudioPrev   exec playerctl -p $player previous   && $player_notify
+    bindsym --locked XF86AudioNext   exec playerctl -p $player next       && $player_notify
+    bindsym --locked XF86AudioStop   exec playerctl -p $player stop       && $player_notify
+    bindsym --locked $mod+equal      exec $player_notify
+    bindsym --locked $mod+slash      exec playerctl -p $player play-pause && $player_notify
+    bindsym --locked $mod+$shf+slash exec playerctl -p $player previous   && $player_notify
+    bindsym --locked $mod+$shf+equal exec playerctl -p $player next       && $player_notify
+    bindsym --locked $mod+$alt+slash exec zsh -c '[[ $(playerctl -p $player volume) =~ "^0\.0+$|^-" ]] || playerctl volume 0.1-'            && $player_notify
+    bindsym --locked $mod+$alt+equal exec zsh -c '[[ $(playerctl -p $player volume) =~ "^1\." ]]       || playerctl -p $player volume 0.1+' && $player_notify
+    bindsym --locked $mod+$ctl+slash exec playerctld   shift && $player_notify
+    bindsym --locked $mod+$ctl+equal exec playerctld unshift && $player_notify
 
     # locate cursor
     bindsym $mod+semicolon exec ~/Working/swaywm/git/wl-find-cursor-reticle/target/release/wl-reticle
