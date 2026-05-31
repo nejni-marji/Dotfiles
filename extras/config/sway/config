@@ -421,23 +421,24 @@
     bindsym $mod+$shf+p     exec ~/.config/sway/bin/screenshot.sh
 
     # media playback keys
-    bindsym --locked XF86AudioPlay   exec playerctl play-pause
-    bindsym --locked XF86AudioPause  exec playerctl play-pause
-    bindsym --locked XF86AudioPrev   exec playerctl previous
-    bindsym --locked XF86AudioNext   exec playerctl next
-    bindsym --locked XF86AudioStop   exec playerctl stop
+    set $player $(playerctl -l | head -n1)
+    bindsym --locked XF86AudioPlay   exec playerctl -p $player play-pause
+    bindsym --locked XF86AudioPause  exec playerctl -p $player play-pause
+    bindsym --locked XF86AudioPrev   exec playerctl -p $player previous
+    bindsym --locked XF86AudioNext   exec playerctl -p $player next
+    bindsym --locked XF86AudioStop   exec playerctl -p $player stop
     # playback keys
-    bindsym --locked $mod+slash      exec playerctl play-pause
-    bindsym --locked $mod+$shf+slash exec playerctl stop
-    bindsym --locked $mod+equal      exec playerctl next
-    bindsym --locked $mod+$shf+equal exec playerctl previous
+    bindsym --locked $mod+slash      exec playerctl -p $player play-pause
+    bindsym --locked $mod+equal      exec ~/.config/sway/bin/playerctl_notify.sh
+    bindsym --locked $mod+$shf+slash exec playerctl -p $player previous
+    bindsym --locked $mod+$shf+equal exec playerctl -p $player next
     # volume keys?
-    bindsym --locked $mod+$alt+slash exec playerctl volume 0.1-
-    bindsym --locked $mod+$alt+equal exec playerctl volume 0.1+
-    bindsym --locked $mod+$ctl+slash exec playerctl volume 0.1-
-    bindsym --locked $mod+$ctl+equal exec playerctl volume 0.1+
-    bindsym --locked $mod+Next       exec playerctl volume 0.1-
-    bindsym --locked $mod+Prior      exec playerctl volume 0.1+
+    bindsym --locked $mod+$alt+slash exec playerctl -p $player volume 0.1-
+    bindsym --locked $mod+$alt+equal exec playerctl -p $player volume 0.1+
+    bindsym --locked $mod+$ctl+slash exec playerctl -p $player volume 0.1-
+    bindsym --locked $mod+$ctl+equal exec playerctl -p $player volume 0.1+
+    bindsym --locked $mod+Next       exec playerctl -p $player volume 0.1-
+    bindsym --locked $mod+Prior      exec playerctl -p $player volume 0.1+
 
     # locate cursor
     bindsym $mod+semicolon exec ~/Working/swaywm/git/wl-find-cursor-reticle/target/release/wl-reticle
