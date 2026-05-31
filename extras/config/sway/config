@@ -420,6 +420,9 @@
     bindsym $mod+p          exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+$shf+p     exec ~/.config/sway/bin/screenshot.sh
 
+    bindsym $mod+z      exec makoctl dismiss
+    bindsym $mod+$shf+z exec makoctl restore
+
     # media playback keys
     set $player $(playerctl -l | head -n1)
     set $player_notify ~/.config/sway/bin/playerctl_notify.zsh
