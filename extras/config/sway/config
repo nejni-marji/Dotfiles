@@ -61,6 +61,9 @@
         resume 'swaymsg "output * dpms on"' \
         before-sleep 'swaylock -f -i $lockscreen'
 
+    # idle inhibitor for gaming and movies
+    for_window [all] inhibit_idle fullscreen
+
     # this is stupid. but it works
     exec dbus-update-activation-environment --systemd GDK_BACKEND=wayland XDG_CURRENT_DESKTOP=sway WAYLAND_DISPLAY
 

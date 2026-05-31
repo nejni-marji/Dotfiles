@@ -25,8 +25,6 @@
 #
 ### Autostart
 #
-    # idle inhibitor for gaming and movies
-    for_window [all] inhibit_idle fullscreen
     # laptop battery monitor
     exec batsignal
 
