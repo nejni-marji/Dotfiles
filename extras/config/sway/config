@@ -422,6 +422,7 @@
 
     bindsym $mod+z      exec makoctl dismiss
     bindsym $mod+$shf+z exec makoctl restore
+    bindsym $mod+$ctl+z exec makoctl dismiss --all
 
     # media playback keys
     set $player $(playerctl -l | head -n1)
