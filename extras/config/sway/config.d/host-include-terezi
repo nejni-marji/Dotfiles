@@ -16,7 +16,7 @@
 	set $font ComicCode 12
 	set $cursor catppuccin-latte-pink-cursors 24
 	# window borders and gaps
-	set $borders normal 3
+	set $border normal 3
 	set $hide_edge_borders smart_no_gaps
 	set $gaps_inner 10
 	set $gaps_outer 20

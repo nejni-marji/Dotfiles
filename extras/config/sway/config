@@ -93,9 +93,10 @@
     client.urgent              #ff9933   #ffc68c   #000000   #8cdaff   #ffc68c
 
     # borders
-    default_border $borders
-    default_floating_border $borders
+    default_border $border
+    default_floating_border $border
     hide_edge_borders $hide_edge_borders
+    exec_always swaymsg '[all] border $border'
 
     # configure gaps
     smart_gaps inverse_outer
@@ -123,10 +124,10 @@
     for_window [app_id="^org\.pulseaudio\.pavucontrol$"] move position center
 
     for_window [class="^[Ss]team$" title="^Steam Settings$"] floating enable
-    for_window [class="^[Ss]team$" title="^Steam Settings$"] border $borders
+    for_window [class="^[Ss]team$" title="^Steam Settings$"] border $border
 
     for_window [class="^[Ss]team$" title="Friends List"] floating enable
-    for_window [class="^[Ss]team$" title="Friends List"] border $borders
+    for_window [class="^[Ss]team$" title="Friends List"] border $border
     for_window [class="^[Ss]team$" title="Friends List"] resize set width 284 px height 75 ppt
     for_window [class="^[Ss]team$" title="Friends List"] move position 80 ppt 10 ppt
 
@@ -147,7 +148,7 @@
 
     for_window [title="mynoise\.net"] mark mynoise
     for_window [con_mark="^mynoise$"] floating enable
-    for_window [con_mark="^mynoise$"] border $borders
+    for_window [con_mark="^mynoise$"] border $border
     for_window [con_mark="^mynoise$"] move scratchpad
     for_window [con_mark="^mynoise$"] scratchpad show
     for_window [con_mark="^mynoise$"] resize set width 50 ppt height 80 ppt
@@ -200,7 +201,7 @@
 
     # floating windows
     floating_modifier $mod normal
-    bindsym $mod+$shf+$float floating toggle, border $borders
+    bindsym $mod+$shf+$float floating toggle, border $border
     bindsym $mod+$float focus mode_toggle
     bindsym $mod+$ctl+$float sticky toggle
     # TODO: make this check if the focused window is floating
