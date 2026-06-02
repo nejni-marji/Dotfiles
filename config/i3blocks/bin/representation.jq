@@ -7,7 +7,8 @@
 	select(.scratchpad_state? | . and .!="none")] | length)
 	as $scratchpad_length |
 (.. |
-	select(.focused?).scratchpad_state != "none")
+	select(.focused?).scratchpad_state |
+	. and . != "none")
 	as $scratchpad_focus |
 
 # prefixes for split types
