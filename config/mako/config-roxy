@@ -8,7 +8,8 @@ progress-color=#ff800080
 border-radius=20
 
 max-visible=3
-default-timeout=15000
+max-history=10
+default-timeout=5000
 height=600
 width=450
 
