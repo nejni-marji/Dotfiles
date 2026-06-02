@@ -4,8 +4,8 @@
 # it is not expected to be functional without that logic.
 # an example is provided below:
 #
-#    for_window [...] mark _app1
-#    for_window [...] mark _app2
+#    for_window [...] mark _volume
+#    for_window [...] mark _bluetooth
 #
 #    set $toggle_mark for_window [con_mark="^_?(app1|app2)$"]
 #    $toggle_mark floating enable
@@ -15,8 +15,8 @@
 #    $toggle_mark resize set width 50 ppt height 80 ppt
 #    $toggle_mark move position center
 #
-#    bindsym $mod+$alt+b exec ~/.config/sway/bin/toggle_mark.sh bluetooth 'blueman-manager'
 #    bindsym $mod+$alt+v exec ~/.config/sway/bin/toggle_mark.sh volume '$term -T pulsemixer pulsemixer'
+#    bindsym $mod+$alt+b exec ~/.config/sway/bin/toggle_mark.sh bluetooth 'blueman-manager'
 #
 
 mark=$1
