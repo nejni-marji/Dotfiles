@@ -137,7 +137,7 @@
     for_window [title="mynoise\.net"]       mark _mynoise
 
     # see also: ~/.config/sway/bin/toggle_mark.sh
-    set $toggle_mark con_mark="^_?(volume|vol|bluetooth|bt|music|mynoise)$"]
+    set $toggle_mark con_mark="^_?(volume|bluetooth|music|mynoise)$"]
     for_window [$toggle_mark] floating enable
     for_window [$toggle_mark] border $border
     for_window [$toggle_mark] move scratchpad
