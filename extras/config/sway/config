@@ -133,36 +133,17 @@
 
     # scratchpad window rules
     for_window [title="^pulsemixer$"] mark vol
-    for_window [con_mark="^vol$"] floating enable
-    for_window [con_mark="^vol$"] border $border
-    for_window [con_mark="^vol$"] move scratchpad
-    for_window [con_mark="^vol$"] scratchpad show
-    for_window [con_mark="^vol$"] resize set width 50 ppt height 80 ppt
-    for_window [con_mark="^vol$"] move position center
-
     for_window [app_id="^blueman-manager$"] mark bt
-    for_window [con_mark="^bt$"] floating enable
-    for_window [con_mark="^bt$"] border $border
-    for_window [con_mark="^bt$"] move scratchpad
-    for_window [con_mark="^bt$"] scratchpad show
-    for_window [con_mark="^bt$"] resize set width 50 ppt height 80 ppt
-    for_window [con_mark="^bt$"] move position center
-
     for_window [title="^tmux: music-[A-Z]{4}"] mark music
-    for_window [con_mark="^music$"] floating enable
-    for_window [con_mark="^music$"] border $border
-    for_window [con_mark="^music$"] move scratchpad
-    for_window [con_mark="^music$"] scratchpad show
-    for_window [con_mark="^music$"] resize set width 50 ppt height 80 ppt
-    for_window [con_mark="^music$"] move position center
-
     for_window [title="mynoise\.net"] mark mynoise
-    for_window [con_mark="^mynoise$"] floating enable
-    for_window [con_mark="^mynoise$"] border $border
-    for_window [con_mark="^mynoise$"] move scratchpad
-    for_window [con_mark="^mynoise$"] scratchpad show
-    for_window [con_mark="^mynoise$"] resize set width 50 ppt height 80 ppt
-    for_window [con_mark="^mynoise$"] move position center
+
+    set $open_mark con_mark="^(vol|bt|music|mynoise)$"
+    for_window [$open_mark] floating enable
+    for_window [$open_mark] border $border
+    for_window [$open_mark] move scratchpad
+    for_window [$open_mark] scratchpad show
+    for_window [$open_mark] resize set width 50 ppt height 80 ppt
+    for_window [$open_mark] move position center
 
 #
 ### Input configuration
@@ -248,13 +229,13 @@
     bindsym $mod+$shf+Up move up
     bindsym $mod+$shf+Right move right
 
-    bindsym $mod+$ctl+$left   fullscreen disable; focus left; fullscreen enable
-    bindsym $mod+$ctl+$down   fullscreen disable; focus down; fullscreen enable
-    bindsym $mod+$ctl+$up     fullscreen disable; focus up; fullscreen enable
+    bindsym $mod+$ctl+$left   fullscreen disable; focus left;  fullscreen enable
+    bindsym $mod+$ctl+$down   fullscreen disable; focus down;  fullscreen enable
+    bindsym $mod+$ctl+$up     fullscreen disable; focus up;    fullscreen enable
     bindsym $mod+$ctl+$right  fullscreen disable; focus right; fullscreen enable
-    bindsym $mod+$ctl+Left    fullscreen disable; focus left; fullscreen enable
-    bindsym $mod+$ctl+Down    fullscreen disable; focus down; fullscreen enable
-    bindsym $mod+$ctl+Up      fullscreen disable; focus up; fullscreen enable
+    bindsym $mod+$ctl+Left    fullscreen disable; focus left;  fullscreen enable
+    bindsym $mod+$ctl+Down    fullscreen disable; focus down;  fullscreen enable
+    bindsym $mod+$ctl+Up      fullscreen disable; focus up;    fullscreen enable
     bindsym $mod+$ctl+Right   fullscreen disable; focus right; fullscreen enable
 
     # select most regent urgent container
@@ -377,19 +358,19 @@
 #
 # Application binds
 #
-    bindsym $mod+$alt+b      exec ~/.config/sway/bin/bluetooth_mark.sh
+    bindsym $mod+$alt+b      exec ~/.config/sway/bin/open_mark.sh bluetooth
     bindsym $mod+$alt+d      exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
     bindsym $mod+$alt+$shf+d exec deluge-gtk
     bindsym $mod+$alt+f      exec env MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
     bindsym $mod+$alt+g      exec gimp
     bindsym $mod+$alt+$shf+g exec $cmd_secure
-    bindsym $mod+$alt+m      exec ~/.config/sway/bin/music_mark.sh
-    bindsym $mod+$alt+n      exec ~/.config/sway/bin/mynoise_mark.sh
+    bindsym $mod+$alt+m      exec ~/.config/sway/bin/open_mark.sh music
+    bindsym $mod+$alt+n      exec ~/.config/sway/bin/open_mark.sh mynoise
     bindsym $mod+$alt+s      exec signal-desktop
     bindsym $mod+$alt+$shf+s exec steam --disable-gpu -cef-disable-gpu -no-cef-sandbox
     bindsym $mod+$alt+t      exec thunar
-    bindsym $mod+$alt+v      exec ~/.config/sway/bin/volume_mark.sh
+    bindsym $mod+$alt+v      exec ~/.config/sway/bin/open_mark.sh volume
     bindsym $mod+$alt+$shf+v exec pavucontrol
 
     # edit configs quickly
