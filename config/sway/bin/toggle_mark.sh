@@ -7,13 +7,13 @@
 #    for_window [...] mark _volume
 #    for_window [...] mark _bluetooth
 #
-#    set $toggle_mark for_window [con_mark="^_?(volume|bluetooth)$"]
-#    $toggle_mark floating enable
-#    $toggle_mark border $border
-#    $toggle_mark move scratchpad
-#    $toggle_mark scratchpad show
-#    $toggle_mark resize set width 50 ppt height 80 ppt
-#    $toggle_mark move position center
+#    set $toggle_mark con_mark="^_?(volume|bluetooth)$"
+#    for_window [$toggle_mark] floating enable
+#    for_window [$toggle_mark] border $border
+#    for_window [$toggle_mark] move scratchpad
+#    for_window [$toggle_mark] scratchpad show
+#    for_window [$toggle_mark] resize set width 50 ppt height 80 ppt
+#    for_window [$toggle_mark] move position center
 #
 #    bindsym $mod+$alt+v exec ~/.config/sway/bin/toggle_mark.sh volume '$term -T pulsemixer pulsemixer'
 #    bindsym $mod+$alt+b exec ~/.config/sway/bin/toggle_mark.sh bluetooth 'blueman-manager'
