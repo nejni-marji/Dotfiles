@@ -1,27 +1,16 @@
 #!/bin/bash
-set -x
 
-case $1 in
-	volume|vol)
-		mark=volume
-		;;
-	bluetooth|bt)
-		mark=bluetooth
-		;;
-	music)
-		mark=music
-		;;
-	mynoise)
-		mark=mynoise
-		;;
-	*)
-		exit
-		;;
-esac
+# this script is supported by logic in my sway config.
+# it is not expected to be functional without that logic.
 
+mark=$1
+
+# jq: is mark in list
 has_mark="map(.==\"$mark\" or .==\"_$mark\") | any"
 
+# if mark exists
 if swaymsg -t get_marks | jq -e "$has_mark" >/dev/null ; then
+	# if mark is focused
 	if swaymsg -t get_tree | jq -e ".. |
 		select(.focused?).marks | $has_mark" >/dev/null ; then
 		swaymsg 'move scratchpad'
@@ -32,6 +21,7 @@ if swaymsg -t get_marks | jq -e "$has_mark" >/dev/null ; then
 		swaymsg "[con_mark=\"^_?$mark$\"] move position center"
 	fi
 else
+	# mark doesnt exist, create it
 	case $mark in
 		volume|vol)
 			swaymsg 'exec $term -T pulsemixer pulsemixer'
