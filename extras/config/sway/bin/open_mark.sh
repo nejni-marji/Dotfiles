@@ -33,10 +33,10 @@ if swaymsg -t get_marks | jq -e "$has_mark" >/dev/null ; then
 	fi
 else
 	case $mark in
-		volume)
+		volume|vol)
 			swaymsg 'exec $term -T pulsemixer pulsemixer'
 			;;
-		bluetooth)
+		bluetooth|bt)
 			swaymsg exec 'blueman-manager'
 			;;
 		music)
@@ -45,8 +45,6 @@ else
 		mynoise)
 			swaymsg exec 'firefox --new-window https://mynoise.net/noiseMachines.php'
 			sleep 0.1
-			;;
-		*)
 			;;
 	esac
 fi
