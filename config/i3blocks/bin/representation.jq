@@ -72,8 +72,8 @@ gsub("(?<=])(?<a>(<span foreground=\"#[0-9A-Fa-f]{6}\">)?[HTVS•](</span>)?\\[?
 # i don't know why this works
 gsub("(?<=[)(<span foreground=\"[0-9A-Fa-f]{6}\">) (?<a>[HVTS])"; "\(.a)") |
 
-# final string
-if $scratchpad_length==0 then . else "\(.) \(
+# add scratchpad
+if $scratchpad_length!=0 then "\(.) \(
 	if $scratchpad_focus then "<span foreground=\"#ff8cda\">" else "" end
 )+\($scratchpad_length)\(
 	if $scratchpad_focus then "</span>" else "" end
