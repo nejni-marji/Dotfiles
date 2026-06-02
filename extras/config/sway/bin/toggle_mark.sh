@@ -1,7 +1,23 @@
 #!/bin/bash
-
+#
 # this script is supported by logic in my sway config.
 # it is not expected to be functional without that logic.
+# an example is provided below:
+#
+#    for_window [...] mark _app1
+#    for_window [...] mark _app2
+#
+#    set $toggle_mark for_window [con_mark="^_?(app1|app2)$"]
+#    $toggle_mark floating enable
+#    $toggle_mark border $border
+#    $toggle_mark move scratchpad
+#    $toggle_mark scratchpad show
+#    $toggle_mark resize set width 50 ppt height 80 ppt
+#    $toggle_mark move position center
+#
+#    bindsym $mod+$alt+b exec ~/.config/sway/bin/toggle_mark.sh bluetooth 'blueman-manager'
+#    bindsym $mod+$alt+v exec ~/.config/sway/bin/toggle_mark.sh volume '$term -T pulsemixer pulsemixer'
+#
 
 mark=$1
 cmd=$2
