@@ -137,6 +137,7 @@
     for_window [title="^tmux: music"]       mark _music
     for_window [title="mynoise\.net"]       mark _mynoise
 
+    # see also: ~/.config/sway/bin/open_mark.sh
     set $open_mark con_mark="^_?(volume|vol|bluetooth|bt|music|mynoise)$"
     for_window [$open_mark] floating enable
     for_window [$open_mark] border $border
