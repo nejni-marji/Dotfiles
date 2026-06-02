@@ -1,14 +1,14 @@
 [submodule "extras/bin/git/gay"]
-	path = extras/bin/git/gay
+	path = bin/git/gay
 	url = https://github.com/nejni-marji/gay
 [submodule "extras/bin/git/zsh-git-prompt"]
-	path = extras/bin/git/zsh-git-prompt
+	path = bin/git/zsh-git-prompt
 	url = https://github.com/olivierverdier/zsh-git-prompt
 [submodule "extras/bin/git/unimatrix"]
-	path = extras/bin/git/unimatrix
+	path = bin/git/unimatrix
 	url = https://github.com/will8211/unimatrix
 [submodule "extras/bin/git/opensub"]
-	path = extras/bin/git/opensub
+	path = bin/git/opensub
 	url = https://github.com/aoeu/opensub
 [submodule "extras/config/nvim/autoload/junegunn/vim-plug"]
 	path = config/nvim/autoload/junegunn/vim-plug

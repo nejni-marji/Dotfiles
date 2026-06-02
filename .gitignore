@@ -17,6 +17,8 @@
 /config/xfce4/panel/
 /config/xfce4/xfconf/
 /config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+/extras/config
+/extras/bin
 /zsh/*.lck
 
 # secrets
