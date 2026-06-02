@@ -132,12 +132,12 @@
     for_window [class="^[Ss]team$" title="Friends List"] move position 80 ppt 10 ppt
 
     # scratchpad window rules
-    for_window [title="^pulsemixer$"] mark vol
-    for_window [app_id="^blueman-manager$"] mark bt
-    for_window [title="^tmux: music-[A-Z]{4}"] mark music
-    for_window [title="mynoise\.net"] mark mynoise
+    for_window [title="^pulsemixer$"]       mark _volume
+    for_window [app_id="^blueman-manager$"] mark _bluetooth
+    for_window [title="^tmux: music"]       mark _music
+    for_window [title="mynoise\.net"]       mark _mynoise
 
-    set $open_mark con_mark="^(vol|bt|music|mynoise)$"
+    set $open_mark con_mark="^_?(volume|vol|bluetooth|bt|music|mynoise)$"
     for_window [$open_mark] floating enable
     for_window [$open_mark] border $border
     for_window [$open_mark] move scratchpad
