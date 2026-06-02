@@ -4,6 +4,7 @@
 # it is not expected to be functional without that logic.
 
 mark=$1
+cmd=$2
 
 # jq: is mark in list
 has_mark="map(.==\"$mark\" or .==\"_$mark\") | any"
@@ -22,19 +23,5 @@ if swaymsg -t get_marks | jq -e "$has_mark" >/dev/null ; then
 	fi
 else
 	# mark doesnt exist, create it
-	case $mark in
-		volume)
-			swaymsg 'exec $term -T pulsemixer pulsemixer'
-			;;
-		bluetooth)
-			swaymsg exec 'blueman-manager'
-			;;
-		music)
-			swaymsg 'exec $term -T "tmux: music" tmx music'
-			;;
-		mynoise)
-			swaymsg exec 'firefox --new-window https://mynoise.net/noiseMachines.php'
-			sleep 0.1
-			;;
-	esac
+	swaymsg exec "$cmd"
 fi
