@@ -1,6 +1,3 @@
-[submodule "extras/kwin-scripts"]
-	path = extras/kwin-scripts
-	url = https://gitlab.com/Worldblender/kwin-scripts
 [submodule "extras/bin/git/gay"]
 	path = extras/bin/git/gay
 	url = https://github.com/nejni-marji/gay
