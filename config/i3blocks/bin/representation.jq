@@ -6,6 +6,9 @@
 ([.. |
 	select(.scratchpad_state? | . and .!="none")] | length)
 	as $scratchpad_length |
+(.. |
+	select(.focused?).scratchpad_state != "none")
+	as $scratchpad_focus |
 
 # prefixes for split types
 {
@@ -68,5 +71,9 @@ gsub("(?<=[]•>])(?<a>(<span foreground=\"#[0-9A-Fa-f]{6}\">)?[HTVS](</span>)?\
 gsub("(?<=])(?<a>(<span foreground=\"#[0-9A-Fa-f]{6}\">)?[HTVS•](</span>)?\\[?)"; " \(.a)") |
 # i don't know why this works
 gsub("(?<=[)(<span foreground=\"[0-9A-Fa-f]{6}\">) (?<a>[HVTS])"; "\(.a)") |
-if $scratchpad_length==0 then . else "\(.) +\($scratchpad_length)" end |
-.
+
+if $scratchpad_length==0 then . else "\(.) \(
+	if $scratchpad_focus then "<span foreground=\"#ff8cda\">" else "" end
+)+\($scratchpad_length)\(
+	if $scratchpad_focus then "</span>" else "" end
+)" end
