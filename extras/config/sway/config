@@ -375,14 +375,13 @@
     bindsym $mod+$alt+$shf+v exec pavucontrol
 
     # edit configs quickly
-    set $mode_cfg "configs: dsStTvzZ"
+    set $mode_cfg "configs: dsStvzZ"
     bindsym $mod+$alt+c      mode $mode_cfg
     mode $mode_cfg {
         bindsym d      mode default, exec $term -D ~/Dotfiles
         bindsym s      mode default, exec $term -T 'nvim sway config' nvim ~/.config/sway/config
         bindsym $shf+s mode default, exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config.d/host-include-*
         bindsym t      mode default, exec $term -T 'nvim todo.txt' nvim ~/Dotfiles/extras/todo.txt
-        bindsym $shf+t mode default, exec $term -T 'nvim todo config' nvim ~/.todo/config
         bindsym v      mode default, exec $term -T 'nvim vimrc' nvim ~/.config/nvim/init.vim
         bindsym z      mode default, exec $term -T 'nvim zshrc' nvim ~/.zshrc
         bindsym $shf+z mode default, exec $term -T 'nvim zshrc' nvim ~/.zshenv
