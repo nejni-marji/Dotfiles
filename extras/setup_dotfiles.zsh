@@ -8,7 +8,7 @@ fi
 
 cd Dotfiles
 for i in * ; do
-	if [[ $i == extras ]] ; then
+	if [[ $i == extras ]] || [[ $i == config ]] ; then
 		continue
 	fi
 	ln -srfnv $i ~/.$i

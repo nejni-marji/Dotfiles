@@ -3,20 +3,20 @@
 /.stversions
 
 # random crap that shouldnt be saved
-/extras/config/cava/shaders
-/extras/config/cava/themes
-/extras/config/mpd/database
-/extras/config/mpd/log
-/extras/config/mpd/playlists
-/extras/config/mpd/state
-/extras/config/mpd/sticker.*
-/extras/config/mpv/watch_later/
-/extras/config/nvim/data/
-/extras/config/weechat
-/extras/config/xfce4/desktop/
-/extras/config/xfce4/panel/
-/extras/config/xfce4/xfconf/
-/extras/config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+/config/cava/shaders
+/config/cava/themes
+/config/mpd/database
+/config/mpd/log
+/config/mpd/playlists
+/config/mpd/state
+/config/mpd/sticker.*
+/config/mpv/watch_later/
+/config/nvim/data/
+/config/weechat
+/config/xfce4/desktop/
+/config/xfce4/panel/
+/config/xfce4/xfconf/
+/config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 /zsh/*.lck
 
 # secrets
@@ -24,8 +24,8 @@
 /extras/secrets
 
 # hostname-suffixed symlinks
-/extras/config/foot/foot.ini
-/extras/config/i3blocks/bin/date_fuzzy_emoji_clock.py
-/extras/config/i3blocks/config
-/extras/config/mako/config
-/extras/config/sway/config.d/host-include
+/config/foot/foot.ini
+/config/i3blocks/bin/date_fuzzy_emoji_clock.py
+/config/i3blocks/config
+/config/mako/config
+/config/sway/config.d/host-include
