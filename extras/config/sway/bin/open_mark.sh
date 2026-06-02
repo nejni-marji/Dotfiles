@@ -23,10 +23,10 @@ if swaymsg -t get_marks | jq -e "$has_mark" >/dev/null ; then
 else
 	# mark doesnt exist, create it
 	case $mark in
-		volume|vol)
+		volume)
 			swaymsg 'exec $term -T pulsemixer pulsemixer'
 			;;
-		bluetooth|bt)
+		bluetooth)
 			swaymsg exec 'blueman-manager'
 			;;
 		music)
