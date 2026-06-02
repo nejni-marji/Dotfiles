@@ -26,10 +26,10 @@ if swaymsg -t get_marks | jq -e "$has_mark" >/dev/null ; then
 		select(.focused?).marks | $has_mark" >/dev/null ; then
 		swaymsg 'move scratchpad'
 	else
-		swaymsg '[con_mark="^_?'"$mark"'$"] move scratchpad'
-		swaymsg '[con_mark="^_?'"$mark"'$"] focus'
-		swaymsg '[con_mark="^_?'"$mark"'$"] resize set width 50 ppt height 80 ppt'
-		swaymsg '[con_mark="^_?'"$mark"'$"] move position center'
+		swaymsg "[con_mark=\"^_?$mark$\"] move scratchpad"
+		swaymsg "[con_mark=\"^_?$mark$\"] focus"
+		swaymsg "[con_mark=\"^_?$mark$\"] resize set width 50 ppt height 80 ppt"
+		swaymsg "[con_mark=\"^_?$mark$\"] move position center"
 	fi
 else
 	case $mark in
