@@ -378,14 +378,14 @@
     set $mode_cfg "configs: dsStTvzZ"
     bindsym $mod+$alt+c      mode $mode_cfg
     mode $mode_cfg {
-        bindsym d      exec $term -D ~/Dotfiles , mode default
-        bindsym s      exec $term -T 'nvim sway config' nvim ~/.config/sway/config , mode default
-        bindsym $shf+s exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config.d/host-include-* , mode default
-        bindsym t      exec $term -T 'nvim todo.txt' nvim ~/Dotfiles/extras/todo.txt , mode default
-        bindsym $shf+t exec $term -T 'nvim todo config' nvim ~/.todo/config , mode default
-        bindsym v      exec $term -T 'nvim vimrc' nvim ~/.config/nvim/init.vim , mode default
-        bindsym z      exec $term -T 'nvim zshrc' nvim ~/.zshrc, mode defaultrc
-        bindsym $shf+z exec $term -T 'nvim zshrc' nvim ~/.zshenv , mode default
+        bindsym d      mode default, exec $term -D ~/Dotfiles
+        bindsym s      mode default, exec $term -T 'nvim sway config' nvim ~/.config/sway/config
+        bindsym $shf+s mode default, exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config.d/host-include-*
+        bindsym t      mode default, exec $term -T 'nvim todo.txt' nvim ~/Dotfiles/extras/todo.txt
+        bindsym $shf+t mode default, exec $term -T 'nvim todo config' nvim ~/.todo/config
+        bindsym v      mode default, exec $term -T 'nvim vimrc' nvim ~/.config/nvim/init.vim
+        bindsym z      mode default, exec $term -T 'nvim zshrc' nvim ~/.zshrc
+        bindsym $shf+z mode default, exec $term -T 'nvim zshrc' nvim ~/.zshenv
 
         bindsym $mod+$alt+c mode default
         bindsym Return mode default
