@@ -412,7 +412,7 @@
     bindsym $mod+p          exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+$shf+p     exec ~/.config/sway/bin/screenshot.sh
 
-    bindsym $mod+z      exec makoctl dismiss
+    bindsym $mod+z      exec makoctl dismiss --all
     bindsym $mod+$shf+z exec makoctl restore
     bindsym $mod+$ctl+z exec makoctl dismiss --all
 
