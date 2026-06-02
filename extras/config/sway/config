@@ -138,13 +138,13 @@
     for_window [title="mynoise\.net"]       mark _mynoise
 
     # see also: ~/.config/sway/bin/toggle_mark.sh
-    set $toggle_mark con_mark="^_?(volume|vol|bluetooth|bt|music|mynoise)$"
-    for_window [$toggle_mark] floating enable
-    for_window [$toggle_mark] border $border
-    for_window [$toggle_mark] move scratchpad
-    for_window [$toggle_mark] scratchpad show
-    for_window [$toggle_mark] resize set width 50 ppt height 80 ppt
-    for_window [$toggle_mark] move position center
+    set $toggle_mark for_window [con_mark="^_?(volume|vol|bluetooth|bt|music|mynoise)$"]
+    $toggle_mark floating enable
+    $toggle_mark border $border
+    $toggle_mark move scratchpad
+    $toggle_mark scratchpad show
+    $toggle_mark resize set width 50 ppt height 80 ppt
+    $toggle_mark move position center
 
 #
 ### Input configuration
