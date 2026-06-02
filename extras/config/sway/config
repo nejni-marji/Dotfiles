@@ -32,7 +32,6 @@
     set $alt Mod1
     set $ctl Ctrl
     set $shf Shift
-    set $float space
     # direction keys
     set $left h
     set $down t
@@ -175,15 +174,15 @@
 ### Key bindings
 #
     # start a terminal
-    bindsym $mod+Return exec $term
-    bindsym $mod+$shf+Return exec $term -T - sleep infinity
-    bindsym $mod+$alt+Return exec $term -T - watch -tw -n60 'echo ${COLUMNS}x${LINES} ; echo ${COLUMNS}x${LINES} | figlet -k'
+    bindsym $mod+return exec $term
+    bindsym $mod+$shf+return exec $term -T - sleep infinity
+    bindsym $mod+$alt+return exec $term -T - watch -tw -n60 'echo ${COLUMNS}x${LINES} ; echo ${COLUMNS}x${LINES} | figlet -k'
 
     # kill focused window
     bindsym $mod+$shf+q kill
 
     # app launchers
-    bindsym $alt+Space  exec $menu
+    bindsym $alt+space  exec $menu
     bindsym $mod+d      exec $menu
     bindsym $mod+$shf+d exec $menu_alt
     bindsym $mod+$ctl+d exec ~/.config/sway/bin/wmenu-windows.sh
@@ -193,9 +192,9 @@
 
     # floating windows
     floating_modifier $mod normal
-    bindsym $mod+$shf+$float floating toggle, border $border
-    bindsym $mod+$float focus mode_toggle
-    bindsym $mod+$ctl+$float sticky toggle
+    bindsym $mod+$shf+space floating toggle, border $border
+    bindsym $mod+space focus mode_toggle
+    bindsym $mod+$ctl+space sticky toggle
     # TODO: make this check if the focused window is floating
     bindsym $mod+$shf+m resize set width 50 ppt height 80 ppt, move position center
 
@@ -216,28 +215,28 @@
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+    bindsym $mod+left focus left
+    bindsym $mod+down focus down
+    bindsym $mod+up focus up
+    bindsym $mod+right focus right
 
     bindsym $mod+$shf+$left move left
     bindsym $mod+$shf+$down move down
     bindsym $mod+$shf+$up move up
     bindsym $mod+$shf+$right move right
-    bindsym $mod+$shf+Left move left
-    bindsym $mod+$shf+Down move down
-    bindsym $mod+$shf+Up move up
-    bindsym $mod+$shf+Right move right
+    bindsym $mod+$shf+left move left
+    bindsym $mod+$shf+down move down
+    bindsym $mod+$shf+up move up
+    bindsym $mod+$shf+right move right
 
     bindsym $mod+$ctl+$left   fullscreen disable; focus left;  fullscreen enable
     bindsym $mod+$ctl+$down   fullscreen disable; focus down;  fullscreen enable
     bindsym $mod+$ctl+$up     fullscreen disable; focus up;    fullscreen enable
     bindsym $mod+$ctl+$right  fullscreen disable; focus right; fullscreen enable
-    bindsym $mod+$ctl+Left    fullscreen disable; focus left;  fullscreen enable
-    bindsym $mod+$ctl+Down    fullscreen disable; focus down;  fullscreen enable
-    bindsym $mod+$ctl+Up      fullscreen disable; focus up;    fullscreen enable
-    bindsym $mod+$ctl+Right   fullscreen disable; focus right; fullscreen enable
+    bindsym $mod+$ctl+left    fullscreen disable; focus left;  fullscreen enable
+    bindsym $mod+$ctl+down    fullscreen disable; focus down;  fullscreen enable
+    bindsym $mod+$ctl+up      fullscreen disable; focus up;    fullscreen enable
+    bindsym $mod+$ctl+right   fullscreen disable; focus right; fullscreen enable
 
     # select most regent urgent container
     bindsym $mod+m [urgent=latest] focus
@@ -273,13 +272,13 @@
     # move between workspaces and outputs
     bindsym $mod+bracketleft workspace prev_on_output
     bindsym $mod+bracketright workspace next_on_output
-    bindsym $mod+BackSpace workspace back_and_forth
-    bindsym $mod+$shf+BackSpace move container to workspace back_and_forth
-    bindsym $alt+Tab exec swaymsg -t get_outputs | \
+    bindsym $mod+backspace workspace back_and_forth
+    bindsym $mod+$shf+backspace move container to workspace back_and_forth
+    bindsym $alt+tab exec swaymsg -t get_outputs | \
         jq -e 'length==1' && \
         swaymsg workspace back_and_forth || \
         swaymsg focus output right
-    bindsym $alt+$shf+Tab exec swaymsg -t get_outputs | \
+    bindsym $alt+$shf+tab exec swaymsg -t get_outputs | \
         jq -e 'length==1' && \
         swaymsg move container to workspace back_and_forth || \
         swaymsg move container to output right
@@ -343,16 +342,16 @@
         bindsym $down resize grow height 10px
         bindsym $up resize shrink height 10px
         bindsym $right resize grow width 10px
-        bindsym Left resize shrink width 10px
-        bindsym Down resize grow height 10px
-        bindsym Up resize shrink height 10px
-        bindsym Right resize grow width 10px
+        bindsym left resize shrink width 10px
+        bindsym down resize grow height 10px
+        bindsym up resize shrink height 10px
+        bindsym right resize grow width 10px
 
         bindsym $mod+$shf+r mode default
         bindsym $mod+r mode default
-        bindsym Return mode default
-        bindsym Escape mode default
-        bindsym BackSpace mode default
+        bindsym return mode default
+        bindsym escape mode default
+        bindsym backspace mode default
         bindsym $ctl+bracketleft mode default
     }
 
@@ -387,9 +386,9 @@
         bindsym $shf+z mode default, exec $term -T 'nvim zshrc' nvim ~/.zshenv
 
         bindsym $mod+$alt+c mode default
-        bindsym Return mode default
-        bindsym Escape mode default
-        bindsym BackSpace mode default
+        bindsym escape mode default
+        bindsym return mode default
+        bindsym backspace mode default
         bindsym $ctl+bracketleft mode default
     }
 
@@ -409,7 +408,7 @@
     bindsym --locked XF86MonBrightnessUp   exec brightnessctl set 5%+ $bright_sig
 
     # take screenshots
-    bindsym --release Print exec ~/.config/sway/bin/screenshot.sh
+    bindsym --release print exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+p          exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+$shf+p     exec ~/.config/sway/bin/screenshot.sh
 
@@ -439,8 +438,8 @@
     bindsym $mod+semicolon exec ~/Working/swaywm/git/wl-find-cursor-reticle/target/release/wl-reticle
 
     # gaming crosshair
-    bindsym $mod+Home exec wlcrosshairctl toggle
-    bindsym $mod+End  exec wlcrosshairctl reload
+    bindsym $mod+home exec wlcrosshairctl toggle
+    bindsym $mod+end  exec wlcrosshairctl reload
 
 #
 # Status Bar:
