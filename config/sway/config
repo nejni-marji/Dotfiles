@@ -239,7 +239,7 @@
     bindsym $mod+$ctl+right   fullscreen disable; focus right; fullscreen enable
 
     # select most regent urgent container
-    bindsym $mod+m [urgent=latest] focus
+    bindsym $mod+m exec swaymsg '[urgent=latest] focus'
 
 #
 # Workspaces:
@@ -317,7 +317,7 @@
         swaymsg 'focus parent; layout toggle stacking tabbed; focus child' || \
         swaymsg 'layout toggle stacking tabbed'
     bindsym $mod+l split none
-    bindsym $mod+$shf+l [all] split none
+    bindsym $mod+$shf+l exec swaymsg '[all] split none'
     bindsym $mod+w splith
     bindsym $mod+v splitv
     bindsym $mod+$shf+w split t; layout tabbed
