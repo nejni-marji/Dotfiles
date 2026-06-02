@@ -7,7 +7,7 @@
 #    for_window [...] mark _volume
 #    for_window [...] mark _bluetooth
 #
-#    set $toggle_mark for_window [con_mark="^_?(app1|app2)$"]
+#    set $toggle_mark for_window [con_mark="^_?(volume|bluetooth)$"]
 #    $toggle_mark floating enable
 #    $toggle_mark border $border
 #    $toggle_mark move scratchpad
