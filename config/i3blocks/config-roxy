@@ -23,7 +23,7 @@ markup=pango
 label=⚡ 
 command=~/.config/i3blocks/bin/battery.sh
 markup=pango
-interval=60
+interval=15
 
 [volume]
 label=🔊 
