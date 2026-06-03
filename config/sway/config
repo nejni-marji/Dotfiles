@@ -426,10 +426,10 @@
     bindsym --locked XF86AudioStop   exec playerctl -p $player stop
     bindsym --locked $mod+equal      exec $player_notify
     bindsym --locked $mod+slash      exec playerctl -p $player play-pause
-    bindsym --locked $mod+$shf+slash exec playerctl -p $player previous   && $player_notify
-    bindsym --locked $mod+$shf+equal exec playerctl -p $player next       && $player_notify
-    bindsym --locked $mod+$alt+slash exec zsh -c '[[ $player_volume -le 0   ]] || playerctl -p $player volume 0.1-'
-    bindsym --locked $mod+$alt+equal exec zsh -c '[[ $player_volume -ge 100 ]] || playerctl -p $player volume 0.1+'
+    bindsym --locked $mod+$shf+slash exec zsh -c '[[ $player_volume -le 0   ]] || playerctl -p $player volume 0.1-'
+    bindsym --locked $mod+$shf+equal exec zsh -c '[[ $player_volume -ge 100 ]] || playerctl -p $player volume 0.1+'
+    bindsym --locked $mod+$alt+slash exec playerctl -p $player previous   && $player_notify
+    bindsym --locked $mod+$alt+equal exec playerctl -p $player next       && $player_notify
     bindsym --locked $mod+$ctl+slash exec playerctld   shift && $player_notify
     bindsym --locked $mod+$ctl+equal exec playerctld unshift && $player_notify
 
