@@ -162,6 +162,7 @@ alias paru='paru --sudoflags --bell'
 alias todo='todo.sh'
 alias t='todo.sh'
 alias calc='units'
+alias cal='cal -m'
 alias feh='imv'
 alias aria2c='aria2c -d ~/Downloads/aria'
 

@@ -40,3 +40,15 @@ enabled = false
 alignment = "right"
 brackets = { left = "<", right = ">" }
 truncate = 10
+
+[notifications.highlight]
+sound = "bloop"
+show_toast = true
+show_content = true
+request_attention = false
+
+[notifications.direct_message]
+sound = "peck"
+show_toast = true
+show_content = true
+request_attention = false
