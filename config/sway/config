@@ -401,6 +401,8 @@
     bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@   -5%    $vol_sig
     bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@   +5%    $vol_sig
     bindsym --locked XF86AudioMicMute     exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle $vol_sig
+    bindsym --locked $shf+XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@   -1%    $vol_sig
+    bindsym --locked $shf+XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@   +1%    $vol_sig
 
     # special keys to adjust brightness via brightnessctl
     set $bright_sig && pkill -SIGRTMIN+2 i3blocks

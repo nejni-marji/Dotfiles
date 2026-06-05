@@ -16,10 +16,8 @@ elif .state == "charging" then
 	["00ff00", .percentage, .time_to_full, .time_to_full_unit]
 elif .state == "fully-charged" then
 	["808080", .percentage]
-elif .state == "pending-charge" then
-	["ff0000", .percentage]
 else
-	["ff0000", .percentage]
+	["ffff00", .percentage]
 end |
 
 # print long and short
