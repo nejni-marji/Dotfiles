@@ -6,7 +6,10 @@ if ! [[ -d Dotfiles ]] ; then
 	exit 10
 fi
 
-cd Dotfiles
+cd ~/Dotfiles
+ln -srfnv bin ~/bin
+
+cd ~/Dotfiles
 for i in * ; do
 	case $i in
 		extras|bin|config)
@@ -18,11 +21,8 @@ for i in * ; do
 	esac
 done
 
-cd ~/Dotfiles
-ln -srfnv bin ~/bin
-
 cd ~/Dotfiles/config
-mkdir -v ~/.config
+mkdir -pv ~/.config
 for i in * ; do
 	ln -srfnv $i ~/.config/$i
 done
@@ -46,7 +46,7 @@ host_suffixed=(
 cd ~/Dotfiles
 for i in $host_suffixed ; do
 	[[ -f $i-$HOST ]] &&
-	ln -srv $i-$HOST $i
+	ln -srfnv $i-$HOST $i
 done
 
 cd ~/Dotfiles
