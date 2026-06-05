@@ -40,6 +40,7 @@ host_suffixed=(
 	config/i3blocks/config
 	config/mako/config
 	config/sway/config.d/host-include
+	config/swaycons/config.toml
 )
 
 cd ~/Dotfiles
