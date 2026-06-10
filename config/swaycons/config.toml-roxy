@@ -12,6 +12,8 @@ KeePassXC = { icon = "󰍁" }
 "org.squidowl.halloy" = { icon = "󰀂" }
 signal = { icon = "󰭻", color = "#3B45FD" }
 steam = { icon = "" }
+thunar = { icon = "" }
+mpv = { icon = "", color = "#c900cc" }
 
 [title]
 "[Ii]nvidious" = { icon = "", color = "#ff0000" }
