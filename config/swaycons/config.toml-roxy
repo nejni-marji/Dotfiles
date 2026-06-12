@@ -1,21 +1,21 @@
 [global]
-color = "#FFFFFF"
+color = "#ffffff"
 focused_color = "#000000"
 icon = ""
 size = "16pt"
 separator = " ⟩ "
 
 [app_id]
-deluge = { icon = "󰛴", color = "#4C90E8" }
+deluge = { icon = "󰛴", color = "#4c90e8" }
 firefox = { icon = "", size = "16pt" }
 KeePassXC = { icon = "󰍁" }
 "org.squidowl.halloy" = { icon = "󰀂" }
-signal = { icon = "󰭻", color = "#3B45FD" }
+signal = { icon = "󰭻", color = "#3b45fd" }
 steam = { icon = "" }
-thunar = { icon = "" }
+thunar = { icon = "", color = "#8cdaff" }
 mpv = { icon = "", color = "#c900cc" }
 
 [title]
 "[Ii]nvidious" = { icon = "", color = "#ff0000" }
-"[Bb]lue[Tt]ooth" = { icon = "", color = "#0083FC" }
-"[Mm]inecraft" = { icon = "󰍳", color = "#0DB50D" }
+"[Bb]lue[Tt]ooth" = { icon = "", color = "#0083fc" }
+"[Mm]inecraft" = { icon = "󰍳", color = "#0db50d" }

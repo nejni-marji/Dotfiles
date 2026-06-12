@@ -176,6 +176,7 @@
     # start a terminal
     bindsym $mod+return exec $term
     bindsym $mod+$shf+return exec $term -T - sleep infinity
+    bindsym $mod+$ctl+return exec $term -T 'sleep 60' sleep 60
     bindsym $mod+$alt+return exec $term -T - watch -tw -n60 'echo ${COLUMNS}x${LINES} ; echo ${COLUMNS}x${LINES} | figlet -k'
 
     # kill focused window
@@ -365,6 +366,7 @@
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
     bindsym $mod+$alt+g      exec gimp
     bindsym $mod+$alt+$shf+g exec $cmd_secure
+    bindsym $mod+$alt+h      exec halloy
     bindsym $mod+$alt+m      exec ~/.config/sway/bin/toggle_mark.sh music '$term -T "tmux: music" tmx music'
     bindsym $mod+$alt+n      exec ~/.config/sway/bin/toggle_mark.sh mynoise 'firefox --new-window https://mynoise.net/noiseMachines.php'
     bindsym $mod+$alt+s      exec signal-desktop

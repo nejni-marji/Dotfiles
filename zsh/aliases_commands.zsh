@@ -175,6 +175,7 @@ local FF_VER=$(firefox -version | cut -d' ' -f3)
 fi
 alias mpv-web="mpv --user-agent=\"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:$FF_VER) Gecko/20100101 Firefox/$FF_VER\""
 alias mpv-music="mpv --no-audio-display --no-video --no-pause --keep-open=yes --volume=40 --loop-playlist"
+alias convert='magick'
 
 unset FF_VER
 

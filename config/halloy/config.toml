@@ -10,6 +10,7 @@ theme = "Catppuccin Latte"
 nickname = "nejni"
 server = "irc.libera.chat"
 channels = ["#sway", "#archlinux", "#archlinux-offtopic", "#linux"]
+alt_nicks = ["nejni_", "nejni__", "nejni-marji", "nejni-marji_"]
 
 [servers.liberachat.sasl.plain]
 username = "nejni-marji"
