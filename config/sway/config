@@ -85,10 +85,10 @@
 
     # colors
     # client.class             outline   bckgrnd   frgrnd    indctr    border
-    client.focused             #e667be   #ff8cda   #000000   #8cdaff   #ff8cda
+    client.focused             #ff8cda   #ff8cda   #000000   #8cdaff   #ff8cda
     client.focused_inactive    #666666   #5f676a   #ffffff   #484e50   #5f676a
     client.focused_tab_title   #666666   #5f676a   #ffffff   #484e50   #5f676a
-    client.unfocused           #666666   #222222   #888888   #292d2e   #222222
+    client.unfocused           #444444   #222222   #888888   #292d2e   #222222
     client.urgent              #ff9933   #ffc68c   #000000   #8cdaff   #ffc68c
 
     # borders
@@ -428,8 +428,8 @@
     bindsym --locked XF86AudioPrev   exec playerctl -p $player previous   && $player_notify
     bindsym --locked XF86AudioNext   exec playerctl -p $player next       && $player_notify
     bindsym --locked XF86AudioStop   exec playerctl -p $player stop
-    bindsym --locked $mod+equal      exec $player_notify
     bindsym --locked $mod+slash      exec playerctl -p $player play-pause
+    bindsym --locked $mod+equal      exec $player_notify
     bindsym --locked $mod+$shf+slash exec zsh -c '[[ $player_volume -le 0   ]] || playerctl -p $player volume 0.1-'
     bindsym --locked $mod+$shf+equal exec zsh -c '[[ $player_volume -ge 100 ]] || playerctl -p $player volume 0.1+'
     bindsym --locked $mod+$alt+slash exec playerctl -p $player previous   && $player_notify
@@ -460,7 +460,7 @@
             separator #ff8cda
             binding_mode #5cccb8 #8cdaff #000000
             #                  border  bckgrn  text
-            focused_workspace  #e667be #ff8cda #000000
+            focused_workspace  #ff8cda #ff8cda #000000
             inactive_workspace #666666 #323232 #ffffff
             urgent_workspace   #ff9933 #ffc68c #000000
         }
