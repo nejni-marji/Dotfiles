@@ -32,9 +32,9 @@ if [[ $mod_time -lt 0 ]] ; then
 fi
 
 # data log
-echo sec_per_day .... $sec_per_day
-echo drift_offset ... $drift_offset
-echo modulus ........ $modulus
+# echo sec_per_day .... $sec_per_day
+# echo drift_offset ... $drift_offset
+# echo modulus ........ $modulus
 echo prev_time ...... $prev_time
 echo prev_time ...... $(date --date "@$prev_time" "+$DATE_FMT")
 echo curr_time ...... $curr_time
