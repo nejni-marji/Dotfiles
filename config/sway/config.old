@@ -410,8 +410,6 @@
     set $bright_sig && pkill -SIGRTMIN+2 i3blocks
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%- $bright_sig
     bindsym --locked XF86MonBrightnessUp   exec brightnessctl set 5%+ $bright_sig
-    bindsym --locked $shf+XF86MonBrightnessDown exec brightnessctl set 1%- $bright_sig
-    bindsym --locked $shf+XF86MonBrightnessUp   exec brightnessctl set 1%+ $bright_sig
 
     # take screenshots
     bindsym --release print exec ~/.config/sway/bin/screenshot.sh
@@ -460,10 +458,10 @@
             background #323232
             statusline #ffffff
             separator #ff8cda
-            binding_mode #8cdaff #8cdaff #000000
+            binding_mode #5cccb8 #8cdaff #000000
             #                  border  bckgrn  text
             focused_workspace  #ff8cda #ff8cda #000000
-            inactive_workspace #323232 #323232 #ffffff
-            urgent_workspace   #ffc68c #ffc68c #000000
+            inactive_workspace #666666 #323232 #ffffff
+            urgent_workspace   #ff9933 #ffc68c #000000
         }
     }
