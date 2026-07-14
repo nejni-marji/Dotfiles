@@ -21,3 +21,6 @@ layer=overlay
 text-color=#ffffffff
 background-color=#800000ff
 border-color=#ff0000ff
+
+[mode=do-not-disturb]
+invisible=1

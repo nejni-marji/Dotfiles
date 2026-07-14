@@ -434,10 +434,10 @@
     bindsym --locked $mod+equal      exec $player_notify
     bindsym --locked $mod+$shf+slash exec zsh -c '[[ $player_volume -le 0   ]] || playerctl -p $player volume 0.1-'
     bindsym --locked $mod+$shf+equal exec zsh -c '[[ $player_volume -ge 100 ]] || playerctl -p $player volume 0.1+'
-    bindsym --locked $mod+$alt+slash exec playerctl -p $player previous   && $player_notify
-    bindsym --locked $mod+$alt+equal exec playerctl -p $player next       && $player_notify
-    bindsym --locked $mod+$ctl+slash exec playerctld unshift && $player_notify
-    bindsym --locked $mod+$ctl+equal exec playerctld   shift && $player_notify
+    bindsym --locked $mod+$ctl+slash exec playerctl -p $player previous   && $player_notify
+    bindsym --locked $mod+$ctl+equal exec playerctl -p $player next       && $player_notify
+    bindsym --locked $mod+$alt+slash exec playerctld unshift && $player_notify
+    bindsym --locked $mod+$alt+equal exec playerctld   shift && $player_notify
 
     # locate cursor
     bindsym $mod+semicolon exec ~/Working/swaywm/git/wl-find-cursor-reticle/target/release/wl-reticle
