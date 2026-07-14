@@ -165,6 +165,7 @@ source ~/.zsh/zbell.sh
 [[ -f ~/girl ]] || echo 'nya~' > ~/girl
 # less cat and more dog?
 woof() { < ~/Dotfiles/extras/woof.txt gay -i 2d --period 7 $@ }
+alias bark=woof
 woof
 
 # # more weird testing stuff
