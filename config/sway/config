@@ -367,7 +367,7 @@
     bindsym $mod+$alt+g      exec gimp
     bindsym $mod+$alt+$shf+g exec $cmd_secure
     bindsym $mod+$alt+h      exec halloy
-    bindsym $mod+$alt+m      exec ~/.config/sway/bin/toggle_mark.sh music '$term -T "tmux: music" tmx music'
+    bindsym $mod+$alt+m      exec ~/.config/sway/bin/toggle_mark.sh music '$term -T "tmux: music" tmux attach -c ~/Music -t music'
     bindsym $mod+$alt+n      exec ~/.config/sway/bin/toggle_mark.sh mynoise 'firefox --new-window https://mynoise.net/noiseMachines.php'
     bindsym $mod+$alt+s      exec signal-desktop
     bindsym $mod+$alt+$shf+s exec steam --disable-gpu -cef-disable-gpu -no-cef-sandbox
