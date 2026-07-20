@@ -5,8 +5,8 @@
 
 ### TABLE OF CONTENTS
 #   * Variables
+#     * Includes
 #   * Autostart
-#   * Includes
 #   * Graphical configuration
 #     * Themeing
 #     * Status Bar
@@ -15,12 +15,11 @@
 #   * Key bindings
 #     * Basics
 #     * Movement
-#     * Workspace bindings
-#       * Workspace configs
+#     * Workspaces
 #     * Layout bindings
 #     * Resizing
-#   * Application bindings
-#   * Utilities
+#     * Application bindings
+#     * Utilities
 
 
 
