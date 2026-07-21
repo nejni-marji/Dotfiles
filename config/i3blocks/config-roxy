@@ -41,4 +41,5 @@ signal=2
 
 [date_fuzzy_emoji_clock]
 command=~/.config/i3blocks/bin/date_fuzzy_emoji_clock.py
+markup=pango
 interval=60
