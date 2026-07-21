@@ -36,7 +36,6 @@ cd ~/Dotfiles
 host_suffixed=(
 	# remember to update the .gitignore in tandem with this
 	config/foot/foot.ini
-	config/i3blocks/bin/date_fuzzy_emoji_clock.py
 	config/i3blocks/config
 	config/mako/config
 	config/sway/config.d/host-include

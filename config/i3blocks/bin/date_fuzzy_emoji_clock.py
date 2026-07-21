@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from datetime import datetime
+from socket import gethostname
 
 hourNames = [
     [ "One o’clock",
@@ -184,8 +185,12 @@ emoji_hour = emoji[hours-1]
 
 
 # date format
-date_long = now.strftime('%a, %b %-d,')
-date_short = now.strftime('%a, %b %-d %H:%M')
+if gethostname() == 'roxy':
+	date_long = now.strftime('%a, %b %-d,')
+	date_short = now.strftime('%a, %b %-d %H:%M')
+else:
+	date_long = now.strftime('%A, %B %-d,')
+	date_short = now.strftime('%a, %b %-d %H:%M')
 
 
 
