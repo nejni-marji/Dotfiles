@@ -45,7 +45,8 @@ emoji_hour = emoji[hours-1]
 clock_icons = ['○','◔','◑','◕']
 clock_sector = int((sector)/3)
 clock_quarter  = clock_icons[clock_sector]
-clock_symbol = '%02i<span size="x-large" font="Liberation Sans">%s</span>' % (hours, clock_quarter)
+#clock_symbol = '%02i<span size="x-large" font="Liberation Sans">%s</span>' % (hours, clock_quarter)
+clock_symbol = '%02i<span font="Liberation Sans">%s</span>' % (hours, clock_quarter)
 
 
 ### date format
@@ -61,8 +62,8 @@ else:
 print(' '.join([
 	date_long,
 	# fuzzy_time,
-	# fuzzy_time_short,
-	clock_symbol,
+	fuzzy_time_short,
+	# clock_symbol,
 	emoji_hour,
 	]))
 print(' '.join([

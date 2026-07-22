@@ -7,11 +7,11 @@ label=
 full_text=
 short_text=
 
-[workspace]
-command=~/.config/i3blocks/bin/representation.sh
-color=#808080
-interval=persist
-markup=pango
+#[workspace]
+#command=~/.config/i3blocks/bin/representation.sh
+#color=#808080
+#interval=persist
+#markup=pango
 
 [trans]
 full_text=<span foreground="#55CDFC">t</span><span foreground="#F7A8B8">r</span><span foreground="#FFFFFF">a</span><span foreground="#F7A8B8">n</span><span foreground="#55CDFC">s</span> <span foreground="#55CDFC">p</span><span foreground="#F7A8B8">r</span><span foreground="#FFFFFF">i</span><span foreground="#F7A8B8">d</span><span foreground="#55CDFC">e</span><span foreground="#FFFFFF">!</span> <span foreground="#F7A8B8">&lt;3</span>
@@ -30,5 +30,5 @@ markup=pango
 
 [date_fuzzy_emoji_clock]
 command=~/.config/i3blocks/bin/date_fuzzy_emoji_clock.py
-markup=pango
+#markup=pango
 interval=60
