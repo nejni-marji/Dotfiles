@@ -248,14 +248,23 @@
     bindsym $mod+$shf+up move up
     bindsym $mod+$shf+right move right
 
-    bindsym $mod+$ctl+$left   fullscreen disable; focus left;  fullscreen enable
-    bindsym $mod+$ctl+$down   fullscreen disable; focus down;  fullscreen enable
-    bindsym $mod+$ctl+$up     fullscreen disable; focus up;    fullscreen enable
-    bindsym $mod+$ctl+$right  fullscreen disable; focus right; fullscreen enable
-    bindsym $mod+$ctl+left    fullscreen disable; focus left;  fullscreen enable
-    bindsym $mod+$ctl+down    fullscreen disable; focus down;  fullscreen enable
-    bindsym $mod+$ctl+up      fullscreen disable; focus up;    fullscreen enable
-    bindsym $mod+$ctl+right   fullscreen disable; focus right; fullscreen enable
+    # bindsym $mod+$ctl+$left   fullscreen disable; focus left;  fullscreen enable
+    # bindsym $mod+$ctl+$down   fullscreen disable; focus down;  fullscreen enable
+    # bindsym $mod+$ctl+$up     fullscreen disable; focus up;    fullscreen enable
+    # bindsym $mod+$ctl+$right  fullscreen disable; focus right; fullscreen enable
+    # bindsym $mod+$ctl+left    fullscreen disable; focus left;  fullscreen enable
+    # bindsym $mod+$ctl+down    fullscreen disable; focus down;  fullscreen enable
+    # bindsym $mod+$ctl+up      fullscreen disable; focus up;    fullscreen enable
+    # bindsym $mod+$ctl+right   fullscreen disable; focus right; fullscreen enable
+
+    bindsym $mod+$ctl+$left   exec ~/.config/sway/bin/focvis.zsh left
+    bindsym $mod+$ctl+$down   exec ~/.config/sway/bin/focvis.zsh down
+    bindsym $mod+$ctl+$up     exec ~/.config/sway/bin/focvis.zsh up
+    bindsym $mod+$ctl+$right  exec ~/.config/sway/bin/focvis.zsh right
+    bindsym $mod+$ctl+left    exec ~/.config/sway/bin/focvis.zsh left
+    bindsym $mod+$ctl+down    exec ~/.config/sway/bin/focvis.zsh down
+    bindsym $mod+$ctl+up      exec ~/.config/sway/bin/focvis.zsh up
+    bindsym $mod+$ctl+right   exec ~/.config/sway/bin/focvis.zsh right
 
     # select most regent urgent container
     bindsym $mod+m exec swaymsg '[urgent=latest] focus'

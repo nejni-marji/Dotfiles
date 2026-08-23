@@ -50,12 +50,12 @@ clock_symbol = '%02i<span font="Liberation Sans">%s</span>' % (hours, clock_quar
 
 
 ### date format
-if gethostname() == 'roxy':
-	date_long = now.strftime('%a, %b %-d,')
-	date_short = now.strftime('%a, %b %-d,')
-else:
-	date_long = now.strftime('%A, %B %-d,')
-	date_short = now.strftime('%a, %b %-d,')
+# if False and gethostname() == 'roxy':
+# 	date_long = now.strftime('%a, %b %-d,')
+# 	date_short = now.strftime('%a, %b %-d,')
+# else:
+date_long = now.strftime('%A, %B %-d,')
+date_short = now.strftime('%a, %b %-d,')
 
 
 ### final result
