@@ -230,32 +230,23 @@
 #
 # Moving around:
 #
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
+    bindsym $mod+$left  focus left
+    bindsym $mod+$down  focus down
+    bindsym $mod+$up    focus up
     bindsym $mod+$right focus right
-    bindsym $mod+left focus left
-    bindsym $mod+down focus down
-    bindsym $mod+up focus up
-    bindsym $mod+right focus right
+    bindsym $mod+left   focus left
+    bindsym $mod+down   focus down
+    bindsym $mod+up     focus up
+    bindsym $mod+right  focus right
 
-    bindsym $mod+$shf+$left move left
-    bindsym $mod+$shf+$down move down
-    bindsym $mod+$shf+$up move up
-    bindsym $mod+$shf+$right move right
-    bindsym $mod+$shf+left move left
-    bindsym $mod+$shf+down move down
-    bindsym $mod+$shf+up move up
-    bindsym $mod+$shf+right move right
-
-    # bindsym $mod+$ctl+$left   fullscreen disable; focus left;  fullscreen enable
-    # bindsym $mod+$ctl+$down   fullscreen disable; focus down;  fullscreen enable
-    # bindsym $mod+$ctl+$up     fullscreen disable; focus up;    fullscreen enable
-    # bindsym $mod+$ctl+$right  fullscreen disable; focus right; fullscreen enable
-    # bindsym $mod+$ctl+left    fullscreen disable; focus left;  fullscreen enable
-    # bindsym $mod+$ctl+down    fullscreen disable; focus down;  fullscreen enable
-    # bindsym $mod+$ctl+up      fullscreen disable; focus up;    fullscreen enable
-    # bindsym $mod+$ctl+right   fullscreen disable; focus right; fullscreen enable
+    bindsym $mod+$shf+$left   move left
+    bindsym $mod+$shf+$down   move down
+    bindsym $mod+$shf+$up     move up
+    bindsym $mod+$shf+$right  move right
+    bindsym $mod+$shf+left    move left
+    bindsym $mod+$shf+down    move down
+    bindsym $mod+$shf+up      move up
+    bindsym $mod+$shf+right   move right
 
     bindsym $mod+$ctl+$left   exec ~/.config/sway/bin/focvis.zsh left
     bindsym $mod+$ctl+$down   exec ~/.config/sway/bin/focvis.zsh down
@@ -265,6 +256,15 @@
     bindsym $mod+$ctl+down    exec ~/.config/sway/bin/focvis.zsh down
     bindsym $mod+$ctl+up      exec ~/.config/sway/bin/focvis.zsh up
     bindsym $mod+$ctl+right   exec ~/.config/sway/bin/focvis.zsh right
+
+    bindsym $mod+$ctl+$shf+$left   fullscreen disable; focus left;  fullscreen enable
+    bindsym $mod+$ctl+$shf+$down   fullscreen disable; focus down;  fullscreen enable
+    bindsym $mod+$ctl+$shf+$up     fullscreen disable; focus up;    fullscreen enable
+    bindsym $mod+$ctl+$shf+$right  fullscreen disable; focus right; fullscreen enable
+    bindsym $mod+$ctl+$shf+left    fullscreen disable; focus left;  fullscreen enable
+    bindsym $mod+$ctl+$shf+down    fullscreen disable; focus down;  fullscreen enable
+    bindsym $mod+$ctl+$shf+up      fullscreen disable; focus up;    fullscreen enable
+    bindsym $mod+$ctl+$shf+right   fullscreen disable; focus right; fullscreen enable
 
     # select most regent urgent container
     bindsym $mod+m exec swaymsg '[urgent=latest] focus'

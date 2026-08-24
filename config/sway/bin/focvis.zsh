@@ -47,6 +47,7 @@ $parent.nodes |
 	map(.id) as $nodes | length as $length |
 	$nodes | index($child_id) |
 	. as $index |
+	# pass empty if there is no next neighbor
 	if $index == $dir_sign*($length-1) then empty else
 		$nodes[$index + [-1, 1][$dir_sign]]
 	end |
@@ -62,7 +63,8 @@ def get_lowest_child:
 $parent | .nodes |
 	map(select(.id?==$neighbor_id))[0] |
 	get_lowest_child |
-	.id
+	# pass empty if the target is not visible
+	if .visible then .id else empty end
 ')
 
 swaymsg "[con_id=$id] focus"
