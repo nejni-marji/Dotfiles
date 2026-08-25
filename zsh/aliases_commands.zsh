@@ -167,7 +167,7 @@ alias feh='imv'
 alias aria2c='aria2c -d ~/Downloads/aria'
 
 # same as above, but for less standard programs
-alias units='units -v'
+alias units='units -v1'
 local -a GAYFLAGS=(--lesbian --gay --trans)
 alias gay='gay -i 2d --white "#E0E0E0" --black "#404040" "${GAYFLAGS[($RANDOM % ${#GAYFLAGS[@]})+1]}"'
 if [[ $USER != root ]] && ! $MyAndroid && which firefox >/dev/null ; then

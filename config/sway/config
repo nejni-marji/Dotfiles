@@ -73,6 +73,9 @@
     # titlebar icons
     exec ~/.cargo/bin/swaycons
 
+    # password manager
+    exec keepassxc --minimized
+
 #
 ### Graphical configuration
 #
@@ -230,6 +233,7 @@
 #
 # Moving around:
 #
+
     bindsym $mod+$left  focus left
     bindsym $mod+$down  focus down
     bindsym $mod+$up    focus up
@@ -248,23 +252,23 @@
     bindsym $mod+$shf+up      move up
     bindsym $mod+$shf+right   move right
 
-    bindsym $mod+$ctl+$left   exec ~/.config/sway/bin/focvis.zsh left
-    bindsym $mod+$ctl+$down   exec ~/.config/sway/bin/focvis.zsh down
-    bindsym $mod+$ctl+$up     exec ~/.config/sway/bin/focvis.zsh up
-    bindsym $mod+$ctl+$right  exec ~/.config/sway/bin/focvis.zsh right
-    bindsym $mod+$ctl+left    exec ~/.config/sway/bin/focvis.zsh left
-    bindsym $mod+$ctl+down    exec ~/.config/sway/bin/focvis.zsh down
-    bindsym $mod+$ctl+up      exec ~/.config/sway/bin/focvis.zsh up
-    bindsym $mod+$ctl+right   exec ~/.config/sway/bin/focvis.zsh right
+    bindsym $mod+$alt+$left   exec ~/.config/sway/bin/focvis.zsh left
+    bindsym $mod+$alt+$down   exec ~/.config/sway/bin/focvis.zsh down
+    bindsym $mod+$alt+$up     exec ~/.config/sway/bin/focvis.zsh up
+    bindsym $mod+$alt+$right  exec ~/.config/sway/bin/focvis.zsh right
+    bindsym $mod+$alt+left    exec ~/.config/sway/bin/focvis.zsh left
+    bindsym $mod+$alt+down    exec ~/.config/sway/bin/focvis.zsh down
+    bindsym $mod+$alt+up      exec ~/.config/sway/bin/focvis.zsh up
+    bindsym $mod+$alt+right   exec ~/.config/sway/bin/focvis.zsh right
 
-    bindsym $mod+$ctl+$shf+$left   fullscreen disable; focus left;  fullscreen enable
-    bindsym $mod+$ctl+$shf+$down   fullscreen disable; focus down;  fullscreen enable
-    bindsym $mod+$ctl+$shf+$up     fullscreen disable; focus up;    fullscreen enable
-    bindsym $mod+$ctl+$shf+$right  fullscreen disable; focus right; fullscreen enable
-    bindsym $mod+$ctl+$shf+left    fullscreen disable; focus left;  fullscreen enable
-    bindsym $mod+$ctl+$shf+down    fullscreen disable; focus down;  fullscreen enable
-    bindsym $mod+$ctl+$shf+up      fullscreen disable; focus up;    fullscreen enable
-    bindsym $mod+$ctl+$shf+right   fullscreen disable; focus right; fullscreen enable
+    bindsym $mod+$ctl+$left   fullscreen disable; focus left;  fullscreen enable
+    bindsym $mod+$ctl+$down   fullscreen disable; focus down;  fullscreen enable
+    bindsym $mod+$ctl+$up     fullscreen disable; focus up;    fullscreen enable
+    bindsym $mod+$ctl+$right  fullscreen disable; focus right; fullscreen enable
+    bindsym $mod+$ctl+left    fullscreen disable; focus left;  fullscreen enable
+    bindsym $mod+$ctl+down    fullscreen disable; focus down;  fullscreen enable
+    bindsym $mod+$ctl+up      fullscreen disable; focus up;    fullscreen enable
+    bindsym $mod+$ctl+right   fullscreen disable; focus right; fullscreen enable
 
     # select most regent urgent container
     bindsym $mod+m exec swaymsg '[urgent=latest] focus'
@@ -272,6 +276,7 @@
 #
 # Workspaces:
 #
+
     # workspace options
     workspace_auto_back_and_forth yes
 
@@ -327,6 +332,7 @@
 #
 # Layout stuff:
 #
+
     # splits
     bindsym $mod+c exec swaymsg -t get_tree | \
         jq -e '.. | select([.nodes?[]?.focused] | any).type=="workspace"' && \
@@ -364,6 +370,7 @@
 #
 # Resizing containers:
 #
+
     bindsym $mod+$shf+r mode "resize"
     mode "resize" {
         bindsym $left resize shrink width 10px
@@ -384,28 +391,48 @@
     }
 
 #
-# Application binds
+# Application binds:
 #
+
+    # quick apps with alt (never 'htns' - used for movement)
     bindsym $mod+$alt+b      exec ~/.config/sway/bin/toggle_mark.sh bluetooth 'blueman-manager'
-    bindsym $mod+$alt+d      exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
-    bindsym $mod+$alt+$shf+d exec deluge-gtk
     bindsym $mod+$alt+f      exec env MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
-    bindsym $mod+$alt+g      exec gimp
-    bindsym $mod+$alt+$shf+g exec $cmd_secure
-    bindsym $mod+$alt+h      exec halloy
+    bindsym $mod+$alt+g      exec $cmd_secure
     bindsym $mod+$alt+m      exec ~/.config/sway/bin/toggle_mark.sh music '$term -T "tmux: music" tmx music'
-    bindsym $mod+$alt+n      exec ~/.config/sway/bin/toggle_mark.sh mynoise 'firefox --new-window https://mynoise.net/noiseMachines.php'
-    bindsym $mod+$alt+s      exec signal-desktop
-    bindsym $mod+$alt+$shf+s exec steam --disable-gpu -cef-disable-gpu -no-cef-sandbox
-    bindsym $mod+$alt+t      exec thunar
+    bindsym $mod+$alt+$shf+n exec ~/.config/sway/bin/toggle_mark.sh mynoise 'firefox --new-window https://mynoise.net/noiseMachines.php'
     bindsym $mod+$alt+v      exec ~/.config/sway/bin/toggle_mark.sh volume '$term -T pulsemixer pulsemixer'
-    bindsym $mod+$alt+$shf+v exec pavucontrol
+
+    # modal for apps that don't need to be fast
+    set $mode_apps "apps: deluge, gimp, irc, thunar, email"
+    set $mode_cfg "configs: dsStvzZ"
+    bindsym $mod+$alt+r mode $mode_apps
+    mode $mode_apps {
+        bindsym $mod+$alt+r mode default
+        bindsym escape mode default
+        bindsym return mode default
+        bindsym backspace mode default
+        bindsym $ctl+bracketleft mode default
+        bindsym $mod+$alt+c      mode $mode_cfg
+
+        bindsym d      mode default, exec deluge-gtk
+        bindsym g      mode default, exec gimp
+        bindsym i      mode default, exec halloy
+        bindsym t      mode default, exec thunar
+        bindsym e      mode default, exec thunderbird
+    }
 
     # edit configs quickly
     set $mode_cfg "configs: dsStvzZ"
     bindsym $mod+$alt+c      mode $mode_cfg
     mode $mode_cfg {
+        bindsym $mod+$alt+c mode default
+        bindsym escape mode default
+        bindsym return mode default
+        bindsym backspace mode default
+        bindsym $ctl+bracketleft mode default
+        bindsym $mod+$alt+r mode $mode_apps
+
         bindsym d      mode default, exec $term -D ~/Dotfiles
         bindsym s      mode default, exec $term -T 'nvim sway config' nvim ~/.config/sway/config
         bindsym $shf+s mode default, exec $term -T 'nvim -d sway config-*' nvim -d ~/.config/sway/config.d/host-include-*
@@ -413,17 +440,12 @@
         bindsym v      mode default, exec $term -T 'nvim vimrc' nvim ~/.config/nvim/init.vim
         bindsym z      mode default, exec $term -T 'nvim zshrc' nvim ~/.zshrc
         bindsym $shf+z mode default, exec $term -T 'nvim zshrc' nvim ~/.zshenv
-
-        bindsym $mod+$alt+c mode default
-        bindsym escape mode default
-        bindsym return mode default
-        bindsym backspace mode default
-        bindsym $ctl+bracketleft mode default
     }
 
 #
 # Utilities:
 #
+
     # special keys to adjust volume via pulseaudio
     set $vol_sig && pkill -SIGRTMIN+1 i3blocks
     bindsym --locked XF86AudioMute        exec pactl set-sink-mute   \@DEFAULT_SINK@   toggle $vol_sig
@@ -461,10 +483,10 @@
     bindsym --locked $mod+equal      exec $player_notify
     bindsym --locked $mod+$shf+slash exec zsh -c '[[ $player_volume -le 0   ]] || playerctl -p $player volume 0.1-'
     bindsym --locked $mod+$shf+equal exec zsh -c '[[ $player_volume -ge 100 ]] || playerctl -p $player volume 0.1+'
-    bindsym --locked $mod+$ctl+slash exec playerctl -p $player previous   && $player_notify
-    bindsym --locked $mod+$ctl+equal exec playerctl -p $player next       && $player_notify
-    bindsym --locked $mod+$alt+slash exec playerctld unshift && $player_notify
-    bindsym --locked $mod+$alt+equal exec playerctld   shift && $player_notify
+    bindsym --locked $mod+$alt+slash exec playerctl -p $player previous   && $player_notify
+    bindsym --locked $mod+$alt+equal exec playerctl -p $player next       && $player_notify
+    bindsym --locked $mod+$ctl+slash exec playerctld unshift && $player_notify
+    bindsym --locked $mod+$ctl+equal exec playerctld   shift && $player_notify
 
     # locate cursor
     bindsym $mod+semicolon exec ~/Working/swaywm/git/wl-find-cursor-reticle/target/release/wl-reticle

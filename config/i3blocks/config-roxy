@@ -19,6 +19,12 @@ short_text=<span foreground="#F7A8B8">&lt;3</span>
 interval=once
 markup=pango
 
+#[dirty]
+#label=📒 
+#label=🗒️ 
+#command=echo "$(units --terse "$(grep Dirty /proc/meminfo | cut -c7-)+0.5MB" MB | cut -d. -f1) MB"
+#interval=30
+
 [battery]
 label=⚡ 
 command=~/.config/i3blocks/bin/battery.sh
