@@ -4,6 +4,7 @@
 latest="$(for i in list history ; do makoctl $i -j ; done |
 	jq -s '[.[][].id] | sort[-1]')"
 
+# for some reason i sometimes get outdated values in this file
 echo $latest > ~/.makodnd
 
 # toggle dnd and update the status bar
