@@ -21,8 +21,6 @@
 #     * Application bindings
 #     * Utilities
 
-
-
 #
 ### Variables
 #
@@ -40,6 +38,7 @@
     set $term foot
     set $menu wmenu-run -i -l 15 -f '$font' -p 'Run:' -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000
     set $menu_alt i3-dmenu-desktop --dmenu='wmenu -i -l 15 -f "$font" -p Run: -M ff8cda -m 000000 -N 8cdaff -n 000000 -S ff8cda -s 000000'
+    set $swaybin ~/.config/sway/bin
     # wallpapers
     set $wallpaper  ~/.local/share/wallpapers/wallpaper
     set $lockscreen ~/.local/share/wallpapers/lockscreen
@@ -157,7 +156,7 @@
     for_window [title="^tmux: music"]       mark _music
     for_window [title="mynoise\.net"]       mark _mynoise
 
-    # see also: ~/.config/sway/bin/toggle_mark.sh
+    # see also: $swaybin/toggle_mark.sh
     set $toggle_mark con_mark="^_?(volume|bluetooth|music|mynoise)$"]
     for_window [$toggle_mark] floating enable
     for_window [$toggle_mark] border $border
@@ -207,7 +206,7 @@
     bindsym $alt+space  exec $menu
     bindsym $mod+d      exec $menu
     bindsym $mod+$shf+d exec $menu_alt
-    bindsym $mod+$ctl+d exec ~/.config/sway/bin/wmenu-windows.sh
+    bindsym $mod+$ctl+d exec $swaybin/wmenu-windows.sh
 
     # reload the configuration file
     bindsym $mod+$shf+c reload
@@ -252,14 +251,14 @@
     bindsym $mod+$shf+up      move up
     bindsym $mod+$shf+right   move right
 
-    bindsym $mod+$alt+$left   exec ~/.config/sway/bin/focvis.zsh left
-    bindsym $mod+$alt+$down   exec ~/.config/sway/bin/focvis.zsh down
-    bindsym $mod+$alt+$up     exec ~/.config/sway/bin/focvis.zsh up
-    bindsym $mod+$alt+$right  exec ~/.config/sway/bin/focvis.zsh right
-    bindsym $mod+$alt+left    exec ~/.config/sway/bin/focvis.zsh left
-    bindsym $mod+$alt+down    exec ~/.config/sway/bin/focvis.zsh down
-    bindsym $mod+$alt+up      exec ~/.config/sway/bin/focvis.zsh up
-    bindsym $mod+$alt+right   exec ~/.config/sway/bin/focvis.zsh right
+    bindsym $mod+$alt+$left   exec $swaybin/focvis.zsh left
+    bindsym $mod+$alt+$down   exec $swaybin/focvis.zsh down
+    bindsym $mod+$alt+$up     exec $swaybin/focvis.zsh up
+    bindsym $mod+$alt+$right  exec $swaybin/focvis.zsh right
+    bindsym $mod+$alt+left    exec $swaybin/focvis.zsh left
+    bindsym $mod+$alt+down    exec $swaybin/focvis.zsh down
+    bindsym $mod+$alt+up      exec $swaybin/focvis.zsh up
+    bindsym $mod+$alt+right   exec $swaybin/focvis.zsh right
 
     bindsym $mod+$ctl+$left   fullscreen disable; focus left;  fullscreen enable
     bindsym $mod+$ctl+$down   fullscreen disable; focus down;  fullscreen enable
@@ -395,13 +394,13 @@
 #
 
     # quick apps with alt (never 'htns' - used for movement)
-    bindsym $mod+$alt+b      exec ~/.config/sway/bin/toggle_mark.sh bluetooth 'blueman-manager'
+    bindsym $mod+$alt+b      exec $swaybin/toggle_mark.sh bluetooth 'blueman-manager'
     bindsym $mod+$alt+f      exec env MOZ_ENABLE_WAYLAND=1 firefox
     bindsym $mod+$alt+$shf+f exec env MOZ_ENABLE_WAYLAND=1 firefox --private-window
     bindsym $mod+$alt+g      exec $cmd_secure
-    bindsym $mod+$alt+m      exec ~/.config/sway/bin/toggle_mark.sh music '$term -T "tmux: music" tmx music'
-    bindsym $mod+$alt+$shf+n exec ~/.config/sway/bin/toggle_mark.sh mynoise 'firefox --new-window https://mynoise.net/noiseMachines.php'
-    bindsym $mod+$alt+v      exec ~/.config/sway/bin/toggle_mark.sh volume '$term -T pulsemixer pulsemixer'
+    bindsym $mod+$alt+m      exec $swaybin/toggle_mark.sh music '$term -T "tmux: music" tmx music'
+    bindsym $mod+$alt+$shf+n exec $swaybin/toggle_mark.sh mynoise 'firefox --new-window https://mynoise.net/noiseMachines.php'
+    bindsym $mod+$alt+v      exec $swaybin/toggle_mark.sh volume '$term -T pulsemixer pulsemixer'
 
     # modal for apps that don't need to be fast
     set $mode_apps "apps: deluge, gimp, irc, thunar, email"
@@ -463,21 +462,22 @@
     bindsym --locked $shf+XF86MonBrightnessUp   exec brightnessctl set 1%+ $bright_sig
 
     # take screenshots
-    bindsym --release print exec ~/.config/sway/bin/screenshot.sh
-    bindsym $mod+p          exec ~/.config/sway/bin/screenshot.sh
-    bindsym $mod+$shf+p     exec ~/.config/sway/bin/screenshot.sh
+    bindsym --release print exec $swaybin/screenshot.sh
+    bindsym $mod+p          exec $swaybin/screenshot.sh
+    bindsym $mod+$shf+p     exec $swaybin/screenshot.sh
 
     # manage notifications
     set $mako_sig && pkill -SIGRTMIN+3 i3blocks
-    # the signal isn't used here but i'm leaving it in for posterity
+    # the signal isn't always used here but i'm leaving it in for posterity
     bindsym $mod+z      exec makoctl dismiss --all
-    bindsym $mod+$shf+z exec makoctl restore
-    bindsym $mod+$ctl+z exec ~/.config/sway/bin/do_not_disturb.sh
-    bindsym $mod+$alt+z exec ~/.config/sway/bin/do_not_disturb.sh
+    # wrap 'makoctl restore' so it gracefully returns from dnd
+    bindsym $mod+$shf+z exec $swaybin/makoctl_restore.sh
+    bindsym $mod+$ctl+z exec $swaybin/do_not_disturb.sh
+    bindsym $mod+$alt+z exec $swaybin/do_not_disturb.sh
 
     # media playback keys
     set $player $(playerctl -l | head -n1)
-    set $player_notify ~/.config/sway/bin/playerctl_notify.zsh
+    set $player_notify $swaybin/playerctl_notify.zsh
     set $player_volume $((100*$(playerctl -p $player volume)))
     bindsym --locked XF86AudioPlay   exec playerctl -p $player play-pause
     bindsym --locked XF86AudioPause  exec playerctl -p $player play-pause
