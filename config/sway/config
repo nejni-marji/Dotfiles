@@ -467,8 +467,12 @@
     bindsym $mod+p          exec ~/.config/sway/bin/screenshot.sh
     bindsym $mod+$shf+p     exec ~/.config/sway/bin/screenshot.sh
 
+    # manage notifications
+    set $mako_sig && pkill -SIGRTMIN+3 i3blocks
     bindsym $mod+z      exec makoctl dismiss --all
     bindsym $mod+$shf+z exec makoctl restore
+    bindsym $mod+$ctl+z exec ~/.config/sway/bin/do_not_disturb.sh
+    bindsym $mod+$alt+z exec ~/.config/sway/bin/do_not_disturb.sh
 
     # media playback keys
     set $player $(playerctl -l | head -n1)

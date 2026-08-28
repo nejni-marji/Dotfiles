@@ -33,6 +33,12 @@ signal=1
 markup=pango
 
 
+[notifications]
+label=
+command=~/.config/i3blocks/bin/notifications.sh
+interval=10
+signal=3
+
 [date_fuzzy_emoji_clock]
 command=~/.config/i3blocks/bin/date_fuzzy_emoji_clock.py
 #markup=pango

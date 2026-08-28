@@ -5,7 +5,7 @@
 
 # Kill defunct sessions
 list-dead() {
-	tmux ls 2>/dev/null | grep -P '(.*?)-\d{4}_\d{6}: .* \(group (?:\1|\d+)\)$' | cut -d: -f1
+	tmux ls 2>/dev/null | grep -P '(.*?)-[A-Z]{4}: .* \(group (?:\1|\d+)\)$' | cut -d: -f1
 }
 for i in $(list-dead); do
 	echo "Killing defunct session: $i"
