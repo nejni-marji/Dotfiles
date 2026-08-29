@@ -1,5 +1,6 @@
 [main]
 font=ComicCode:size=12
+resize-by-cells=no
 
 [colors-dark]
 alpha=0.9
