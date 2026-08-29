@@ -181,6 +181,11 @@
         pointer_accel -0.35
     }
 
+    input "2:10:TPPS/2_IBM_TrackPoint" {
+        scroll_factor 2
+        pointer_accel 1
+    }
+
     input type:touchpad {
         tap enabled
         scroll_method two_finger
@@ -498,3 +503,4 @@
     bindsym $mod+end  exec wlcrosshairctl reload
 
 bindsym $mod+o exec foot zsh -c 'cd Working/swaywm/git/tuicc ; source .venv/bin/activate ; python main.py' 
+bindsym $mod+b exec keynav
