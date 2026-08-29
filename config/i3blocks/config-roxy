@@ -2,6 +2,7 @@ separator_block_width=25
 
 [gammastep]
 command=~/bin/sleep-gamma.sh 2>&1 >/dev/null
+#command=~/bin/sleep-gamma.sh | tail -n1 | grep night >/dev/null && echo '💤'
 interval=300
 label=
 full_text=
