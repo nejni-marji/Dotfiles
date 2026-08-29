@@ -182,8 +182,8 @@
     }
 
     input "2:10:TPPS/2_IBM_TrackPoint" {
-        scroll_factor 2
-        pointer_accel 1
+        # scroll_factor 2
+        pointer_accel 0.5
     }
 
     input type:touchpad {
