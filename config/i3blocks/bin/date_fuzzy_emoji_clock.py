@@ -27,9 +27,11 @@ print(' '.join([
 	date_long,
 	fuzzy_time_short,
 	emoji_hour,
+	'  ',
 	]))
 print(' '.join([
 	date_short,
 	fuzzy_time_short,
 	emoji_hour,
+	'  ',
 	]))

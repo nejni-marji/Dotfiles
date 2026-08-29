@@ -221,11 +221,6 @@
     # TODO: make this check if the focused window is floating
     bindsym $mod+$shf+m resize set width 50 ppt height 80 ppt, move position center
 
-    # exit sway (logs you out of your wayland session)
-    bindsym $mod+$shf+e exec swaynag -t warning \
-        -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
-        -B 'Yes, exit sway' 'swaymsg exit'
-
     # lock sway manually
     bindsym $ctl+$alt+l exec swaylock -f -i $lockscreen
     bindsym $mod+$ctl+l exec swaylock -f -i $lockscreen
