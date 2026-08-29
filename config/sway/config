@@ -51,12 +51,14 @@
 ### Autostart
 #
     # idle configuration aka powersaving aka screenlock
-    # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep
+    # turn off monitors after 10 minutes, wait 30 seconds to lock, wait 5 minutes to sleep. reload config after opening screen, mostly to update gammastep.
     exec swayidle -w \
         timeout 600 'swaymsg "output * dpms off"' \
         timeout 630 'swaylock -f -i $lockscreen' \
         resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock -f -i $lockscreen'
+        after-resume 'swaymsg reload' \
+        before-sleep 'swaylock -f -i $lockscreen' \
+        ;
 
     # idle inhibitor for gaming and movies
     for_window [all] inhibit_idle fullscreen
@@ -320,7 +322,7 @@
     bindsym $mod+$shf+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num-1 | if (10<=. and .<=90 and .%10==0)      then "$ws\(./10)" else . end')"
     bindsym $mod+$shf+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num+1 | if (10<=. and .<=90 and .%10==0)      then "$ws\(./10)" else . end')"
     bindsym $mod+$ctl+bracketleft  exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num   | ((.-1)/10|floor) | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
-    bindsym $mod+$ctl+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num   | (./10+1|floor) | if (1<=. and .<=9)   then "$ws\(.)" else .*10 end')"
+    bindsym $mod+$ctl+bracketright exec swaymsg "workspace number $(swaymsg -t get_workspaces | jq -r '.. | select(.focused?).num   | (./10+1|floor)   | if (1<=. and .<=9) then "$ws\(.)" else .*10 end')"
 
     # scratchpad (technically kind of a workspace)
     bindsym $mod+$shf+minus      move scratchpad
@@ -499,3 +501,5 @@
     # gaming crosshair
     bindsym $mod+home exec wlcrosshairctl toggle
     bindsym $mod+end  exec wlcrosshairctl reload
+
+bindsym $mod+o exec foot zsh -c 'cd Working/swaywm/git/tuicc ; source .venv/bin/activate ; python main.py' 
