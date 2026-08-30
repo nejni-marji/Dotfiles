@@ -6,7 +6,7 @@ if makoctl mode | grep do-not-disturb >/dev/null ; then
 	latest="$(for i in list history ; do makoctl $i -j ; done |
 		jq -s '[.[][].id] | sort[-1]')"
 	# get the last notification id from before dnd was enabled
-	previous="$(cat ~/.makodnd)"
+	previous="$(cat ~/.cache/makodnd)"
 	# calculate number of new messages
 	msg_count=$(( $latest - $previous ))
 

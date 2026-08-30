@@ -14,3 +14,4 @@ esac
 brightness=$(brightnessctl | grep -Po '\d+%')
 
 echo $brightness
+echo $brightness
