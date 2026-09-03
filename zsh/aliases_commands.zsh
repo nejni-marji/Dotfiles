@@ -165,6 +165,7 @@ alias calc='units'
 alias cal='cal -m'
 alias feh='imv'
 alias aria2c='aria2c -d ~/Downloads/aria'
+alias subs='subliminal --opensubtitles $subs_user $subs_pass download -l en'
 
 # same as above, but for less standard programs
 alias units='units -v1'
