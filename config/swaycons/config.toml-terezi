@@ -19,3 +19,4 @@ mpv = { icon = "", color = "#c900cc" }
 "[Ii]nvidious" = { icon = "", color = "#ff0000" }
 "[Bb]lue[Tt]ooth" = { icon = "", color = "#0083fc" }
 "[Mm]inecraft" = { icon = "󰍳", color = "#0db50d" }
+"[Nn]oterook" = { icon = "", color = "#ff8cda" }
