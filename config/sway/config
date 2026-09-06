@@ -504,3 +504,4 @@
 
 bindsym $mod+o exec foot zsh -c 'cd Working/swaywm/git/tuicc ; source .venv/bin/activate ; python main.py' 
 bindsym $mod+b exec keynav
+bindsym $mod+$shf+$ctl+$alt+l exec env MOZ_ENABLE_WAYLAND=1 firefox --new-window 'https://en.wikipedia.org/wiki/LinkedIn'
