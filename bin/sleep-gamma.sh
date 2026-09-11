@@ -13,12 +13,7 @@ case $1 in
 		;;
 esac
 
-# avg drift 1:13, in sec
-drift_offset=$(( 60*60 ))
-
-sec_per_day=$(( 60 * 60 * 24 ))
-
-modulus=$(( $sec_per_day + $drift_offset ))
+modulus=$(( 25 * 60 * 60 ))
 
 curr_time=$( date +%s )
 
@@ -32,8 +27,6 @@ if [[ $mod_time -lt 0 ]] ; then
 fi
 
 # data log
-# echo sec_per_day .... $sec_per_day
-# echo drift_offset ... $drift_offset
 # echo modulus ........ $modulus
 echo prev_time ...... $prev_time
 echo prev_time ...... $(date --date "@$prev_time" "+$DATE_FMT")
