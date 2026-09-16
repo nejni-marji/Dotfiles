@@ -66,8 +66,6 @@
     # this is stupid. but it works
     exec dbus-update-activation-environment --systemd GDK_BACKEND=wayland XDG_CURRENT_DESKTOP=sway WAYLAND_DISPLAY
 
-    # screen dimming now handled in i3blocks
-
     # notification server
     exec mako
 
@@ -76,6 +74,22 @@
 
     # password manager
     exec keepassxc --minimized
+
+    # status bar clock
+    exec wlclock \
+        --layer top \
+        --position top-right \
+        --size 21 \
+        --margin 4 11 4 0 \
+        --hand-width 1 \
+        --corner-radius 99999 \
+        --background-colour \#323232 \
+        --border-colour \#c0c0c0 \
+        --clock-colour \#ffffff \
+        --marking-width 0 \
+        --24 --no-minutes \
+        --verbose \
+        ;
 
 #
 ### Graphical configuration
