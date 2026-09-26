@@ -33,7 +33,6 @@
     output HDMI-A-1 resolution 1920x1080 position 1920,0
     output HDMI-A-2 resolution 1920x1080 position 0,0
 
-
     # default workspaces
     workspace $ws1 output HDMI-A-2
     workspace $ws2 output HDMI-A-1
