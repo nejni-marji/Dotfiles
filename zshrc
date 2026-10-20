@@ -4,6 +4,12 @@
 #
 # vim: fdm=marker fdl=0 nornu
 
+# this has to come first and is only meaningful on fedora atomic desktops
+grep -i container /etc/os-release >/dev/null && {
+	[[ -v container ]] ||
+	exec env SHELL=/bin/zsh toolbox enter main
+}
+
 ## Miscellaneous ##
 
 # This has to be done early for stuff later on.

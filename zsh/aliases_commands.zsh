@@ -171,9 +171,9 @@ alias subs='subliminal --opensubtitles $subs_user $subs_pass download -l en'
 alias units='units -v1'
 local -a GAYFLAGS=(--lesbian --gay --trans)
 alias gay='gay -i 2d --white "#E0E0E0" --black "#404040" "${GAYFLAGS[($RANDOM % ${#GAYFLAGS[@]})+1]}"'
-if [[ $USER != root ]] && ! $MyAndroid && which firefox >/dev/null ; then
-local FF_VER=$(firefox -version | cut -d' ' -f3)
-fi
+#if [[ $USER != root ]] && ! $MyAndroid && which firefox >/dev/null ; then
+#local FF_VER=$(firefox -version | cut -d' ' -f3)
+#fi
 alias mpv-web="mpv --user-agent=\"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:$FF_VER) Gecko/20100101 Firefox/$FF_VER\""
 alias mpv-music="mpv --no-audio-display --no-video --no-pause --keep-open=yes --volume=40 --loop-playlist"
 alias convert='magick'
@@ -273,6 +273,14 @@ alias deadname='perl -p ~/Dotfiles/extras/.deadname_re'
 
 
 
+### aliases for fedora atomic desktop
+alias mpv='flatpak run io.mpv.Mpv'
+alias tmux='systemd-run --user --scope tmux'
+alias tmx='systemd-run --user --scope tmx tmx'
+alias tbx='toolbox -c main run'
+
+
+
 ######################
 ### END OF ALIASES ###
 ######################
@@ -324,25 +332,25 @@ done | paste -sd+ | x units '({})s' hms
 
 # functions that wrap around an existing program
 
-ssh() {
-	# scrape valid hosts from the ssh config
-	hosts=( $(
-		< ~/.ssh/config |
-			grep -Po '^[^#]+' |
-			grep -Po '(?<=Host\s)\S+'
-		) )
-	# check if $1 is in $hosts
-	if [[ $#@ -eq 1 ]] && [[ ${hosts[(i)$1]} -le $#hosts ]] ; then
-		echo 'using mosh instead of ssh'
-		mosh $1
-	else
-		# use a subshell to get the real ssh path
-		real_ssh=$(zsh -c 'which ssh')
-		# $@ are *all* positional arguments, at once
-		$real_ssh $@
-		# unset real_ssh
-	fi
-}
+#ssh() {
+#	# scrape valid hosts from the ssh config
+#	hosts=( $(
+#		< ~/.ssh/config |
+#			grep -Po '^[^#]+' |
+#			grep -Po '(?<=Host\s)\S+'
+#		) )
+#	# check if $1 is in $hosts
+#	if [[ $#@ -eq 1 ]] && [[ ${hosts[(i)$1]} -le $#hosts ]] ; then
+#		echo 'using mosh instead of ssh'
+#		mosh $1
+#	else
+#		# use a subshell to get the real ssh path
+#		real_ssh=$(zsh -c 'which ssh')
+#		# $@ are *all* positional arguments, at once
+#		$real_ssh $@
+#		# unset real_ssh
+#	fi
+#}
 
 
 
