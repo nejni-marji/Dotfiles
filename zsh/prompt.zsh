@@ -7,7 +7,7 @@ setopt PROMPT_SUBST
 #%F{cyan}%5~%f
 #%F{cyan}%(!.#.🐚) %f'
 PROMPT='$(color_clock.zsh)
-%B%(!.%F{black}%K{red}.%F{magenta})[%n@%M]%(2L., .%(?.., ))%(2L.s%L.)%(?..e%?)%b%k%(2~. %F{cyan}%5~%f.)
+%B%(!.%F{black}%K{red}.%F{magenta})[%n@%M]%(2L., .%(?.., ))%(2L.s%L.)%(?..e%?)%b%k %F{cyan}%5~%f
 %F{cyan}%(!.#.🐚) %f'
 
 else
