@@ -2,13 +2,17 @@
 
 if ! $MyAndroid ; then
 setopt PROMPT_SUBST
-#PROMPT='$(color_clock.zsh)
-#%B%(!.%F{black}%K{red}.%F{white}%K{blue})s%Le%? %n@%M%b%k
-#%F{cyan}%5~%f
-#%F{cyan}%(!.#.🐚) %f'
 PROMPT='$(color_clock.zsh)
-%B%(!.%F{black}%K{red}.%F{magenta})[%n@%M]%(2L., .%(?.., ))%(2L.s%L.)%(?..e%?)%b%k %F{cyan}%5~%f
+%B%(!.%F{black}%K{red}.%F{white}%K{blue})s%Le%? %n@%M%b%k
+%F{cyan}%5~%f
 %F{cyan}%(!.#.🐚) %f'
+PROMPT='$(color_clock.zsh)
+%B%F{magenta}[%n@%M]\
+%(2L. .%(?.. ))\
+%b%f\
+%(2L.s%L.)%(?..e%?) \
+%F{cyan}%5~%f
+%F{cyan}%(!.#.🐚) %f%k%b'
 
 else
 PROMPT='%F{black}%K{green}%D{%a, %b %-d, %H:%M:%S}%f%k
