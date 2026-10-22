@@ -2,9 +2,12 @@
 
 if ! $MyAndroid ; then
 setopt PROMPT_SUBST
+#PROMPT='$(color_clock.zsh)
+#%B%(!.%F{black}%K{red}.%F{white}%K{blue})s%Le%? %n@%M%b%k
+#%F{cyan}%5~%f
+#%F{cyan}%(!.#.🐚) %f'
 PROMPT='$(color_clock.zsh)
-%B%(!.%F{black}%K{red}.%F{white}%K{blue})s%Le%? %n@%M%b%k
-%F{cyan}%5~%f
+%B%(!.%F{black}%K{red}.%F{magenta})[%n@%M]%(2L., .%(?.., ))%(2L.s%L.)%(?..e%?)%b%k%(2~. %F{cyan}%5~%f.)
 %F{cyan}%(!.#.🐚) %f'
 
 else
@@ -54,30 +57,3 @@ if [[ -f $prompt_hc2_lock ]] ; then
 	hc2 >/dev/null
 	echo
 fi
-
-
-
-
-# deprecating jankier systems for one that only checks if i'm root
-# -2022-05-08 10:36:49
-#
-# if ! $MyAndroid ; then
-# setopt PROMPT_SUBST
-# PS1='$(color_clock.zsh)
-# %B%(1000#.%F{white}%K{blue}.%F{black}%K{red})s%Le%? %n@%M%b%k
-# %F{cyan}%5~%f
-# %F{cyan}%(!.#.🐚) %f'
-# PS1='$(color_clock.zsh)
-# %B%(1000#.%F{white}%K{blue}.%F{black}%K{red})s%Le%? %(1000#.lexa.%n)@%M%b%k
-# %F{cyan}%5~%f
-# %F{cyan}%(!.#.🐚) %f'
-
-# else
-# MyAndroidUser=10197
-# PS1='%F{black}%K{green}%D{%a, %b %-d, %H:%M:%S}
-# %B%('"$MyAndroidUser"'#.%F{white}%K{blue}.%F{black}%K{red})s%Le%? %('"$MyAndroidUser"'#.lexa.%n)@%M%b%k
-# %F{cyan}%5~%f
-# %F{cyan}%(!.#.🐚) %f'
-# fi
-
-# PS1+=$prompt_hc2

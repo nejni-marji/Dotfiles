@@ -5,10 +5,10 @@
 # vim: fdm=marker fdl=0 nornu
 
 # this has to come first and is only meaningful on fedora atomic desktops
-grep -i container /etc/os-release >/dev/null && {
-	[[ -v container ]] ||
-	exec env SHELL=/bin/zsh toolbox enter main
-}
+#grep -i 'container\|kinoite' /etc/os-release >/dev/null && {
+#	[[ -v container ]] ||
+#	exec env SHELL=/bin/zsh toolbox enter main
+#}
 
 ## Miscellaneous ##
 
